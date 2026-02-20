@@ -1,0 +1,11 @@
+# Typst output
+*.pdf
+
+# Editor
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
