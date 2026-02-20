@@ -11,7 +11,7 @@
 
 #v(0.5cm)
 #text(size: 24pt, weight: "bold")[
-  Learning Management System
+  E-Learning Management System
 ]
 
 #v(1.5cm)
@@ -23,7 +23,7 @@
 #text(size: 14pt)[
   Internship at \
   MyOrder Intelligence Co., Ltd. \
-  211/2 Bang Phra, Si Racha, Chonburi 20110
+  211 2 Bang Phra, Si Racha, Chonburi 20110
 ]
 
 #v(2cm)

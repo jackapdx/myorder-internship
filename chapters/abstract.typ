@@ -1,4 +1,16 @@
-= บทคัดย่อ (ไทย)
+#table(
+  columns: (auto, 1fr),
+  stroke: none,
+  [หัวข้อรายงาน], [ระบบการเรียนรู้ออนไลน์ของระบบการจัดการทรัพยากรมนุษย์],
+  [นิสิต], [นาย (ชื่อ-สกุล)],
+  [รหัสประจำตัว], [(...)],
+  [อาจารย์ที่ปรึกษา], [ผู้ช่วยศาสตราจารย์ เบญจภรณ์ จันทรกองกุล],
+  [ระดับการศึกษา], [วิทยาศาสตรบัณฑิต สาขาวิชาวิทยาการคอมพิวเตอร์],
+  [คณะ], [วิทยาการสารสนเทศ มหาวิทยาลัยบูรพา],
+  [ปีการศึกษา], [2568],
+)
+
+= บทคัดย่อ
 
 รายงานการปฏิบัติงานสหกิจศึกษาฉบับนี้ได้อธิบายถึงการปฏิบัติงาน ณ บริษัท มายออเดอร์ อินเทลลิเจนซ์ จำกัด ระหว่างวันที่ 13 พฤศจิกายน 2567 ถึงวันที่ 13 มีนาคม 2568 โดยปฏิบัติงานเกี่ยวกับการพัฒนาและแก้ไขระบบตามที่ได้รับมอบหมาย ซึ่งได้จัดทำการพัฒนาส่วนติดต่อผู้ใช้งานและส่วนหลังบ้านของระบบ (ชื่อระบบ) โดยแบ่งเป็นทั้งหมด (x) ฟีเจอร์ ได้แก่ …
 
@@ -6,17 +18,19 @@
 โดยใช้ภาษา HTML, CSS, TypeScript และ SQL ในการพัฒนาระบบ
 ผลลัพธ์จากการพัฒนาระบบ (ระบบ) พบว่าสามารถพัฒนาเว็บไซต์ตรงตามความต้องการของผู้ใช้และสามารถใช้งานได้อย่างมีประสิทธิภาพ
 
+#pagebreak()
+#table(
+  columns: (auto, 1fr),
+  stroke: none,
+  [Report Title], [E-Learning Management System],
+  [Student], [(...)],
+  [Student ID], [(...)],
+  [Advisor], [Assistant Professor Benchaporn Jantarakongkul],
+  [Level of Study], [Bachelor degree of Science in Computer Science],
+  [Faculty], [Faculty of Informatics, Burapha University],
+  [Year], [2025],
+)
 
-== ABSTRACT (English)
+= ABSTRACT
 
-Report Title: E-Learning Platform of My HR (Human Resource Management)
-
-Student: Mr. (ชื่อ-สกุล)
-
-Advisor: Assistant Professor Benchaporn Jantarakongkul
-
-Level of Study: Bachelor degree of Science in Computer Science
-
-Faculty: Faculty of Informatics, Burapha University
-
-Year: 2025
+translate from above
