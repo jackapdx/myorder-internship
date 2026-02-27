@@ -2,6 +2,14 @@
 #set text(font: "TH Sarabun New", size: 16pt, lang: "th", style: "normal", weight: "regular")
 #set page(paper: "a4", margin: (top: 2.5cm, bottom: 2.5cm, left: 3cm, right: 2.5cm))
 
+// สถานะสำหรับชื่อสารบัญในหน้าถัดไป
+#let outline-title = state("outline-title", none)
+
+// ฟังก์ชันสำหรับเช็คว่ามีหัวข้อระดับ 1 ในหน้าปัจจุบันหรือไม่
+#let has-level1-heading() = {
+  query(heading.where(level: 1)).any(it => it.location().page() == here().page())
+}
+
 // ตั้งค่าการย่อหน้า (Indentation) และการจัดการพารากราฟ
 #set par(
   first-line-indent: 1cm, // กำหนดระยะย่อหน้า 1 ซม. (ประมาณ 1 Tab)
@@ -60,7 +68,15 @@
 #pagebreak()
 
 // ส่วนหน้า (Front Matter) - ใช้เลขหน้าแบบโรมัน (i, ii, iii)
-#set page(numbering: "i")
+#set page(
+  numbering: "i",
+  header: context {
+    let title = outline-title.get()
+    if title != none and not has-level1-heading() {
+      align(center, text(size: 18pt, weight: "bold")[#title (ต่อ)])
+    }
+  },
+)
 #counter(page).update(1)
 
 #include "chapters/certificate.typ"
@@ -71,14 +87,16 @@
 #pagebreak()
 
 // สารบัญ
+#outline-title.update("สารบัญ")
 #outline(title: "สารบัญ", indent: 2em)
+#outline-title.update(none)
 #pagebreak()
 
 #include "chapters/list-of-figures.typ"
 #pagebreak()
 
 // เนื้อหาหลัก (Main Content) - ใช้เลขหน้าแบบอารบิก (1, 2, 3)
-#set page(numbering: "1")
+#set page(numbering: "1", header: none)
 #counter(page).update(1)
 
 #counter("chapter").update(1)
