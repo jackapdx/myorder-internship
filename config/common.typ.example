@@ -3,6 +3,7 @@
 #let student_name_th = ""
 #let student_name_en = ""
 #let student_name_th = ""
+#let student_id = ""
 #let born_place = ""
 #let current_address = ""
 #let education_s_history = ""

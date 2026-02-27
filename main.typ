@@ -4,9 +4,9 @@
 
 // ตั้งค่าการย่อหน้า (Indentation) และการจัดการพารากราฟ
 #set par(
-  first-line-indent: 1cm,  // กำหนดระยะย่อหน้า 1 ซม. (ประมาณ 1 Tab)
+  first-line-indent: 1cm, // กำหนดระยะย่อหน้า 1 ซม. (ประมาณ 1 Tab)
   justify: true,
-  leading: 0.65em,         // ระยะห่างระหว่างบรรทัดในพารากราฟ
+  leading: 0.65em, // ระยะห่างระหว่างบรรทัดในพารากราฟ
 )
 
 // บังคับให้พารากราฟที่ไม่พอในหน้าเดียวขยับไปหน้าใหม่ (Keep together)
@@ -20,8 +20,18 @@
   v(-0.8em)
 }
 
+// การตั้งค่าภาพ (Figure)
+#set figure(
+  supplement: [ภาพที่],
+  numbering: it => {
+    let ch = counter("chapter").get().first()
+    str(ch) + "-" + str(it)
+  },
+)
+
 // การตั้งค่าหัวข้อ
 #show heading.where(level: 1): it => {
+  counter(figure.where(kind: image)).update(0)
   set align(center)
   set text(size: 18pt, weight: "bold")
   it
@@ -36,7 +46,6 @@
 #show heading.where(level: 3): it => {
   set text(size: 16pt)
   it
-
 }
 
 // การจัดการลิสต์ให้ไม่มีการย่อหน้าแบบพารากราฟ
@@ -65,18 +74,26 @@
 #outline(title: "สารบัญ", indent: 2em)
 #pagebreak()
 
+#include "chapters/list-of-figures.typ"
+#pagebreak()
+
 // เนื้อหาหลัก (Main Content) - ใช้เลขหน้าแบบอารบิก (1, 2, 3)
 #set page(numbering: "1")
 #counter(page).update(1)
 
+#counter("chapter").update(1)
 #include "chapters/ch01_intro.typ"
 #pagebreak()
+#counter("chapter").step()
 #include "chapters/ch02_theory.typ"
 #pagebreak()
+#counter("chapter").step()
 #include "chapters/ch03_method.typ"
 #pagebreak()
+#counter("chapter").step()
 #include "chapters/ch04_result.typ"
 #pagebreak()
+#counter("chapter").step()
 #include "chapters/ch05_summary.typ"
 #pagebreak()
 
