@@ -7,3 +7,4 @@
 #let born_place = ""
 #let current_address = ""
 #let education_s_history = ""
+#let education_s_year = ""

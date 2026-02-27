@@ -4,7 +4,7 @@
 #set align(center)
 
 #v(1fr)
-#image("/images/buu-logo-inter.png", width: 25%)
+#image("/images/buu-logo-inter.webp", width: 20%)
 
 #let t(weight: "bold", body) = text(size: 18pt, weight: weight, body)
 
