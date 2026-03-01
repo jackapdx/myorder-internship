@@ -1,67 +1,71 @@
 #import "@preview/fletcher:0.5.6" as fletcher: diagram, edge, node
 
-= บทที่ 3 \ วิธีการดำเนินงานสหกิจศึกษา
+= วิธีการดำเนินงานสหกิจศึกษา
 
-บทนี้กล่าวถึงรายละเอียดการปฏิบัติงานภายใต้โครงงานสหกิจศึกษา ซึ่งครอบคลุมกระบวนการพัฒนาระบบ โดยแต่ละระบบมีขอบเขตและรูปแบบการดำเนินงานที่แตกต่างกัน
+บทนี้กล่าวถึงรายละเอียดการปฏิบัติงานภายใต้โครงงานสหกิจศึกษา ซึ่งครอบคลุมกระบวนการพัฒนาระบบ
 
-กระบวนการทำงานหลักที่ใช้ ได้แก่:
+มีกระบวนการทำงาน มีดังนี้:
 
+- ทำความเข้าใจ codebase เดิมของระบบ และปรับปรุง
 - การวิเคราะห์และทำความเข้าใจความต้องการของผู้ใช้งาน
-- การออกแบบ UI/UX และการพัฒนา Frontend
-- การพัฒนา Backend และการจัดการฐานข้อมูล
-- การทดสอบ (Unit/Integration) และการ Deploy
+- การออกแบบ Blueprint ให้สอดคล้องกับ Scenario
+- การเขียน Unit Test
+- การพัฒนา Frontend, Backend และการจัดการฐานข้อมูล
+- การทดสอบ Integration Test
+- การ Deploy
+- การอัพเดทเอกสารประกอบการพัฒนาระบบ
 
-== 3.1 การเลือกใช้เทคโนโลยีและเครื่องมือ (Tools & Technologies)
+== การเลือกใช้เทคโนโลยีและเครื่องมือ (Tools & Technologies)
 
 ในการพัฒนาระบบ MyHR ได้มีการเลือกใช้เทคโนโลยีและเครื่องมือสมัยใหม่เพื่อให้เกิดประสิทธิภาพสูงสุดในการทำงานแบบ Monorepo (รวมทั้ง Frontend, Backend และ Tests ไว้ใน Repository เดียว) โดยมีรายละเอียดดังนี้:
 
-=== 3.1.1 การจัดการโปรเจ็กต์ด้วย Taskfile และ pnpm
+=== การจัดการโปรเจ็กต์ด้วย Taskfile และ pnpm
 - *Taskfile*: ใช้แทน Makefile ดั้งเดิม เพื่อการทำงานข้ามแพลตฟอร์ม (Cross-Platform) ที่ดีขึ้น รองรับรูปแบบการเขียนด้วย YAML ทำให้อ่านง่าย และสามารถจัดเตรียมคำสั่งแบบขนาน (Parallel Execution) ได้อย่างมีประสิทธิภาพ เช่น คำสั่ง `task init` หรือ `task dev`
 - *pnpm*: ใช้เป็น Package Manager หลักเนื่องจากมีความเร็วในการติดตั้งสูง ประหยัดพื้นที่ดิสก์อย่างมาก (ผ่านระบบ Hard Links/Symlinks ไปส่วนกลาง) และสนับสนุนการทำงานกับโครงสร้างแบบ Workspace ได้อย่างยอดเยี่ยม หมดปัญหาเรื่อง Phantom Dependencies
 
-=== 3.1.2 การควบคุมคุณภาพและกระบวนการทำงานด้วย Husky
+=== การควบคุมคุณภาพและกระบวนการทำงานด้วย Husky
 มีการใช้ Husky ในการสร้าง Git Hooks เพื่อตรวจสอบคุณภาพโค้ดแบบอัตโนมัติ:
 - *Pre-commit*: ทำงานร่วมกับ `lint-staged` เพื่อรัน ESLint และ Prettier เฉพาะไฟล์ที่ถูกเปลี่ยนแปลง ทำให้โค้ดตรงตามมาตรฐานโดยอัตโนมัติและไม่เสียเวลาตรวจสอบทั้งโปรเจ็กต์
 - *Pre-push*: บังคับรัน Task ของการทดสอบ (`test-all`) และการบิวด์ (`build-all`) หากมีส่วนอัปเดตที่ไม่ผ่านเกณฑ์ จะไม่สามารถส่งขึ้น Repository (Git Push) ได้ ป้องกัน Build พัง
 
-=== 3.1.3 ประสิทธิภาพในการทดสอบ (Faster Testing Environments)
+=== ประสิทธิภาพในการทดสอบ (Faster Testing Environments)
 - *SWC และ Vitest*: ได้ถูกนำมาใช้แทน Jest และ Babel ในฝั่ง Backend เพื่อแก้ปัญหาความล่าช้าในการจับคู่ไฟล์ (Compilation) ส่งผลให้การพัฒนาและการรัน Unit Test ไวขึ้นถึง 10 เท่า ใช้หน่วยความจำลดลง รองรับ Native ESM อย่างเต็มตัว และบรรทัดฐานยังถูกออกแบบให้เข้ากับโค้ดแบบ Jest Syntax
 - *Mountebank (Merge JSON Strategy)*: นำมาใช้จำลอง API (Mock Server) โดยออกแบบให้แยกไฟล์ตามแต่ละฟังก์ชันการทำงานส่วนย่อย (เช่น auth, employees) แล้วทำกระบวนการอัตโนมัติรวบรวมเป็นไฟล์เดียว ทำให้โครงสร้างการดูแลง่ายและแก้ไขโค้ดร่วมกันโดยไม่ชนกัน
 - *Bruno (collection.bru)*: เครื่องมือสำหรับทดสอบ API โดยมีการนำ Centralized Data Definition มาใช้รวบรวมตัวแปรหลัก เช่น Token หรือ User ID ไว้ที่เดียว ช่วยลดความซ้ำซ้อนของการกำหนดค่าตั้งต้นสำหรับแต่ละการทดสอบ
 - *Playwright*: ถูกนำมาประยุกต์ใช้สำหรับการทดสอบ End-to-End (E2E) บนเว็บเบราว์เซอร์จริง เพื่อการันตีการทำงานตั้งแต่ส่วนติดต่อผู้ใช้จนถึงระบบหลังบ้าน
 
-=== 3.1.4 โครงสร้างเฟรมเวิร์กและเทคโนโลยีหลัก (Core Framework & Technologies)
+=== โครงสร้างเฟรมเวิร์กและเทคโนโลยีหลัก (Core Framework & Technologies)
 - *Backend (NestJS 11+)*: พัฒนาด้วย TypeScript เชิงวัตถุ ใช้ PostgreSQL เป็นฐานข้อมูลหลักผ่านการเขียนตัวกรองคำสั่งด้วย `Knex.js` (Query Builder) และใช้ `Liquibase` ในการจัดการลำดับชั้นการเปลี่ยนแปลงฐานข้อมูล (Migrations/Seeds) อย่างเป็นระบบ การประมวลผลพื้นหลังหรือส่วนงานคิวใช้ `Bull` และ `Redis` เพิ่มประสิทธิผลในการเชื่อมต่อให้ทัดเทียมกับระบบขนาดใหญ่
 - *Frontend (Angular 21+)*: นำเสนอประสบการณ์ผู้ใช้ด้วยระบบโครงสร้าง Angular เวอร์ชันใหม่ โดยกำหนดให้เป็น `Standalone Components` ล้วน ไร้โครงสร้างซับซ้อนของรูปแบบเก่า ใช้ TailwindCSS และ DaisyUI ช่วยเสริมสไตล์ และจัดการความสัมพันธ์ของสถานะระบบเบราว์เซอร์ผ่าน `NgRx Signal Store` และ `Signals` อย่างมีประสิทธิภาพ
 
-== 3.2 รูปแบบสถาปัตยกรรมและหลักการเขียนโค้ด (Software Architecture & Design Patterns)
+== รูปแบบสถาปัตยกรรมและหลักการเขียนโค้ด (Software Architecture & Design Patterns)
 
 ระบบได้ออกแบบแยกเป็นส่วน (Modular Concept) ทั้งฝั่งผู้ใช้งานส่วนหน้าต่างเว็บไซต์ (Frontend) และแอปพลิเคชันฝั่งเซิร์ฟเวอร์ (Backend) โดยมีแนวปฏิบัติที่เข้มงวด ดังนี้:
 
-=== 3.2.1 แนวทางการพัฒนา Frontend (Frontend Patterns)
+=== แนวทางการพัฒนา Frontend (Frontend Patterns)
 - *Single File Components (SFC)*: ระบบ Angular จะถูกรวมโค้ดส่วนของ HTML Template, CSS Styles, และ TypeScript Logic เข้าไว้ในไฟล์เดียวเป็นหลัก เพื่อส่งผ่านและควบคุมลอจิกขนาดเล็กได้อย่างรัดกุม
 - *Modern Angular Reactivity*: ปรับกลไกการประกาศตัวแปรให้โปร่งใส ลดการใช้ Decorator ต่างๆ ลง หันมาประยุกต์ใช้ ฟังก์ชัน `inject()`, `input()`, `output()`, และการควบคุมโครงสร้างระดับเทมเพลตผ่านกล่องคำสั่ง `@if`, `@for` สร้างความรัดกุมและโค้ดมีขนาดที่กระชับ
 - *State Management*: การไหลข้อมูลมีการคุมเส้นทางที่ชัดเจน โดยการประยุกต์ใช้ Signals ของ Angular และ NgRx เข้ามาเสริมให้การอัปเดตข้อมูลที่ซับซ้อน (Reactivity) ผ่านช่องทิศทางที่จัดการแบบ Functional
 
-=== 3.2.2 แนวทางการพัฒนา Backend (Backend Patterns)
+=== แนวทางการพัฒนา Backend (Backend Patterns)
 - *Repository Pattern*: คัดแยกชั้นของการจัดการข้อมูล (Data Access Layer) ออกจากชั้นควบคุมลอจิก (Business Logic) อย่างชัดเจน ป้องกันปัญหาความวุ่นวายระหว่างฟังก์ชันและสะดวกสำหรับการตรวจสอบ (Unit Tests)
 - *Robust DTOs & Validation*: กำหนดโครงสร้างข้อมูลที่แลกเปลี่ยนระหว่างระบบเป็นชนิด DTO (Data Transfer Object) ประกอบกับไลบรารี `class-validator` เพื่อคัดกรองข้อมูลรบกวนแต่แรกและหลีกเลี่ยงการเจาะเข้าจัดการ Object ผิดระเบียบ
 - *Unit Testing (DAMP Principle)*: ให้ความสำคัญในการตั้งชื่อ Case ว่าเป้าหมายต้องการทดสอบอะไร (Descriptive And Meaningful Phrases) เน้นทดสอบพฤติกรรมของฝั่งธุรกิจ ไม่ให้ปะปนกับการทำงานทางเทคนิค
 
-== 3.3 รูปแบบการพัฒนาซอฟต์แวร์ด้วยแนวคิด Scrum และ eXtreme Programming (XP)
+== รูปแบบการพัฒนาซอฟต์แวร์ด้วยแนวคิด Scrum และ eXtreme Programming (XP)
 
 ในการพัฒนาระบบ MyHR ได้มีการประยุกต์ใช้ระเบียบวิธีแบบ Agile โดยผสมผสานระหว่าง *Scrum* และ *eXtreme Programming (XP)* เพื่อให้การทำงานมีความคล่องตัวและได้ซอฟต์แวร์ที่มีคุณภาพสูง:
 
-=== 3.3.1 การประยุกต์ใช้ Scrum
+=== การประยุกต์ใช้ Scrum
 - *Sprint Planning & Daily Stand-up*: มีการวางแผนงานเป็นรอบ (Sprint) เพื่อให้เห็นเป้าหมายที่ชัดเจน และมีการติดตามความคืบหน้า รวมถึงปัญหาที่พบในแต่ละวัน
 - *Iterative Delivery*: เน้นการส่งมอบซอฟต์แวร์ที่พัฒนาได้ในแต่ละรอบของ Sprint เพื่อให้พร้อมใช้งานและนำข้อเสนอแนะกลับมาปรับปรุงได้อย่างรวดเร็ว
 
-=== 3.3.2 การประยุกต์ใช้ eXtreme Programming (XP)
+=== การประยุกต์ใช้ eXtreme Programming (XP)
 - *Test-Driven Development (TDD)*: ให้ความสำคัญกับ Automated Testing ทั้ง Unit Test, API Test และ E2E Test เสมอ โดยการวิเคราะห์เชิงคุณภาพการพึ่งพิงลอจิกการทำงานก่อนจะปรับโครงสร้างการทำงาน
 - *Continuous Integration / Continuous Deployment (CI/CD)*: มีการนำ Husky เข้ามาจำกัดสิทธิ์ในส่วน Local โดยการบังคับและตรวจสอบ (Lint, Test, Build) กรองโค้ดขยะชั้นแรก
 - *Refactoring & Code Standards*: ควบคุมมาตรฐานโค้ดสม่ำเสมอ โดยมีการกำหนดรูปแบบมาตรฐานการตั้งชื่อ (Conventional Commits) บน GitHub ผูกการเปลี่ยนแปลงเข้ากับ Branch เป็นข้อบังคับสำคัญ
 
-== 3.4 แผนภาพแสดงสถาปัตยกรรมกระบวนการ (Architecture & Workflow Diagram)
+== แผนภาพแสดงสถาปัตยกรรมกระบวนการ (Architecture & Workflow Diagram)
 
 เพื่อให้สามารถทำความเข้าใจโครงสร้างและวิถีการทำงานของ MyHR ได้ดียิ่งขึ้น แผนภาพด้านล่างแสดงถึงขั้นตอนของ Git Lifecycle และการปรับใช้โครงสร้างแบบ Monorepo Workspace:
 
@@ -86,17 +90,17 @@
   )
 ]
 
-== 3.5 กระบวนการออกแบบและรวบรวมความต้องการของระบบ (System Requirements & Live Design)
+== กระบวนการออกแบบและรวบรวมความต้องการของระบบ (System Requirements & Live Design)
 
 ในการรวบรวมความต้องการและออกแบบฟีเจอร์ของระบบให้ออกมาตรงตามความต้องการทางธุรกิจ (Business Requirements) ขององค์กร ทางทีมได้ปรับใช้วิธีการทำงานให้อยู่ในรูปแบบของการออกแบบร่วมกันแบบทันท่วงที รวมถึงการกำหนดเส้นทางกรณีศึกษาอย่างละเอียด:
 
-=== 3.5.1 การออกแบบและทำงานร่วมกันด้วยการเขียนเอกสารสดผ่าน Miro (Miro as a Live Document)
+=== การออกแบบและทำงานร่วมกันด้วยการเขียนเอกสารสดผ่าน Miro (Miro as a Live Document)
 เพื่อให้ผู้พัฒนาหน้าใหม่, Project Manager, และผู้มีส่วนได้ส่วนเสีย (Stakeholders) ทั้งหมดมีภาพของระบบภาพเดียวกัน ได้มีการนำแพลตฟอร์ม Miro เข้ามาเป็น *Live Document* หรือศูนย์กลางในการออกแบบอย่างครอบคลุม ได้แก่:
 - กำหนดสถาปัตยกรรมระบบ โฟลว์การทำงาน และโครงร่างหน้าจอ (Wireframes) เชื่อมโยงเข้าด้วยกัน
 - การเขียนแผนผังความสัมพันธ์ (Entity-Relationship Diagram) และการออกแบบสคีมาฐานข้อมูลร่วมกัน
 - การร่วมกันระดมสมอง (Brainstorming) เพื่อกำหนดข้อจำกัดและกติกาเชิงธุรกิจ (Business Logic) เมื่อมีความต้องการส่วนใดเปลี่ยน การอัปเดตบน Miro จะเป็นจุดรวมที่ทุกคนจะยึดเป็นพื้นที่อ้างอิงหลัก ทำให้กระบวนการพัฒนาและตรวจสอบสอดคล้องกันอย่างชัดเจน ไร้ความสับสนของเวอร์ชันเอกสารไฟล์ที่ซ้ำซ้อน
 
-=== 3.5.2 พิมพ์เขียวรวมข้อกำหนดการใช้งานและกระบวนการทำงาน (System Blueprint & Use Cases)
+=== พิมพ์เขียวรวมข้อกำหนดการใช้งานและกระบวนการทำงาน (System Blueprint & Use Cases)
 เพื่อให้ระบบบริหารจัดการสถาบันเรียนรู้ MyHR (My Academy) สามารถตอบสนองการปฏิบัติงานของแผนกทรัพยากรบุคคล (HR) และพนักงานได้อย่างครบสมบูรณ์ ได้มีการสรุปภาพรวมลักษณะงานออกเป็น Scenario หลัก ดังนี้:
 
 - *ระบบคอร์สปฐมนิเทศและการออกใบประกาศนียบัตร (Mandatory Orientation & Certificate):*
@@ -127,5 +131,81 @@
       edge((-1, 1), (-1, 2), "-|>", [State Management\ (NgRx Signal Store)]),
       node((-1, 2), [UI / Components], corner-radius: 5pt, fill: blue.lighten(80%)),
     ),
+  )
+]
+
+== ขั้นตอนการดำเนินงานและภาพประกอบ (Implementation Details)
+
+เพื่อให้เห็นภาพการทำงานจริงในแต่ละขั้นตอน จึงได้รวบรวมภาพประกอบและรายละเอียดการใช้เครื่องมือต่างๆ ตามลำดับการพัฒนาระบบ ดังนี้
+
+=== การออกแบบ Blueprint ด้วย Miro (Design Blueprint Miro)
+
+เริ่มแรกของการพัฒนาระบบ ทีมงานได้ใช้แพลตฟอร์ม Miro เป็นศูนย์กลางในการออกแบบโครงสร้างทั้งหมด (Live Document) โดยมีการวาด Use Cases, โฟลว์การทำงาน (User Flow), Wireframes และการออกแบบโครงสร้างฐานข้อมูล (Entity-Relationship Diagram) ร่วมกัน ทำให้ผู้เกี่ยวข้องทุกคนเห็นภาพรวมของระบบและเข้าใจตรรกะทางธุรกิจได้อย่างตรงกัน ลดความผิดพลาดในการต่อยอดในขั้นตอนถัดไป
+
+#align(center)[
+  #figure(
+    rect(width: 80%, height: 200pt, fill: luma(240), align(center + horizon)[*Placeholder Image*]),
+    caption: [ภาพแสดงการออกแบบ Blueprint และ User Flow บน Miro],
+  )
+]
+
+#align(center)[
+  #figure(
+    rect(width: 80%, height: 200pt, fill: luma(240), align(center + horizon)[*Placeholder Image*]),
+    caption: [ภาพแสดงการออกแบบโครงสร้างฐานข้อมูล (ERD) บน Miro],
+  )
+]
+
+=== การจำลอง API ด้วย Mountebank (Mountebank)
+
+การพัฒนาแบบขนานระหว่าง Frontend และ Backend จำเป็นต้องมีการจำลอง API (Mock Server) เพื่อให้ฝั่ง Frontend สามารถทำงานต่อได้โดยไม่ต้องรอ API จริงเสร็จสมบูรณ์ ทางทีมได้เลือกใช้ Mountebank พร้อมกับใช้กลยุทธ์ Merge JSON Strategy โดยแยกไฟล์ Imposter ตามแต่ละฟังก์ชัน (เช่น auth, employees) แล้วทำกระบวนการอัตโนมัติรวบรวมเป็นไฟล์เดียว เพื่อให้ง่ายต่อการดูแลรักษาและเป็นระเบียบ
+
+#align(center)[
+  #figure(
+    rect(width: 80%, height: 200pt, fill: luma(240), align(center + horizon)[*Placeholder Image*]),
+    caption: [ภาพแสดงโครงสร้างไฟล์ Imposter ที่แยกตามฟังก์ชัน],
+  )
+]
+
+#align(center)[
+  #figure(
+    rect(width: 80%, height: 200pt, fill: luma(240), align(center + horizon)[*Placeholder Image*]),
+    caption: [ภาพตัวอย่างการจำลอง Response ด้วย Mountebank],
+  )
+]
+
+=== การทดสอบ API ด้วย Bruno (Bruno)
+
+สำหรับทดสอบการตอบสนองของ API ทางทีมเลือกใช้ Bruno โดยใช้แนวคิด DAMP (Descriptive And Meaningful Phrases) over DRY เพื่อให้การทดสอบอ่านง่ายและแสดงเจตนาชัดเจน ควบคู่กับการประยุกต์ใช้ Centralized Data Definition บน `collection.bru` เพื่อรวมตัวแปรหลัก เช่น Token หรือ User ID ไว้ที่เดียว ช่วยลดความซ้ำซ้อนของการกำหนดค่าตั้งต้นสำหรับการทดสอบแต่ละกรณี
+
+#align(center)[
+  #figure(
+    rect(width: 80%, height: 200pt, fill: luma(240), align(center + horizon)[*Placeholder Image*]),
+    caption: [ภาพแสดงการกำหนด Centralized Data ใน collection.bru],
+  )
+]
+
+#align(center)[
+  #figure(
+    rect(width: 80%, height: 200pt, fill: luma(240), align(center + horizon)[*Placeholder Image*]),
+    caption: [ภาพการทดสอบ API และการใช้ DAMP Pattern],
+  )
+]
+
+=== การทดสอบหน่วยย่อย (Unit Test)
+
+การเขียน Unit Test ในฝั่ง Backend มีการย้ายจาก Jest มาใช้ SWC และ Vitest เพื่อเพิ่มความเร็วในการทดสอบ โดยแนวทางการเขียนเทสต์จะเน้นจำลอง Mock Data อย่างระมัดระวัง และใช้หลักการตั้งชื่อแบบ DAMP (Descriptive And Meaningful Phrases) ให้กรณีทดสอบ (Test Case) ตรงกับเป้าหมายทางธุรกิจที่ต้องการตรวจสอบ เพื่อลดข้อผิดพลาดก่อนที่จะเข้าสู่กระบวนการต่อไป
+
+#align(center)[
+  #figure(
+    rect(width: 80%, height: 200pt, fill: luma(240), align(center + horizon)[*Placeholder Image*]),
+    caption: [ภาพแสดงตัวอย่างการเขียน Unit Test ด้วย Vitest],
+  )
+]
+
+#align(center)[
+  #figure(
+    rect(width: 80%, height: 200pt, fill: luma(240), align(center + horizon)[*Placeholder Image*]),
+    caption: [ภาพแสดงผลลัพธ์การรัน Unit Test ที่ผ่านเกณฑ์],
   )
 ]

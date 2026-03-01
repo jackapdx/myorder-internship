@@ -42,7 +42,11 @@
   counter(figure.where(kind: image)).update(0)
   set align(center)
   set text(size: 18pt, weight: "bold")
-  it
+  if it.numbering != none {
+    [บทที่ #counter(heading).display() \ #it.body]
+  } else {
+    it.body
+  }
   v(1em)
 }
 
@@ -99,6 +103,7 @@
 #set page(numbering: "1", header: none)
 #counter(page).update(1)
 
+#set heading(numbering: "1.1")
 #counter("chapter").update(1)
 #include "chapters/ch01_intro.typ"
 #pagebreak()
