@@ -154,15 +154,8 @@
 
 #align(center)[
   #figure(
-    rect(width: 80%, height: 200pt, fill: luma(240), align(center + horizon)[*Placeholder Image*]),
-    caption: [ภาพแสดงการออกแบบ Blueprint และ User Flow บน Miro],
-  )
-]
-
-#align(center)[
-  #figure(
-    rect(width: 80%, height: 200pt, fill: luma(240), align(center + horizon)[*Placeholder Image*]),
-    caption: [ภาพแสดงการออกแบบโครงสร้างฐานข้อมูล (ERD) บน Miro],
+    image("/images/blueprints/assessment.svg", width: 80%),
+    caption: [ภาพแสดงการออกแบบ Blueprint ของ feature Assessment],
   )
 ]
 
@@ -172,14 +165,14 @@
 
 #align(center)[
   #figure(
-    rect(width: 80%, height: 200pt, fill: luma(240), align(center + horizon)[*Placeholder Image*]),
+    image("/images/code/mountebank.png", width: 60%),
     caption: [ภาพแสดงโครงสร้างไฟล์ Imposter ที่แยกตามฟังก์ชัน],
   )
 ]
 
 #align(center)[
   #figure(
-    rect(width: 80%, height: 200pt, fill: luma(240), align(center + horizon)[*Placeholder Image*]),
+    image("/images/code/mb-response.png", width: 80%),
     caption: [ภาพตัวอย่างการจำลอง Response ด้วย Mountebank],
   )
 ]
@@ -190,14 +183,14 @@
 
 #align(center)[
   #figure(
-    rect(width: 80%, height: 200pt, fill: luma(240), align(center + horizon)[*Placeholder Image*]),
+    image("/images/code/bruno.png", width: 80%),
     caption: [ภาพแสดงการกำหนด Centralized Data ใน collection.bru],
   )
 ]
 
 #align(center)[
   #figure(
-    rect(width: 80%, height: 200pt, fill: luma(240), align(center + horizon)[*Placeholder Image*]),
+    image("/images/code/api-test.png", width: 80%),
     caption: [ภาพการทดสอบ API และการใช้ DAMP Pattern],
   )
 ]
@@ -208,14 +201,14 @@
 
 #align(center)[
   #figure(
-    rect(width: 80%, height: 200pt, fill: luma(240), align(center + horizon)[*Placeholder Image*]),
+    image("/images/code/unit-test.png", width: 80%),
     caption: [ภาพแสดงตัวอย่างการเขียน Unit Test ด้วย Vitest],
   )
 ]
 
 #align(center)[
   #figure(
-    rect(width: 80%, height: 200pt, fill: luma(240), align(center + horizon)[*Placeholder Image*]),
+    image("/images/code/passed-unit-test.png", width: 80%),
     caption: [ภาพแสดงผลลัพธ์การรัน Unit Test ที่ผ่านเกณฑ์],
   )
 ]
@@ -233,4 +226,3 @@
 === การจัดการและอัปเดตเอกสารประกอบการพัฒนา (Documentation Updates)
 
 สิ่งที่เป็นปกติของการพัฒนาฟีเจอร์อย่างต่อเนื่องคือ เอกสารกำกับการออกแบบ (Developer Documentation) อาจถูกทอดทิ้งและตามไม่ทันลอจิกตามหลังการอัปเดตโค้ด ทว่าพวกเราได้พยายามนำส่งข้อมูลล่าสุดกลับสู่ศูนย์กลางของเอกสารอยู่สม่ำเสมอ ทั้งรายละเอียดจุดเชื่อมต่อ API คู่มือโครงสร้าง หรือโมเดลข้อมูล เพื่อให้แน่ใจได้ว่านักพัฒนาทีมอื่นหรือนักศึกษาฝึกงานรุ่นต่อไป จะมีฐานรับช่วงที่สอดคล้องกับพฤติกรรมโค้ดชุดล่าสุด และรักษาผลลัพธ์ความก้าวหน้าของบริษัทให้ลื่นไหลต่อไป
-
