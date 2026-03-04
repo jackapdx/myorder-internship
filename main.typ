@@ -86,29 +86,61 @@
   header: context {
     let title = outline-title.get()
     if title != none and not has-level1-heading() {
+      // ขยับ header ลงมาเล็กน้อย
+      v(1.5cm)
       align(center, text(size: 18pt, weight: "bold")[#title (ต่อ)])
+      let outline_grid = state("outline-header", none).get()
+      if outline_grid != none {
+        v(0.5em)
+        outline_grid
+      }
     }
   },
 )
-#counter(page).update(1)
 
+// ฟังก์ชันสำหรับสร้างสารบัญ
+#let create-outline(title, target, left-col-name) = {
+  // ขยาย Margin ด้านบนเฉพาะหน้าสารบัญ เพื่อให้ Header และเนื้อหาไม่ซ้อนทับกัน
+  set page(margin: (top: 4.5cm, bottom: 2.5cm, left: 3cm, right: 2.5cm))
+
+  outline-title.update(title)
+  let outline_grid = grid(
+    columns: (1fr, auto),
+    left-col-name, [หน้า],
+  )
+  state("outline-header", none).update(outline_grid)
+
+  // ขยับหัวข้อแรกขึ้นไปชดเชยกับ Margin ที่เพิ่มมา (4.5cm - 2cm = 2.5cm)
+  v(-2cm)
+  heading(level: 1, outlined: false)[#title]
+  outline_grid
+  pad(top: 0.2em, outline(title: none, target: target))
+  state("outline-header", none).update(none)
+  outline-title.update(none)
+}
+
+// ใบรับรอง
 #include "chapters/certificate.typ"
+// เริ่มนับเลขหน้า
+#counter(page).update(1)
 #pagebreak()
+// กิตติกรรมประกาศ
 #include "chapters/ack.typ"
 #pagebreak()
+// บทคัดย่อ
 #include "chapters/abstract.typ"
 #pagebreak()
 
 // สารบัญ
-#outline-title.update("สารบัญ")
-#outline(title: "สารบัญ", indent: 2em)
-#outline-title.update(none)
+#create-outline("สารบัญ", heading, [หัวข้อ])
 #pagebreak()
 
-#include "chapters/list-of-figures.typ"
+// สารบัญภาพ
+#create-outline("สารบัญภาพ", figure.where(kind: image), [ภาพ])
 #pagebreak()
 
-#include "chapters/list-of-tables.typ"
+// สารบัญตาราง
+#create-outline("สารบัญตาราง", figure.where(kind: table), [ตาราง])
 #pagebreak()
 
 // เนื้อหาหลัก (Main Content) - ใช้เลขหน้าแบบอารบิก (1, 2, 3)

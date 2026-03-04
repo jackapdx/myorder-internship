@@ -1,5 +1,7 @@
 #import "../config/common.typ": *
 
+#set page(numbering: none)
+
 #set page(
   background: context {
     place(
@@ -54,4 +56,9 @@
     (ผู้ช่วยศาสตราจารย์ เบญจภรณ์ จันทรทองกุล)\
     กรรมการ
   ],
+)
+
+#figure(
+  image("/images/docs/INC005.jpg", width: 100%),
+  outlined: false,
 )

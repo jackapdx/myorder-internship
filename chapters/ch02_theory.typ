@@ -153,6 +153,7 @@
 
 #toolFigure("/images/angular.webp", "angular logo", "โลโก้ Angular")
 
+#pagebreak()
 === NestJS
 
 *NestJS* เป็นเฟรมเวิร์กสำหรับสร้าง Server-side (Backend) ด้วย Node.js ที่ได้รับแรงบันดาลใจมาจาก Angular โดยเน้นการจัดโครงสร้างโค้ดแบบเชิงวัตถุ (OOP) และรองรับภาษา TypeScript อย่างเต็มรูปแบบ ทำให้เป็นหนึ่งในเฟรมเวิร์กหลังบ้านที่เติบโตเร็วที่สุดในปัจจุบัน

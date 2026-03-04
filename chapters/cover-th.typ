@@ -3,7 +3,6 @@
 #set page(numbering: none)
 #set align(center)
 
-#v(1fr)
 #image("/images/buu-logo-inter.webp", width: 20%)
 
 #let t(weight: "bold", body) = text(size: 18pt, weight: weight, body)
@@ -18,24 +17,22 @@
   #project_name_th
 ]
 
-#v(1.5cm)
+#v(3cm)
 #t[
   #student_name_th
 ]
 
-#v(2cm)
+#v(3cm)
 #t[
   ปฏิบัติงาน ณ \
   #company_name \
   211 2 ตำบล บางพระ อำเภอศรีราชา ชลบุรี 20110
 ]
 
-#v(2cm)
+#v(3cm)
 #t[
   รายงานนี้เป็นส่วนหนึ่งของวิชาสหกิจศึกษาหลักสูตรปริญญาวิทยาศาสตรบัณฑิต \
   สาขาวิชาวิทยาการคอมพิวเตอร์ \
   คณะวิทยาการสารสนเทศ มหาวิทยาลัยบูรพา \
   ปีการศึกษา 2568
 ]
-
-#v(1fr)

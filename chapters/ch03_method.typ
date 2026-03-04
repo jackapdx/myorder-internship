@@ -156,7 +156,9 @@
 
 #align(center)[
   #figure(
-    image("/images/blueprints/assessment.svg", width: 80%),
+    rotate(90deg, reflow: true)[
+      #image("/images/blueprints/assessment.svg", width: 22cm)
+    ],
     caption: [ภาพแสดงการออกแบบ Blueprint ของ feature Assessment],
   )
 ]
