@@ -174,6 +174,7 @@
 
 #toolFigure("/images/knexjs.webp", "knexjs logo", "โลโก้ Knex.js")
 
+#pagebreak()
 === Jest
 
 *Jest* เป็นเฟรมเวิร์กสำหรับการทดสอบ JavaScript (Testing Framework) ที่พัฒนาโดย Meta (Facebook) เน้นความง่ายในการตั้งค่าและการใช้งานแบบ "Zero Config" มาพร้อมกับเครื่องมือทุกอย่างที่จำเป็นสำหรับการทดสอบในตัวเดียว
@@ -184,6 +185,7 @@
 
 #toolFigure("/images/Jest.webp", "jest runner", "โลโก้ Jest")
 
+#pagebreak()
 === Vitest
 
 *Vitest* เครื่องมือทดสอบโค้ดสายพันธุ์ใหม่ที่ออกแบบมาเพื่อทำงานร่วมกับ Vite (Build Tool รุ่นใหม่) โดยเฉพาะ มีความโดดเด่นที่ความเร็วในการรัน Test ที่สูงกว่า Jest อย่างเห็นได้ชัด และรองรับฟีเจอร์สมัยใหม่ของ JavaScript ได้ทันทีโดยไม่ต้องตั้งค่าซับซ้อน
