@@ -4,7 +4,7 @@
 
 - ติดตั้ง Font: `TH Sarabun New` ทุกแบบ (Regular, Bold, Italic)
 - ติดตั้ง VScode Extension [Tinymist Typst](https://marketplace.visualstudio.com/items?itemName=myriad-dreamin.tinymist)
-- ติดตั้ง VScode Extension [PDF Preview](https://open-vsx.org/vscode/item?itemName=tomoki1207.pdf)
+- ติดตั้ง VScode Extension [vscode-pdf](https://open-vsx.org/vscode/item?itemName=tomoki1207.pdf)
 - ติดตั้ง [Typst](https://typst.app/open-source/)
 
 ## Config
