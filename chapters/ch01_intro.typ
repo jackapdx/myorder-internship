@@ -58,6 +58,7 @@
 
 ผู้ปฏิบัติงานสหกิจศึกษาได้รับมอบหมายงานในตำแหน่ง Full Stack Developer เป็นการศึกษาระบบข้อมูลอาจารย์พิเศษ แล้วทำการปรับปรุงและพัฒนาเพิ่มเติมตาม Requirements ที่ได้รับจากผู้งานใช้จริง เพื่อให้การใช้งานสะดวกสบายขึ้นและระบบสามารถจัดการเกี่ยวกับการขอเสนอแต่งตั้งได้ถูกต้องมากยิ่งขึ้น
 
+#pagebreak()
 === ข้อมูลพนักงานที่ปรึกษา
 
 พนักงานที่ปรึกษาของผู้ปฏิบัติสหกิจศึกษาเป็นผู้ให้คำปรึกษาให้คำแนะนำในการปฏิบัติงานและคอยช่วยเหลือดูแลตลอดระยะเวลาการปฏิบัติงานสหกิจศึกษาครั้งนี้ คือ
@@ -70,39 +71,60 @@
   [ตำแหน่ง], [: Engineering Manager],
   [อีเมล], [: charanchai\@myorder.ai],
 )
+#v(0.5em)
+#table(
+  columns: (auto, 1fr),
+  stroke: none,
+  [ชื่อ–นามสกุล], [: นายอภิพล สุขเกลอ],
+  [ตำแหน่ง], [: Engineering Manager],
+  [อีเมล], [: apipol\@myorder.ai],
+)
+#v(0.5em)
+#table(
+  columns: (auto, 1fr),
+  stroke: none,
+  [ชื่อ–นามสกุล], [: นางสาวปัญญาพร สุขเกลอ],
+  [ตำแหน่ง], [: HR Specialist],
+  [อีเมล], [: panyaporn.hr\@myorder.ai],
+)
 
+#pagebreak()
 === ระยะเวลาการปฏิบัติงาน
 
-การปฏิบัติการสหกิจศึกษาสำหรับภาคเรียนที่ 2 ประจำปีการศึกษา 2568 ระยะเวลานับตั้งแต่ วันที่ 13 พฤศจิกายน พ.ศ. 2568 ถึงวันที่ 13 มีนาคม พ.ศ. 2569 รวมทั้งสิ้นเป็นระยะเวลา 4 เดือน จำนวน 16 สัปดาห์
+การปฏิบัติการสหกิจศึกษาสำหรับภาคเรียนที่ 2 ประจำปีการศึกษา 2568 ระยะเวลานับตั้งแต่ วันที่ 13 พฤศจิกายน พ.ศ. 2568 ถึงวันที่ 13 มีนาคม พ.ศ. 2569 รวมทั้งสิ้นเป็นระยะเวลา 4 เดือน จำนวน 17 สัปดาห์
 
+#let fill-arrow = layout(bounds => [$#math.stretch(sym.arrow.l.r, size: bounds.width)$])
 #figure(caption: [ระยะเวลาการดำเนินงาน], kind: table, table(
-  columns: (45%, ..(1fr,) * 15),
+  columns: (45%, ..(1fr,) * 20),
   inset: 8pt,
   align: (left + horizon, center + horizon),
   stroke: 0.5pt,
   table.header(
-    table.cell(rowspan: 3)[*ขั้นตอนการดำเนินงาน*],
-    table.cell(colspan: 15)[*ระยะเวลาในการดำเนินงาน*],
-    table.cell(colspan: 15)[ปี พ.ศ. 2567 – พ.ศ. 2568],
-    table.cell(colspan: 3)[พ.ย.],
-    table.cell(colspan: 3)[ธ.ค.],
-    table.cell(colspan: 3)[ม.ค.],
-    table.cell(colspan: 3)[ก.พ.],
-    table.cell(colspan: 3)[มี.ค.],
+    table.cell(rowspan: 3)[#align(center, strong("ขั้นตอนการดำเนินงาน"))],
+    table.cell(colspan: 20)[*ระยะเวลาในการดำเนินงาน*],
+    table.cell(colspan: 20)[ปี พ.ศ. 2568 – พ.ศ. 2569],
+    table.cell(colspan: 4)[#align(center, "พ.ย.")],
+    table.cell(colspan: 4)[#align(center, "ธ.ค.")],
+    table.cell(colspan: 4)[#align(center, "ม.ค.")],
+    table.cell(colspan: 4)[#align(center, "ก.พ.")],
+    table.cell(colspan: 4)[#align(center, "มี.ค.")],
   ),
-  // 1. ศึกษา
-  table.cell(inset: (left: 10pt))[1. ศึกษาและเรียนรู้หลักการใช้งาน React และ NodeJS],
-  ..([],) * 2, table.cell(colspan: 1, align: center)[$arrow.l.r$], ..([],) * 12,
+  // total 20 week cells (5 months × 4 weeks)
+  table.cell(inset: (left: 10pt))[1. ศึกษาและเรียนรู้หลักการออกแบบและเครื่องมือการทำงานขององค์กร],
+  table.cell(colspan: 4, align: center)[#fill-arrow], ..([],) * 16,
 
-  // 2. พัฒนาระบบ Critical
-  table.cell(inset: (left: 10pt))[2. พัฒนาระบบจัดการ Critical Component],
-  ..([],) * 4, table.cell(colspan: 4, align: center)[$arrow.l.r$], ..([],) * 7,
+  table.cell(inset: (left: 10pt))[2. ทำความเข้าใจโครงสร้างระบบ My HR],
+  ..([],) * 4, table.cell(colspan: 4, align: center)[#fill-arrow], ..([],) * 12,
 
-  // 3. พัฒนา Dashboard
-  table.cell(inset: (left: 10pt))[3. พัฒนาระบบ Dashboard Monitor ข้อมูล Market Claim และ RCA Progress],
-  ..([],) * 9, table.cell(colspan: 3, align: center)[$arrow.l.r$], ..([],) * 3,
+  table.cell(inset: (left: 10pt))[3. รวบรวมความต้องการของ Stakeholder และออกแบบระบบ],
+  ..([],) * 8, table.cell(colspan: 4, align: center)[#fill-arrow], ..([],) * 8,
 
-  // 4. พัฒนาจัดการอุปกรณ์
-  table.cell(inset: (left: 10pt))[4. พัฒนาระบบการจัดการอุปกรณ์ภายใต้ความดูแลของแผนก QA (QA Equipment Inventory)],
-  ..([],) * 12, table.cell(colspan: 3, align: center)[$arrow.l.r$],
+  table.cell(inset: (left: 10pt))[4. ออกแบบระบบและพัฒนาฟีเจอร์อื่น ๆ],
+  ..([],) * 4, table.cell(colspan: 12, align: center)[#fill-arrow], ..([],) * 4,
+
+  table.cell(inset: (left: 10pt))[5. พัฒนาฟีเจอร์การจัดการแบบประเมินผลการเรียนรู้จากการเรียนหลักสูตร (Assignment Management)],
+  ..([],) * 12, table.cell(colspan: 4, align: center)[#fill-arrow], ..([],) * 4,
+
+  table.cell(inset: (left: 10pt))[6. ตรวจสอบความถูกต้องของระบบและทำเอกสารประกอบการปฏิบัติงาน],
+  ..([],) * 16, table.cell(colspan: 4, align: center)[#fill-arrow],
 ))
