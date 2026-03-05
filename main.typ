@@ -45,12 +45,15 @@
     str(ch) + "-" + str(it)
   },
 )
+// ตั้งค่า Caption ของ Table Figure
+#show figure.where(kind: table): set figure.caption(position: top)
+#show figure.caption.where(kind: table): set align(left)
 
 // การตั้งค่าหัวข้อ
 #show heading.where(level: 1): it => {
   counter(figure.where(kind: image)).update(0)
   set align(center)
-  set text(size: 18pt, weight: "bold")
+  set text(size: 20pt, weight: "bold")
   if it.numbering != none {
     [บทที่ #counter(heading).display() \ #it.body]
   } else {
@@ -60,12 +63,12 @@
 }
 
 #show heading.where(level: 2): it => {
-  set text(size: 16pt)
+  set text(size: 18pt, weight: "bold")
   it
 }
 
 #show heading.where(level: 3): it => {
-  set text(size: 16pt)
+  set text(size: 16pt, weight: "bold")
   it
 }
 
