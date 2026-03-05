@@ -132,6 +132,7 @@
 
 #toolFigure("../images/ch2/slack.webp", "slack interface", "หน้าตาของโปรแกรม Slack")
 
+#pagebreak()
 === Miro
 
 *Miro* เป็นแพลตฟอร์มกระดานไวท์บอร์ดออนไลน์แบบภาพ (Visual Collaboration Platform) ที่ช่วยให้ทีมงานสามารถทำงานร่วมกันได้บนพื้นที่ผืนผ้าใบขนาดไม่จำกัด (Infinite Canvas) รองรับการใช้งานพร้อมกันหลายคนแบบ Real-time โดยมีเครื่องมือช่วยวาดเขียน เช่น Sticky Notes, Shapes, Connectors และ Templates สำเร็จรูปมากมาย
