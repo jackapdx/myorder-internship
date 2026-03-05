@@ -159,7 +159,7 @@
 #align(center)[
   #figure(
     rotate(90deg, reflow: true)[
-      #image("/images/blueprints/assessment.svg", width: 22cm)
+      #image("../images/ch3/blueprints/assessment.svg", width: 22cm)
     ],
     caption: [ภาพแสดงการออกแบบ Blueprint ของ feature Assessment],
   )
@@ -171,14 +171,14 @@
 
 #align(center)[
   #figure(
-    image("/images/code/mountebank.png", width: 60%),
+    image("../images/ch3/code/mountebank.png", width: 60%),
     caption: [ภาพแสดงโครงสร้างไฟล์ Imposter ที่แยกตามฟังก์ชัน],
   )
 ]
 
 #align(center)[
   #figure(
-    image("/images/code/mb-response.png", width: 80%),
+    image("../images/ch3/code/mb-response.png", width: 80%),
     caption: [ภาพตัวอย่างการจำลอง Response ด้วย Mountebank],
   )
 ]
@@ -190,14 +190,14 @@
 
 #align(center)[
   #figure(
-    image("/images/code/bruno.png", width: 80%),
+    image("../images/ch3/code/bruno.png", width: 80%),
     caption: [ภาพแสดงการกำหนด Centralized Data ใน collection.bru],
   )
 ]
 
 #align(center)[
   #figure(
-    image("/images/code/api-test.png", width: 80%),
+    image("../images/ch3/code/api-test.png", width: 80%),
     caption: [ภาพการทดสอบ API และการใช้ DAMP Pattern],
   )
 ]
@@ -209,14 +209,14 @@
 
 #align(center)[
   #figure(
-    image("/images/code/unit-test.png", width: 80%),
+    image("../images/ch3/code/unit-test.png", width: 80%),
     caption: [ภาพแสดงตัวอย่างการเขียน Unit Test ด้วย Vitest],
   )
 ]
 
 #align(center)[
   #figure(
-    image("/images/code/passed-unit-test.png", width: 80%),
+    image("../images/ch3/code/passed-unit-test.png", width: 80%),
     caption: [ภาพแสดงผลลัพธ์การรัน Unit Test ที่ผ่านเกณฑ์],
   )
 ]

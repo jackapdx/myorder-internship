@@ -14,7 +14,7 @@
 
 = บทคัดย่อ
 
-รายงานการปฏิบัติงานสหกิจศึกษาฉบับนี้ได้อธิบายถึงการปฏิบัติงาน ณ #company_name ระหว่างวันที่ 13 พฤศจิกายน 2567 ถึงวันที่ 13 มีนาคม 2568 โดยปฏิบัติงานเกี่ยวกับการพัฒนาและแก้ไขระบบตามที่ได้รับมอบหมาย ซึ่งได้จัดทำการพัฒนาส่วนติดต่อผู้ใช้งานและส่วนหลังบ้านของ#project_name_th โดยแบ่งเป็นทั้งหมด 7 ฟีเจอร์ ได้แก่
+รายงานการปฏิบัติงานสหกิจศึกษาฉบับนี้ได้อธิบายถึงการปฏิบัติงาน ณ #company_name ระหว่างวันที่ 13 พฤศจิกายน 2567 ถึงวันที่ 13 มีนาคม 2568 โดยปฏิบัติงานเกี่ยวกับการพัฒนาและแก้ไขระบบตามที่ได้รับมอบหมาย ซึ่งได้จัดทำการพัฒนาส่วนติดต่อผู้ใช้งานและส่วนหลังบ้านของ#project_name_th โดยแบ่งเป็นทั้งหมด 10 ฟีเจอร์ ได้แก่
 
 1. Home - Course listing
 2. Course Management - Create/edit courses
@@ -23,6 +23,9 @@
 5. Course Edit - Edit course details
 6. Assignment Management - Assign courses to employees
 7. Enrollment Approval - Approve/reject enrollments
+8. User Learning - การเข้าเรียนหลักสูตรตามที่ได้รับมอบหมายหรือลงทะเบียน
+9. Certificate Issuance - การออกใบเกียรติบัตรเมื่อเรียนจบหลักสูตร
+10. Assessment Management - ระบบจัดการแบบประเมินและคลังข้อสอบ
 
 โดย Framework ที่ใช้ในการพัฒนาระบบได้แก่ Angular, Tailwind CSS และ NestJS
 โดยใช้ภาษา HTML, CSS, TypeScript และ SQL ในการพัฒนาระบบ
@@ -43,7 +46,7 @@
 
 = ABSTRACT
 
-This report describes the internship at #company_name_en from November 13, 2024, to March 13, 2025. The internship involved developing and maintaining systems as assigned. The work included developing the frontend and backend of the #project_name_en, comprising 7 features such as
+This report describes the internship at #company_name_en from November 13, 2024, to March 13, 2025. The internship involved developing and maintaining systems as assigned. The work included developing the frontend and backend of the #project_name_en, comprising 10 features such as
 
 1. Home - Course listing
 2. Course Management - Create/edit courses
@@ -52,5 +55,8 @@ This report describes the internship at #company_name_en from November 13, 2024,
 5. Course Edit - Edit course details
 6. Assignment Management - Assign courses to employees
 7. Enrollment Approval - Approve/reject enrollments
+8. User Learning - Learners can take assigned or enrolled courses
+9. Certificate Issuance - Receiving certificates upon course completion
+10. Assessment Management - Management of assessments and question banks
 
 The system was developed using Angular, Tailwind CSS, and NestJS, with HTML, CSS, TypeScript, and SQL used for implementation. The results showed that the (System Name) system could be developed to meet user requirements and function effectively.

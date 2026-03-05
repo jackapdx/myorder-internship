@@ -10,12 +10,12 @@
 ผู้ใช้สามารถเข้าสู่ระบบเพื่อเริ่มต้นใช้งานแอปพลิเคชัน ซึ่งในระหว่างการประมวลผลระบบจะมีการแสดงสถานะการโหลดข้อมูลให้ผู้ใช้ทราบ
 
 #figure(
-  image("../images/app/login.png", width: 80%),
+  image("../images/ch4/ui/login.png", width: 80%),
   caption: [หน้าจอการเข้าสู่ระบบ (Login)],
 )
 
 #figure(
-  image("../images/app/loading.png", width: 80%),
+  image("../images/ch4/ui/loading.png", width: 80%),
   caption: [หน้าจอแสดงสถานะการโหลดข้อมูล (Loading)],
 )
 
@@ -23,12 +23,12 @@
 เมื่อเข้าสู่ระบบเรียบร้อยแล้ว ผู้ใช้จะพบกับหน้าเมนูหลักที่สามารถนำทางไปยังส่วนต่างๆ ของระบบ และสามารถดูรายการคอร์สเรียนทั้งหมดที่ลงทะเบียนไว้ได้ในหน้าคอร์สของฉัน
 
 #figure(
-  image("../images/app/home-menu.png", width: 80%),
+  image("../images/ch4/ui/home-menu.png", width: 80%),
   caption: [หน้าจอเมนูหลัก (Home Menu)],
 )
 
 #figure(
-  image("../images/app/my-course.png", width: 80%),
+  image("../images/ch4/ui/my-course.png", width: 80%),
   caption: [หน้าจอคอร์สของฉัน (My Course)],
 )
 
@@ -36,12 +36,12 @@
 ระบบแสดงข้อมูลพื้นฐานของคอร์สเรียนและเปิดโอกาสให้ผู้ดูแลหรือผู้ที่มีสิทธิ์สามารถเข้าไปแก้ไขรายละเอียดของคอร์สเรียนได้
 
 #figure(
-  image("../images/app/basic-info-course.png", width: 80%),
+  image("../images/ch4/ui/basic-info-course.png", width: 80%),
   caption: [หน้าจอแสดงข้อมูลพื้นฐานของคอร์สเรียน (Basic Info Course)],
 )
 
 #figure(
-  image("../images/app/edit-course.png", width: 80%),
+  image("../images/ch4/ui/edit-course.png", width: 80%),
   caption: [หน้าจอสำหรับการแก้ไขข้อมูลคอร์สเรียน (Edit Course)],
 )
 
@@ -49,21 +49,21 @@
 ผู้ใช้สามารถลงทะเบียนเรียน ทำแบบทดสอบก่อนเรียนและหลังเรียนเพื่อประเมินผลการเรียนรู้ รวมถึงผู้รับผิดชอบสามารถเรียกดูรายงานข้อมูลของคอร์สเรียนได้
 
 #figure(
-  image("../images/app/enrollment.png", width: 80%),
+  image("../images/ch4/ui/enrollment.png", width: 80%),
   caption: [หน้าจอการลงทะเบียนเรียน (Enrollment)],
 )
 
 #figure(
-  image("../images/app/pre-test.png", width: 80%),
+  image("../images/ch4/ui/pre-test.png", width: 80%),
   caption: [หน้าจอแบบทดสอบก่อนเรียน (Pre-test)],
 )
 
 #figure(
-  image("../images/app/post-test.png", width: 80%),
+  image("../images/ch4/ui/post-test.png", width: 80%),
   caption: [หน้าจอแบบทดสอบหลังเรียน (Post-test)],
 )
 
 #figure(
-  image("../images/app/report-course.png", width: 80%),
+  image("../images/ch4/ui/report-course.png", width: 80%),
   caption: [หน้าจอรายงานคอร์สเรียน (Report Course)],
 )

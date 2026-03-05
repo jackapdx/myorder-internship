@@ -112,7 +112,7 @@
 
 นักพัฒนาใช้ VSCode เป็นศูนย์กลางในการเขียนโปรแกรม ตั้งแต่การจัดการไฟล์โปรเจกต์ การเขียนโค้ดที่มีระบบ IntelliSense ช่วยเติมคำอัตโนมัติ ไปจนถึงการใช้ Terminal ในตัวเพื่อรันคำสั่งต่างๆ นอกจากนี้ยังสามารถเชื่อมต่อกับ Git เพื่อจัดการเวอร์ชันของโค้ด และใช้เครื่องมือ Debugging เพื่อไล่สายพานการทำงานของโปรแกรมได้ในหน้าต่างเดียว
 
-#toolFigure("/images/vscode.webp", "vscode interface", "หน้าตาของโปรแกรม VSCode")
+#toolFigure("../images/ch2/vscode.webp", "vscode interface", "หน้าตาของโปรแกรม VSCode")
 
 #pagebreak()
 === Discord
@@ -121,7 +121,7 @@
 
 ในทีมพัฒนา มักใช้ Discord เป็น "Virtual Office" โดยสมาชิกจะสแตนบายอยู่ใน Voice Channel เพื่อให้เพื่อนร่วมทีมสามารถกดเข้ามาพูดคุยหรือสอบถามงานได้ทันทีเหมือนนั่งโต๊ะข้างกัน รวมถึงใช้ฟีเจอร์ Go Live เพื่อแชร์หน้าจอโค้ดความละเอียดสูงสำหรับการช่วยกันแก้บั๊ก (Pair Programming) หรือการประชุมทีมย่อย
 
-#toolFigure("/images/discord.webp", "discord interface", "หน้าตาของโปรแกรม Discord")
+#toolFigure("../images/ch2/discord.webp", "discord interface", "หน้าตาของโปรแกรม Discord")
 
 #pagebreak()
 === Slack
@@ -130,7 +130,7 @@
 
 ทีมใช้ Slack ในการประสานงานหลัก โดยเชื่อมต่อ (Integrate) เข้ากับเครื่องมืออื่นๆ เช่น เมื่อมีการ Push Code ขึ้นระบบ หรือเมื่อ Server เกิดปัญหา Bot จะแจ้งเตือนเข้ามาใน Slack Channel ทันที ทำให้ทีมไม่ต้องคอยเช็คหน้าจอมอนิเตอร์ตลอดเวลา และยังใช้ฟีเจอร์ Huddles สำหรับการคุยเสียงสั้นๆ เพื่ออัปเดตงานประจำวัน
 
-#toolFigure("/images/slack.webp", "slack interface", "หน้าตาของโปรแกรม Slack")
+#toolFigure("../images/ch2/slack.webp", "slack interface", "หน้าตาของโปรแกรม Slack")
 
 === Miro
 
@@ -140,7 +140,7 @@
 
 *Miro* ช่วยเปลี่ยนไอเดียที่ซับซ้อนและเป็นนามธรรมให้กลายเป็นภาพที่เข้าใจง่าย ลดความเข้าใจคลาดเคลื่อนระหว่าง Designer, Developer และ Product Owner ได้อย่างดีเยี่ยม นอกจากนี้ยังทำหน้าที่เป็นเอกสารที่มีชีวิต (Living Documentation) ที่ทีมสามารถกลับมาแก้ไขและอ้างอิงได้ตลอดเวลา แทนการใช้กระดานไวท์บอร์ดจริงๆ ในออฟฟิศ
 
-#toolFigure("/images/miro.webp", "miro board", "ตัวอย่างกระดาน Miro")
+#toolFigure("../images/ch2/miro.webp", "miro board", "ตัวอย่างกระดาน Miro")
 
 #pagebreak()
 === Angular
@@ -151,7 +151,7 @@
 
 *Angular* มอบความเสถียรและความปลอดภัยในระยะยาวสำหรับแอปพลิเคชันขนาดใหญ่ เนื่องจากมีมาตรฐานการเขียนที่ชัดเจน ทำให้เมื่อทีมงานมีการเปลี่ยนตัวหรือขยายทีม นักพัฒนาคนใหม่จะสามารถทำความเข้าใจโครงสร้างโค้ดได้รวดเร็ว และลดโอกาสเกิดบั๊กจากการเขียนโค้ดที่ไม่มีรูปแบบ
 
-#toolFigure("/images/angular.webp", "angular logo", "โลโก้ Angular")
+#toolFigure("../images/ch2/angular.webp", "angular logo", "โลโก้ Angular")
 
 #pagebreak()
 === NestJS
@@ -162,7 +162,7 @@
 
 *NestJS* ช่วยให้การพัฒนา Backend มีโครงสร้างที่แข็งแรง (Robust) และสามารถขยายตัวได้ง่าย (Scalable) เมื่อโปรเจกต์ใหญ่ขึ้น ระบบจะไม่กลายเป็น "Spaghetti Code" และยังรองรับเทคโนโลยีสมัยใหม่ เช่น Microservices, WebSockets และ GraphQL ได้อย่างง่ายดาย
 
-#toolFigure("/images/nestjs.webp", "nestjs logo", "โลโก้ NestJS")
+#toolFigure("../images/ch2/nestjs.webp", "nestjs logo", "โลโก้ NestJS")
 
 #pagebreak()
 === Knex.js
@@ -173,7 +173,7 @@
 
 *Knex.js* ช่วยเพิ่มความปลอดภัยจากการโจมตีประเภท SQL Injection และทำให้โค้ดอ่านง่ายขึ้น นอกจากนี้ยังช่วยให้การย้ายประเภทฐานข้อมูล (เช่น จาก MySQL ไป PostgreSQL) ทำได้ง่ายกว่าการเขียน SQL ดิบ เพราะ Knex จะช่วยจัดการเรื่องความแตกต่างของไวยากรณ์แต่ละฐานข้อมูลให้บางส่วน
 
-#toolFigure("/images/knexjs.webp", "knexjs logo", "โลโก้ Knex.js")
+#toolFigure("../images/ch2/knexjs.webp", "knexjs logo", "โลโก้ Knex.js")
 
 #pagebreak()
 === Jest
@@ -184,7 +184,7 @@
 
 *Jest* ช่วยสร้างความมั่นใจว่าการแก้ไขโค้ดในส่วนหนึ่งจะไม่ไปทำให้ส่วนอื่นพัง (Regression Testing) และช่วยให้กระบวนการ Deploy งานทำได้รวดเร็วขึ้น เพราะเราสามารถมั่นใจได้ว่าโค้ดที่ผ่านการทดสอบด้วย Jest มีคุณภาพและความถูกต้องตามที่กำหนดไว้
 
-#toolFigure("/images/Jest.webp", "jest runner", "โลโก้ Jest")
+#toolFigure("../images/ch2/Jest.webp", "jest runner", "โลโก้ Jest")
 
 #pagebreak()
 === Vitest
@@ -195,7 +195,7 @@
 
 *Vitest* ช่วยลดเวลาที่นักพัฒนาต้องนั่งรอให้ Test รันเสร็จ ซึ่งในโปรเจกต์ขนาดใหญ่ที่ต้องรัน Test เป็นพันครั้ง ความเร็วที่เพิ่มขึ้นนี้จะช่วยลดอาการ "เบื่อหน่าย" ของนักพัฒนาจ และทำให้รอบการส่งมอบงาน (Delivery Cycle) สั้นลงอย่างมีนัยสำคัญ
 
-#toolFigure("/images/vitest.svg", "vitest logo", "โลโก้ Vitest")
+#toolFigure("../images/ch2/vitest.svg", "vitest logo", "โลโก้ Vitest")
 
 #pagebreak()
 === Bruno
@@ -204,7 +204,7 @@
 
 ใช้แทนโปรแกรมอย่าง Postman เพื่อยิง Request ไปยัง Server เพื่อตรวจสอบว่า API คืนค่ากลับมาถูกต้องไหม โดยนักพัฒนาสามารถแชร์คอลเลกชันของ API ที่สร้างไว้ใน Bruno ผ่าน Git ร่วมกับโค้ดหลักของโปรเจกต์ได้เลย ทำให้ทุกคนในทีมมีข้อมูลการทดสอบเดียวกันเสมอ
 
-#toolFigure("/images/bruno.webp", "bruno app", "หน้าตาของโปรแกรม Bruno")
+#toolFigure("../images/ch2/bruno.webp", "bruno app", "หน้าตาของโปรแกรม Bruno")
 
 #pagebreak()
 === Mountebank
@@ -213,7 +213,7 @@
 
 ใช้ในกรณีที่ระบบหลังบ้าน (Backend) หรือ API ของบุคคลภายนอกยังพัฒนาไม่เสร็จ หรือมีความเสถียรต่ำ นักพัฒนาจะใช้ Mountebank สร้าง "Imposter" หรือ Server จำลองขึ้นมาเพื่อตอบกลับข้อมูลตามที่ต้องการ เพื่อให้การพัฒนาหน้าบ้านหรือส่วนอื่นๆ ดำเนินต่อไปได้โดยไม่ต้องรอระบบจริง
 
-#toolFigure("/images/mountebank.webp", "mountebank", "โลโก้ Mountebank")
+#toolFigure("../images/ch2/mountebank.webp", "mountebank", "โลโก้ Mountebank")
 
 #pagebreak()
 === Cloudflare Worker
@@ -222,20 +222,20 @@
 
 นักพัฒนาเขียนโค้ด JavaScript/TypeScript สั้นๆ ไปดักจับ Request ที่วิ่งผ่าน Cloudflare เช่น การทำ Authentication, การปรับแต่ง Header, หรือการแก้ไขเนื้อหาของเว็บไซต์ก่อนจะถึงมือผู้ใช้ รวมถึงการสร้าง API ขนาดเล็กที่ต้องการความเร็วสูงเป็นพิเศษ
 
-#toolFigure("/images/cloudflare.webp", "cloudflare worker", "โลโก้ Cloudflare")
+#toolFigure("../images/ch2/cloudflare.webp", "cloudflare worker", "โลโก้ Cloudflare")
 
 === GCS — Google Cloud Storage
 
 *GCS (Google Cloud Storage)* เป็นบริการพื้นที่เก็บข้อมูลบนคลาวด์จาก Google ที่เน้นความทนทานและความปลอดภัยสูง ออกแบบมาเพื่อเก็บข้อมูลที่ไม่มีโครงสร้างชัดเจน (Unstructured Data) เช่น ไฟล์มีเดีย ข้อมูลสำรอง หรือ Log ไฟล์ขนาดใหญ่
 
-#toolFigure("/images/gcs.webp", "gcs console", "โลโก้ Google Cloud Storage")
+#toolFigure("../images/ch2/gcs.webp", "gcs console", "โลโก้ Google Cloud Storage")
 
 #pagebreak()
 === FFmpeg
 
 *FFmpeg* เป็นซอฟต์แวร์แบบบรรทัดคำสั่ง (Command Line) ระดับมาตรฐานโลกสำหรับการจัดการไฟล์มัลติมีเดีย รองรับการเข้ารหัส (Encode) ถอดรหัส (Decode) และแปลงไฟล์เกือบทุกนามสกุลที่มีอยู่ในโลก
 
-#toolFigure("/images/FFmpeg.webp", "ffmpeg terminal", "โลโก้ FFmpeg")
+#toolFigure("../images/ch2/FFmpeg.webp", "ffmpeg terminal", "โลโก้ FFmpeg")
 
 === HLS — HTTP Live Streaming
 
