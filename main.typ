@@ -41,8 +41,6 @@
   v(-0.8em)
 }
 
-// ตั้งค่าขอบภาพ (Image Border)
-#show image: it => rect(it, stroke: 0.5pt + black, inset: 0pt)
 
 // การตั้งค่าภาพ (Figure)
 #set figure(
@@ -96,9 +94,11 @@
 
 // หน้าปก
 #include "chapters/cover-th.typ"
-#pagebreak()
 #include "chapters/cover-en.typ"
 #pagebreak()
+
+// ตั้งค่าขอบภาพ (Image Border) - เริ่มใช้หลังจากหน้าปก
+#show image: it => rect(it, stroke: 0.5pt + black, inset: 0pt)
 
 // ส่วนหน้า (Front Matter) - ใช้เลขหน้าแบบโรมัน (i, ii, iii)
 #set page(
