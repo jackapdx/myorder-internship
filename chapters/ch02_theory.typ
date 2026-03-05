@@ -23,6 +23,7 @@
 
 #figure(
   caption: [นิยามความหมายของคำศัพท์],
+  kind: table,
   table(
     columns: (auto, auto, 1fr),
     align: (center, center, left),
@@ -48,6 +49,7 @@
 
 #figure(
   caption: [นิยามความหมายของคำศัพท์],
+  kind: table,
   table(
     columns: (auto, auto, 1fr),
     align: (center, center, left),

@@ -52,6 +52,7 @@
 // การตั้งค่าหัวข้อ
 #show heading.where(level: 1): it => {
   counter(figure.where(kind: image)).update(0)
+  counter(figure.where(kind: table)).update(0)
   set align(center)
   set text(size: 20pt, weight: "bold")
   if it.numbering != none {
