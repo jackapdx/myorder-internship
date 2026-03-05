@@ -76,7 +76,7 @@
 #align(center)[
   #figure(
     caption: [ขั้นตอน Git Hooks อัตโนมัติด้วย Husky],
-    diagram(
+    rect(stroke: 0.5pt + black, inset: 0pt, diagram(
       node-stroke: 1pt,
       edge-stroke: 1pt,
       node((0, 0), [ผู้พัฒนา\ (Developer)], corner-radius: 5pt),
@@ -90,7 +90,7 @@
       node((0, 4), [Husky: pre-push\ (test & build)], corner-radius: 5pt, stroke: blue),
       edge("-|>"),
       node((0, 5), [Git Repository], corner-radius: 5pt, fill: green.lighten(80%)),
-    ),
+    )),
   )
 ]
 
@@ -123,22 +123,24 @@
     caption: [การทำงานแบบ Monorepo และเครื่องมือการทดสอบ],
     [
       #set text(size: 0.9em)
-      #diagram(
-        node-stroke: 1pt,
-        edge-stroke: 1pt,
-        node-inset: 5pt,
-        spacing: (3.5em, 5em),
-        node((0, 0), [pnpm Workspace], corner-radius: 5pt, fill: orange.lighten(80%)),
-        edge((0, 0), (0, 1), "-|>", [แชร์ไลบรารี], label-side: left),
-        node((0, 1), [Backend\ (NestJS 11)], corner-radius: 5pt),
-        edge((0, 1), (1.5, 1), "<|-|>", [API Testing\ (Bruno / Mountebank)], label-pos: 0.5, label-sep: 10pt),
-        node((1.5, 1), [API / E2E Tests\ (Playwright)], corner-radius: 5pt),
-        edge((0, 1), (0, 2), "-|>", [SWC + Vitest]),
-        node((0, 2), [Unit Tests], corner-radius: 5pt, fill: green.lighten(80%)),
-        edge((0, 0), (-1.5, 1), "-|>", [แชร์ไลบรารี]),
-        node((-1.5, 1), [Frontend\ (Angular 21)], corner-radius: 5pt),
-        edge((-1.5, 1), (-1.5, 2), "-|>", [State Management\ (NgRx Signal Store)]),
-        node((-1.5, 2), [UI / Components], corner-radius: 5pt, fill: blue.lighten(80%)),
+      rect(stroke: 0.5pt + black, inset: 0pt,
+      diagram(
+      node-stroke: 1pt,
+      edge-stroke: 1pt,
+      node-inset: 5pt,
+      spacing: (3.5em, 5em),
+      node((0, 0), [pnpm Workspace], corner-radius: 5pt, fill: orange.lighten(80%)),
+      edge((0, 0), (0, 1), "-|>", [แชร์ไลบรารี], label-side: left),
+      node((0, 1), [Backend\ (NestJS 11)], corner-radius: 5pt),
+      edge((0, 1), (1.5, 1), "<|-|>", [API Testing\ (Bruno / Mountebank)], label-pos: 0.5, label-sep: 10pt),
+      node((1.5, 1), [API / E2E Tests\ (Playwright)], corner-radius: 5pt),
+      edge((0, 1), (0, 2), "-|>", [SWC + Vitest]),
+      node((0, 2), [Unit Tests], corner-radius: 5pt, fill: green.lighten(80%)),
+      edge((0, 0), (-1.5, 1), "-|>", [แชร์ไลบรารี]),
+      node((-1.5, 1), [Frontend\ (Angular 21)], corner-radius: 5pt),
+      edge((-1.5, 1), (-1.5, 2), "-|>", [State Management\ (NgRx Signal Store)]),
+      node((-1.5, 2), [UI / Components], corner-radius: 5pt, fill: blue.lighten(80%)),
+      )
       )
     ],
   )

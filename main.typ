@@ -3,7 +3,7 @@
 #set page(paper: "a4", margin: (top: 2.5cm, bottom: 2.5cm, left: 3cm, right: 2.5cm))
 
 // สถานะสำหรับชื่อสารบัญในหน้าถัดไป
-#let outline-title = state("outline-title", none)
+#let header_title = state("header-title", none)
 
 // ฟังก์ชันสำหรับเช็คว่ามีหัวข้อระดับ 1 ในหน้าปัจจุบันหรือไม่
 #let has-level1-heading() = {
@@ -11,6 +11,19 @@
 }
 
 // ตั้งค่าการย่อหน้า (Indentation) และการจัดการพารากราฟ
+#let shared-header = context {
+  let title = header_title.get()
+  if title != none and not has-level1-heading() {
+    // ขยับ header ลงมาเล็กน้อย
+    v(1.5cm)
+    align(center, text(size: 18pt, weight: "bold")[#title (ต่อ)])
+    let outline_grid = state("header-grid", none).get()
+    if outline_grid != none {
+      v(0.5em)
+      outline_grid
+    }
+  }
+}
 #set par(
   first-line-indent: 1cm, // กำหนดระยะย่อหน้า 1 ซม. (ประมาณ 1 Tab)
   justify: true,
@@ -27,6 +40,9 @@
   par(spacing: 0em, leading: 0em, text(size: 0pt, ""))
   v(-0.8em)
 }
+
+// ตั้งค่าขอบภาพ (Image Border)
+#show image: it => rect(it, stroke: 0.5pt + black, inset: 0pt)
 
 // การตั้งค่าภาพ (Figure)
 #set figure(
@@ -87,19 +103,7 @@
 // ส่วนหน้า (Front Matter) - ใช้เลขหน้าแบบโรมัน (i, ii, iii)
 #set page(
   numbering: "i",
-  header: context {
-    let title = outline-title.get()
-    if title != none and not has-level1-heading() {
-      // ขยับ header ลงมาเล็กน้อย
-      v(1.5cm)
-      align(center, text(size: 18pt, weight: "bold")[#title (ต่อ)])
-      let outline_grid = state("outline-header", none).get()
-      if outline_grid != none {
-        v(0.5em)
-        outline_grid
-      }
-    }
-  },
+  header: shared-header,
 )
 
 // ฟังก์ชันสำหรับสร้างสารบัญ
@@ -107,20 +111,20 @@
   // ขยาย Margin ด้านบนเฉพาะหน้าสารบัญ เพื่อให้ Header และเนื้อหาไม่ซ้อนทับกัน
   set page(margin: (top: 4.5cm, bottom: 2.5cm, left: 3cm, right: 2.5cm))
 
-  outline-title.update(title)
+  header_title.update(title)
   let outline_grid = grid(
     columns: (1fr, auto),
     left-col-name, [หน้า],
   )
-  state("outline-header", none).update(outline_grid)
+  state("header-grid", none).update(outline_grid)
 
   // ขยับหัวข้อแรกขึ้นไปชดเชยกับ Margin ที่เพิ่มมา (4.5cm - 2cm = 2.5cm)
   v(-2cm)
   heading(level: 1, outlined: false)[#title]
   outline_grid
   pad(top: 0.2em, outline(title: none, target: target))
-  state("outline-header", none).update(none)
-  outline-title.update(none)
+  state("header-grid", none).update(none)
+  header_title.update(none)
 }
 
 // ใบรับรอง
@@ -169,6 +173,7 @@
 #pagebreak()
 
 // ส่วนหลัง (Back Matter)
+#set page(margin: (top: 4.5cm, bottom: 2.5cm, left: 3cm, right: 2.5cm), header: shared-header)
 #include "chapters/bibliography.typ"
 #pagebreak()
 #include "chapters/appendix.typ"
