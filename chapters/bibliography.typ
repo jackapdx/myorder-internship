@@ -18,6 +18,8 @@ Byars, B. (2024). _Mountebank_ [Computer software]. http://www.mbtest.org/
 
 Cloudflare, Inc. (2024). _Cloudflare Workers_ [Computer software]. https://workers.cloudflare.com/
 
+Crispin, L., & Gregory, J. (2024). _Holistic Testing: Weave Quality Into Your Product_. Agile Testing Fellowship. https://agiletestingfellow.com/
+
 Cursor. (2024). _Cursor - The AI Code Editor_ [Computer software]. https://cursor.com/
 
 Discord Inc. (2024). _Discord_ [Computer software]. https://discord.com/
