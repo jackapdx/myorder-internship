@@ -76,7 +76,7 @@
 #align(center)[
   #figure(
     caption: [ขั้นตอน Git Hooks อัตโนมัติด้วย Husky],
-    rect(stroke: 0.5pt + black, inset: 0pt, diagram(
+    rect(stroke: 0.5pt + black, inset: 15pt, diagram(
       node-stroke: 1pt,
       edge-stroke: 1pt,
       node((0, 0), [ผู้พัฒนา\ (Developer)], corner-radius: 5pt),
@@ -122,8 +122,8 @@
   #figure(
     caption: [การทำงานแบบ Monorepo และเครื่องมือการทดสอบ],
     [
-      #set text(size: 0.9em)
-      #rect(stroke: 0.5pt + black, inset: 0pt, diagram(
+      #set text(size: 0.85em)
+      #rect(stroke: 0.5pt + black, inset: 15pt, diagram(
         node-stroke: 1pt,
         edge-stroke: 1pt,
         node-inset: 5pt,
@@ -132,7 +132,7 @@
         edge((0, 0), (0, 1), "-|>", [แชร์ไลบรารี], label-side: left),
         node((0, 1), [Backend\ (NestJS 11)], corner-radius: 5pt),
         edge((0, 1), (1.5, 1), "<|-|>", [API Testing\ (Bruno / Mountebank)], label-pos: 0.5, label-sep: 10pt),
-        node((1.5, 1), [API / E2E Tests\ (Playwright)], corner-radius: 5pt),
+        node((1.5, 1), [API Tests], corner-radius: 5pt),
         edge((0, 1), (0, 2), "-|>", [SWC + Vitest]),
         node((0, 2), [Unit Tests], corner-radius: 5pt, fill: green.lighten(80%)),
         edge((0, 0), (-1.5, 1), "-|>", [แชร์ไลบรารี]),
