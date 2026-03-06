@@ -38,7 +38,7 @@
 #show heading: it => {
   it
   par(spacing: 0em, leading: 0em, text(size: 0pt, ""))
-  v(-0.8em)
+  v(-1em)
 }
 
 
@@ -77,17 +77,15 @@
   v(1em)
 }
 
-#show heading.where(level: 2): it => {
-  set text(size: 18pt, weight: "bold")
-  it
-}
+#show heading.where(level: 2): set text(size: 18pt, weight: "bold")
+#show heading.where(level: 2): set block(above: 1.5em, below: 1em)
 
-#show heading.where(level: 3): it => {
-  set text(size: 16pt, weight: "bold")
-  it
-}
+#show heading.where(level: 3): set text(size: 16pt, weight: "bold")
+#show heading.where(level: 3): set block(above: 1.5em, below: 1em)
 
-// การจัดการลิสต์ให้ไม่มีการย่อหน้าแบบพารากราฟ
+// การจัดการลิสต์ให้เยื้องเข้าเล็กน้อยและไม่มีการย่อหน้าแบบพารากราฟซ้อน
+#set list(indent: 1em)
+#set enum(indent: 1em)
 #show list: set par(first-line-indent: 0pt)
 #show enum: set par(first-line-indent: 0pt)
 #show table: set par(first-line-indent: 0pt)
