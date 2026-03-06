@@ -1,7 +1,7 @@
 // ตั้งค่า Font และกระดาษ
 #set text(font: "TH Sarabun New", size: 16pt, lang: "th", style: "normal", weight: "regular")
+#show raw: set text(font: "TH Sarabun New", size: 16pt)
 #set page(paper: "a4", margin: (top: 2.5cm, bottom: 2.5cm, left: 3cm, right: 2.5cm))
-
 // สถานะสำหรับชื่อสารบัญในหน้าถัดไป
 #let header_title = state("header-title", none)
 
