@@ -1,7 +1,7 @@
 // ตั้งค่า Font และกระดาษ
 #set text(font: "TH Sarabun New", size: 16pt, lang: "th", style: "normal", weight: "regular")
 #show raw: set text(font: "TH Sarabun New", size: 16pt)
-#set page(paper: "a4", margin: (top: 2.5cm, bottom: 2.5cm, left: 3cm, right: 2.5cm))
+#set page(paper: "a4", margin: (top: 2.5cm, bottom: 2.5cm, left: 3cm, right: 2.5cm), number-align: right + top)
 // สถานะสำหรับชื่อสารบัญในหน้าถัดไป
 #let header_title = state("header-title", none)
 
@@ -12,15 +12,45 @@
 
 // ตั้งค่าการย่อหน้า (Indentation) และการจัดการพารากราฟ
 #let shared-header = context {
+  // ค้นหา Heading Level 1 ในหน้าปัจจุบัน
+  let page_headings = query(heading.where(level: 1)).filter(it => it.location().page() == here().page())
+  let h1 = if page_headings.len() > 0 { page_headings.first() } else { none }
+
+  // ดึงชื่อหัวข้อสำหรับหน้า (ต่อ) จาก state
   let title = header_title.get()
-  if title != none and not has-level1-heading() {
-    // ขยับ header ลงมาเล็กน้อย
-    v(1.5cm)
+
+  // กำหนดระยะขอบบนของ Header ให้คงที่ (1.5 ซม. จากขอบกระดาษ)
+  v(1.5cm)
+
+  if title != none and h1 == none {
+    // กรณีที่ 1: หน้าที่มีเนื้อหาต่อเนื่องจากหน้าก่อนหน้า (เช่น สารบัญ หน้าที่ 2)
+    // - แสดง "ชื่อหัวข้อ (ต่อ)" ไว้ที่กึ่งกลาง
+    // - ซ่อนเลขหน้าเพื่อความสวยงามตามรูปแบบรายงาน
     align(center, text(size: 18pt, weight: "bold")[#title (ต่อ)])
     let outline_grid = state("header-grid", none).get()
     if outline_grid != none {
       v(0.5em)
       outline_grid
+    }
+  } else {
+    // กรณีที่ 2: หน้าปกติ หรือ หน้าแรกของส่วนต่างๆ
+    // ตรวจสอบเงื่อนไขการแสดงเลขหน้า
+    let show_num = if h1 != none {
+      // หน้าแรกของบท/ส่วน:
+      // - แสดงเลขหน้าเฉพาะ "ส่วนหน้า" (ก, ข, ค) ซึ่งเป็นหัวข้อที่ไม่มีเลขบท (numbering: none) และต้องการให้ปรากฏในสารบัญ (outlined: true)
+      // - ซ่อนเลขหน้าสำหรับ "หน้าแรกของบทที่..." (มี numbering) และ "หน้าแรกของสารบัญ" (outlined: false)
+      h1.numbering == none and h1.outlined == true
+    } else {
+      // หน้าปกติที่ไม่มีหัวข้อระดับ 1 (เนื้อหาภายในบท) ให้แสดงเลขหน้าเสมอ
+      true
+    }
+
+    if show_num {
+      let num = page.numbering
+      if num != none {
+        // แสดงเลขหน้าชิดขวาบน
+        align(right)[#counter(page).display(num)]
+      }
     }
   }
 }
@@ -98,9 +128,62 @@
 // ตั้งค่าขอบภาพ (Image Border) - เริ่มใช้หลังจากหน้าปก
 #show image: it => rect(it, stroke: 0.5pt + black, inset: 0pt)
 
-// ส่วนหน้า (Front Matter) - ใช้เลขหน้าแบบโรมัน (i, ii, iii)
+// ฟังก์ชันสำหรับเลขหน้าแบบ ก, ข, ค
+#let thai-alphabetic(n) = {
+  let alphabets = (
+    "ก",
+    "ข",
+    "ค",
+    "ง",
+    "จ",
+    "ฉ",
+    "ช",
+    "ซ",
+    "ฌ",
+    "ญ",
+    "ฎ",
+    "ฏ",
+    "ฐ",
+    "ฑ",
+    "ฒ",
+    "ณ",
+    "ด",
+    "ต",
+    "ถ",
+    "ท",
+    "ธ",
+    "น",
+    "บ",
+    "ป",
+    "ผ",
+    "ฝ",
+    "พ",
+    "ฟ",
+    "ภ",
+    "ม",
+    "ย",
+    "ร",
+    "ล",
+    "ว",
+    "ศ",
+    "ษ",
+    "ส",
+    "ห",
+    "ฬ",
+    "อ",
+    "ฮ",
+  )
+  if n <= alphabets.len() {
+    alphabets.at(n - 1)
+  } else {
+    // กรณีที่เกิน 44 หน้า (ซึ่งปกติไม่ถึง) ให้ใช้เลขหน้าปัจจุบันต่อท้าย
+    "ฮ" + str(n - alphabets.len())
+  }
+}
+
+// ส่วนหน้า (Front Matter) - ใช้เลขหน้าแบบไทย (ก, ข, ค)
 #set page(
-  numbering: "i",
+  numbering: thai-alphabetic,
   header: shared-header,
 )
 
@@ -150,7 +233,7 @@
 #pagebreak()
 
 // เนื้อหาหลัก (Main Content) - ใช้เลขหน้าแบบอารบิก (1, 2, 3)
-#set page(numbering: "1", header: none)
+#set page(numbering: "1", header: shared-header)
 #counter(page).update(1)
 
 #set heading(numbering: "1.1")
