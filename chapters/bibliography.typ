@@ -56,7 +56,9 @@ Martin, R. C. (2017). _Clean Architecture: A Craftsman's Guide to Software Struc
 
 Meta Platforms, Inc. (2024). _Jest_ [Computer software]. https://jestjs.io/
 
-Microsoft. (2024). _Visual Studio Code_ [Computer software]. https://code.visualstudio.com/
+Microsoft. (2024). _TypeScript_ [Computer software]. https://www.typescriptlang.org/
+
+Microsoft. (2024b). _Visual Studio Code_ [Computer software]. https://code.visualstudio.com/
 
 Miro. (2024). _Miro_ [Computer software]. https://miro.com/
 
@@ -97,6 +99,8 @@ Strunk, C. (2026). _User Story Mapping: The Complete Guide With Examples [2026]_
 Tailwind Labs. (2024). _Tailwind CSS_ [Computer software]. https://tailwindcss.com/
 
 Taskfile. (2024). _Task_ [Computer software]. https://taskfile.dev/
+
+Taskforce.sh. (2024). _BullMQ — Premium Message Queue for NodeJS based on Redis_ [Computer software]. https://bullmq.io/
 
 The Rules of Extreme Programming. (2024). _Extreme Programming Rules_. http://www.extremeprogramming.org/rules.html
 
