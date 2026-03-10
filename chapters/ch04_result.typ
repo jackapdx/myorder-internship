@@ -77,7 +77,7 @@
 
 #figure(
   image("../images/ch4/code/passed-unit-test.png", width: 80%),
-  caption: [ผลการรัน Unit Test ผ่านเกณฑ์ครอบคลุมลอจิกการทำงานหลัก],
+  caption: [ผลการรัน Unit Test ผ่านเกณฑ์],
 )
 
 #pagebreak()
