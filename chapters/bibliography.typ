@@ -34,6 +34,8 @@ Fowler, M. (2006). _Mocks Aren't Stubs_. https://martinfowler.com/articles/mocks
 
 Garver, S. M. (1998). _Makefile Tutorial - What is a Makefile?_. University of Pittsburgh. https://www.sis.pitt.edu/mbsclass/tutorial/advanced/makefile/whatis.htm
 
+GeeksforGeeks. (2024). _Software Development Life Cycle (SDLC)_. https://www.geeksforgeeks.org/software-engineering/software-development-life-cycle-sdlc/
+
 Git. (2024). _Git_ [Computer software]. https://git-scm.com/
 
 GitHub. (2024). _GitHub Copilot_ [Computer software]. https://github.com/features/copilot
