@@ -49,7 +49,7 @@
       let num = page.numbering
       if num != none {
         // แสดงเลขหน้าชิดขวาบน
-        align(right)[#counter(page).display(num)]
+        align(right, text(fill: luma(140))[#counter(page).display(num)])
       }
     }
   }
