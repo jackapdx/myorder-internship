@@ -80,6 +80,7 @@
     str(ch) + "-" + str(it)
   },
 )
+#set figure.caption(separator: [ ])
 
 // การตั้งค่าตาราง (Table Figure)
 #show figure.where(kind: table): set figure(
