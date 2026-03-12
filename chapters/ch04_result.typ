@@ -10,12 +10,12 @@
 ผู้ใช้สามารถเข้าสู่ระบบเพื่อเริ่มต้นใช้งานแอปพลิเคชัน ซึ่งในระหว่างการประมวลผลระบบจะมีการแสดงสถานะการโหลดข้อมูลให้ผู้ใช้ทราบ
 
 #figure(
-  image("../images/ch4/ui/login.png", width: 80%),
+  image("../images/ch4/ui/login.png"),
   caption: [หน้าจอการเข้าสู่ระบบ (Login)],
 )
 
 #figure(
-  image("../images/ch4/ui/loading.png", width: 80%),
+  image("../images/ch4/ui/loading.png"),
   caption: [หน้าจอแสดงสถานะการโหลดข้อมูล (Loading)],
 )
 
@@ -23,12 +23,12 @@
 เมื่อเข้าสู่ระบบเรียบร้อยแล้ว ผู้ใช้จะพบกับหน้าเมนูหลักที่สามารถนำทางไปยังส่วนต่างๆ ของระบบ และสามารถดูรายการคอร์สเรียนทั้งหมดที่ลงทะเบียนไว้ได้ในหน้าคอร์สของฉัน
 
 #figure(
-  image("../images/ch4/ui/home-menu.png", width: 80%),
+  image("../images/ch4/ui/home-menu.png"),
   caption: [หน้าจอเมนูหลัก (Home Menu)],
 )
 
 #figure(
-  image("../images/ch4/ui/my-course.png", width: 80%),
+  image("../images/ch4/ui/my-course.png"),
   caption: [หน้าจอคอร์สของฉัน (My Course)],
 )
 
@@ -41,7 +41,7 @@
 )
 
 #figure(
-  image("../images/ch4/ui/edit-course.png", width: 80%),
+  image("../images/ch4/ui/edit-course.png"),
   caption: [หน้าจอสำหรับการแก้ไขข้อมูลคอร์สเรียน (Edit Course)],
 )
 
@@ -49,22 +49,22 @@
 ผู้ใช้สามารถลงทะเบียนเรียน ทำแบบทดสอบก่อนเรียนและหลังเรียนเพื่อประเมินผลการเรียนรู้ รวมถึงผู้รับผิดชอบสามารถเรียกดูรายงานข้อมูลของคอร์สเรียนได้
 
 #figure(
-  image("../images/ch4/ui/enrollment.png", width: 80%),
+  image("../images/ch4/ui/enrollment.png"),
   caption: [หน้าจอการลงทะเบียนเรียน (Enrollment)],
 )
 
 #figure(
-  image("../images/ch4/ui/pre-test.png", width: 80%),
+  image("../images/ch4/ui/pre-test.png"),
   caption: [หน้าจอแบบทดสอบก่อนเรียน (Pre-test)],
 )
 
 #figure(
-  image("../images/ch4/ui/post-test.png", width: 80%),
+  image("../images/ch4/ui/post-test.png"),
   caption: [หน้าจอแบบทดสอบหลังเรียน (Post-test)],
 )
 
 #figure(
-  image("../images/ch4/ui/report-course.png", width: 80%),
+  image("../images/ch4/ui/report-course.png"),
   caption: [หน้าจอรายงานคอร์สเรียน (Report Course)],
 )
 #pagebreak()
@@ -76,7 +76,7 @@
 จากการเขียน Unit Test โดยใช้ Vitest และ SWC เพื่อทดสอบส่วน Service ของระบบการประเมิน (Assessment) พบว่ากรณีทดสอบทั้งหมดผ่านเกณฑ์ (Pass) 100% ซึ่งครอบคลุมลอจิกสำคัญ เช่น การคำนวณคะแนนตามเกณฑ์ที่ HR กำหนด และการตรวจสอบเงื่อนไขการออกใบประกาศนียบัตร
 
 #figure(
-  image("../images/ch4/code/passed-unit-test.png", width: 80%),
+  image("../images/ch4/code/passed-unit-test.png"),
   caption: [ผลการรัน Unit Test ผ่านเกณฑ์],
 )
 
@@ -85,31 +85,30 @@
 ผลจากการส่งคำขอ (Request) ผ่านเครื่องมือ Bruno เพื่อทดสอบ API Endpoints จริง พบว่าระบบสามารถตอบสนอง (Response) ได้ถูกต้องสอดคล้องกับโครงสร้าง DTO ที่ออกแบบไว้ และสามารถจัดการสถานะ HTTP ได้อย่างเหมาะสมในทุกกรณีศึกษา
 
 #figure(
-  image("../images/ch4/code/sc7.png", width: 75%),
+  image("../images/ch4/code/sc7.png"),
   caption: [ผลการทดสอบ API ส่วนที่ 1: จัดการข้อมูลหลักแบบประเมิน (Assessment Management)],
 )
 
 #figure(
-  image("../images/ch4/code/sc7a.png", width: 75%),
+  image("../images/ch4/code/sc7a.png"),
   caption: [ผลการทดสอบ API ส่วนที่ 2: จัดการคำถาม (Questions CRUD)],
 )
 
 #figure(
-  image("../images/ch4/code/sc7b.png", width: 75%),
+  image("../images/ch4/code/sc7b.png"),
   caption: [ผลการทดสอบ API ส่วนที่ 3: จัดการตัวเลือก (Choices CRUD)],
 )
 
 #figure(
-  image("../images/ch4/code/sc7c.png", width: 75%),
+  image("../images/ch4/code/sc7c.png"),
   caption: [ผลการทดสอบ API ส่วนที่ 4: จัดการข้อมูลการทำแบบประเมิน (Assessment Attempts CRUD)],
 )
 
 #figure(
-  image("../images/ch4/code/sc7d.png", width: 75%),
+  image("../images/ch4/code/sc7d.png"),
   caption: [ผลการทดสอบ API ส่วนที่ 5: จัดการคำตอบ (Attempt Answers CRUD)],
 )
 
-#pagebreak()
 == สรุปผลสัมฤทธิ์ของการจัดการข้อมูลและคุณลักษณะของระบบ (Data Management Outcomes)
 
 นอกเหนือจากส่วนติดต่อผู้ใช้งานที่สวยงามแล้ว การประยุกต์ใช้เทคโนโลยีสมัยใหม่ยังส่งผลลัพธ์เชิงเทคนิคที่สำคัญต่อระบบ ดังนี้:

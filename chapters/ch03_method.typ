@@ -1,6 +1,14 @@
 #import "/config/common.typ": *
 #import "@preview/fletcher:0.5.6" as fletcher: diagram, edge, node
 
+#let toolFigure = (src, alt, cap, w: 10cm, h: auto) => {
+  figure(
+    image(src, width: w, height: h, alt: alt, fit: "contain"),
+    caption: cap,
+    kind: image,
+  )
+}
+
 = วิธีการดำเนินงานสหกิจศึกษา
 
 บทนี้กล่าวถึงรายละเอียดการปฏิบัติงานภายใต้โครงงานสหกิจศึกษา ซึ่งครอบคลุมกระบวนการพัฒนาระบบ
@@ -68,6 +76,27 @@
 - *Continuous Integration / Continuous Deployment (CI/CD)*: มีการนำ Husky เข้ามาจำกัดสิทธิ์ในส่วน Local โดยการบังคับและตรวจสอบ (Lint, Test, Build) กรองโค้ดขยะชั้นแรก
 - *Refactoring & Code Standards*: ควบคุมมาตรฐานโค้ดสม่ำเสมอ โดยมีการกำหนดรูปแบบมาตรฐานการตั้งชื่อ (Conventional Commits) บน GitHub ผูกการเปลี่ยนแปลงเข้ากับ Branch เป็นข้อบังคับสำคัญ
 
+#align(center)[
+  #figure(
+    caption: [ความสัมพันธ์ระหว่าง Scrum และ XP ในการปฏิบัติงาน],
+    rect(stroke: 0.5pt + black, inset: 20pt, diagram(
+      node-stroke: 1pt,
+      edge-stroke: 1pt,
+      spacing: (8em, 3em),
+
+      node((0,0), [Management\ (Scrum)], fill: blue.lighten(90%), stroke: blue, width: 7em),
+      node((1,0), [Engineering\ (XP)], fill: green.lighten(90%), stroke: green, width: 7em),
+
+      edge((0,0), (1,0), "<->", label: text(12pt)[Support Each Other], label-side: left),
+
+      node((0,1), text(14pt)[Sprint Planning\ Daily Stand-up\ Retrospective], shape: rect, stroke: 0.5pt, width: 8.5em),
+      node((1,1), text(14pt)[TDD\ Pair Programming\ CI/CD], shape: rect, stroke: 0.5pt, width: 8.5em),
+
+      edge((0,0), (0,1), "--"),
+      edge((1,0), (1,1), "--"),
+    ))
+  )]
+
 == แผนภาพแสดงสถาปัตยกรรมกระบวนการ (Architecture & Workflow Diagram)
 
 เพื่อให้สามารถทำความเข้าใจโครงสร้างและวิถีการทำงานของ MyHR ได้ดียิ่งขึ้น แผนภาพด้านล่างแสดงถึงขั้นตอนของ Git Lifecycle และการปรับใช้โครงสร้างแบบ Monorepo Workspace:
@@ -102,6 +131,35 @@
 - กำหนดสถาปัตยกรรมระบบ โฟลว์การทำงาน และโครงร่างหน้าจอ (Wireframes) เชื่อมโยงเข้าด้วยกัน
 - การเขียนแผนผังความสัมพันธ์ (Entity-Relationship Diagram) และการออกแบบสคีมาฐานข้อมูลร่วมกัน
 - การร่วมกันระดมสมอง (Brainstorming) เพื่อกำหนดข้อจำกัดและกติกาเชิงธุรกิจ (Business Logic) เมื่อมีความต้องการส่วนใดเปลี่ยน การอัปเดตบน Miro จะเป็นจุดรวมที่ทุกคนจะยึดเป็นพื้นที่อ้างอิงหลัก ทำให้กระบวนการพัฒนาและตรวจสอบสอดคล้องกันอย่างชัดเจน ไร้ความสับสนของเวอร์ชันเอกสารไฟล์ที่ซ้ำซ้อน
+
+#align(center)[
+  #figure(
+    caption: [แนวคิด Miro เป็นเอกสารที่มีชีวิต (Living Document) ประจำทีม],
+    rect(stroke: 0.5pt + black, inset: 10pt, diagram(
+      node-stroke: 1pt,
+      edge-stroke: 1pt,
+      spacing: (2em, 2em),
+
+      node((0,0), [User Flow], shape: rect, fill: yellow.lighten(90%)),
+      node((1,0), [ER-Diagram], shape: rect, fill: blue.lighten(90%)),
+      node((2,0), [Wireframes], shape: rect, fill: green.lighten(90%)),
+
+      node((1, 1.5), [*Miro Canvas*\ (Single Source of Truth)], width: 12em, height: 4em, corner-radius: 10pt, stroke: 2pt + orange, fill: orange.lighten(95%)),
+
+      edge((0,0), (1, 1.5), "-|>"),
+      edge((1,0), (1, 1.5), "-|>"),
+      edge((2,0), (1, 1.5), "-|>"),
+
+      node((0, 3), [Developer], shape: circle),
+      node((1, 3), [Designer], shape: circle),
+      node((2, 3), [Product Owner], shape: circle),
+
+      edge((0, 3), (1, 1.5), "<->"),
+      edge((1, 3), (1, 1.5), "<->"),
+      edge((2, 3), (1, 1.5), "<->"),
+    ))
+  )
+]
 
 === การวิเคราะห์ Scenarios และการออกแบบ A-DAPT Blueprint (Customer Visible Layer)
 
@@ -163,6 +221,10 @@
 การจัดวาง Blueprint ในรูปแบบนี้ช่วยให้ทีมใช้ *Outside-In Approach* — เริ่มมองจากมุมผู้ใช้ก่อน แล้วค่อยลงลึกไปยังโครงสร้างเบื้องหลัง ทำให้สามารถระบุสิ่งที่ต้องพัฒนาได้อย่างครบถ้วนตั้งแต่ขั้นตอนวางแผน ลดปัญหาการสื่อสารที่คลาดเคลื่อน และเป็นแนวทางที่ดีในการสร้างชุดทดสอบล่วงหน้า (Test-First) ก่อนลงมือเขียนโค้ดจริง
 
 #align(center)[
+  #toolFigure("../images/ch3/blueprints/miro-blueprint-assessment.webp", "miro blueprint assessment", [ตัวอย่างการออกแบบระบบ Assessment บน Miro])
+]
+
+#align(center)[
   #figure(
     rotate(90deg, reflow: true)[
       #image("../images/ch3/blueprints/assessment.svg", width: 22cm)
@@ -177,14 +239,14 @@
 
 #align(center)[
   #figure(
-    image("../images/ch3/code/mountebank.png", width: 60%),
+    image("../images/ch3/code/mountebank.png", width: 70%),
     caption: [ภาพแสดงโครงสร้างไฟล์ Imposter ที่แยกตามฟังก์ชัน],
   )
 ]
 
 #align(center)[
   #figure(
-    image("../images/ch3/code/mb-response.png", width: 80%),
+    image("../images/ch3/code/mb-response.png"),
     caption: [ภาพตัวอย่างการจำลอง Response ด้วย Mountebank],
   )
 ]
@@ -196,14 +258,14 @@
 
 #align(center)[
   #figure(
-    image("../images/ch3/code/bruno.png", width: 80%),
+    image("../images/ch3/code/bruno.png"),
     caption: [ภาพแสดงการกำหนด Centralized Data ใน collection.bru],
   )
 ]
 
 #align(center)[
   #figure(
-    image("../images/ch3/code/api-test.png", width: 80%),
+    image("../images/ch3/code/api-test.png"),
     caption: [ภาพการทดสอบ API และการใช้ DAMP Pattern],
   )
 ]
@@ -215,14 +277,14 @@
 
 #align(center)[
   #figure(
-    image("../images/ch3/code/unit-test.png", width: 80%),
+    image("../images/ch3/code/unit-test.png"),
     caption: [ภาพแสดงตัวอย่างการเขียน Unit Test ด้วย Vitest],
   )
 ]
 
 #align(center)[
   #figure(
-    image("../images/ch3/code/passed-unit-test.png", width: 80%),
+    image("../images/ch3/code/passed-unit-test.png"),
     caption: [ภาพแสดงผลลัพธ์การรัน Unit Test ที่ผ่านเกณฑ์],
   )
 ]

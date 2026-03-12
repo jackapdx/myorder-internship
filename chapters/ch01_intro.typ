@@ -1,4 +1,5 @@
 #import "/config/common.typ": *
+#import "@preview/fletcher:0.5.6" as fletcher: diagram, edge, node
 = บทนำ
 
 == ที่มาของการปฏิบัติงานสหกิจศึกษา
@@ -35,6 +36,40 @@
 9. พนักงานสามารถเลือกคอร์สที่ต้องการเรียนและส่งคำขอลงทะเบียนผ่านระบบได้
 10. HR สามารถดูคำขอลงทะเบียนของพนักงานและจัดการการลงทะเบียนได้ พร้อมทั้งส่งการแจ้งเตือนผ่าน Email เพื่อแจ้งผลการลงทะเบียน
 
+#align(center)[
+  #figure(
+    caption: [แผนภาพบริบทของระบบ My Academy ภายใต้ MyHR],
+    rect(stroke: 0.5pt + black, inset: 10pt, diagram(
+      node-stroke: 1pt,
+      edge-stroke: 1pt,
+      spacing: (3.5em, 3.5em),
+
+      // External Systems / Roles
+      node((-1, 0), [HR Admin],corner-radius: 10pt,fill: gray.lighten(90%), width: 3.5em, height: 3.5em),
+      node((1, 0), [Employee] ,corner-radius: 10pt, fill: gray.lighten(90%), width: 3.5em, height: 3.5em),
+
+      // Core System
+      node((0, 1), [MyHR System\ (Main Hub)], corner-radius: 4pt, fill: blue.lighten(90%), width: 6.5em, height: 3em),
+
+      // Subsystem
+      node((0, 2), [My Academy\ (E-Learning)], corner-radius: 4pt, fill: green.lighten(80%), stroke: 1.5pt + green, width: 7.5em, height: 3em),
+
+      // Edges with smaller text labels
+      edge((-1, 0), (0, 1), "-|>", text(8pt)[Manage Employees], label-pos: 0.5, label-side: left, bend: 10deg),
+      edge((1, 0), (0, 1), "-|>", text(8pt)[Self-Service], label-pos: 0.5, label-side: right, bend: -10deg),
+
+      edge((0, 1), (0, 2), "<|-|>", text(12pt)[Shared Data / Auth], label-pos: 0.5, label-side: right),
+
+      edge((-1, 0), (0, 2), "-|>", text(8pt)[Manage Courses & Assessment], bend: -40deg, label-pos: 0.2, label-side: left),
+      edge((1, 0), (0, 2), "-|>", text(8pt)[Enroll & Learn], bend: 40deg, label-pos: 0.2, label-side: right),
+
+      // External Output
+      node((1.1, 2), [Cert\ (PDF)], shape: rect, fill: yellow.lighten(90%), width: 4.5em),
+      edge((0, 2), (1.1, 2), "-|>"),
+    ))
+  )
+]
+
 #pagebreak()
 == ข้อมูลของ#company_name
 
@@ -43,6 +78,11 @@
 === สถานที่ตั้ง #company_name
 
 #company_name ตั้งอยู่ที่ 211 2 ตำบล บางพระ อำเภอศรีราชา ชลบุรี 20110 และเว็บไซต์ https://landing.myorder.ai
+
+#figure(
+  image("../images/ch1/myorder_map.webp", width: 80%),
+  caption: [แผนที่ตั้งของ #company_name],
+)
 
 === ผลิตภัณฑ์ ผลิตผล หรือการให้บริการของ #company_name
 
@@ -58,7 +98,6 @@
 
 ผู้ปฏิบัติงานสหกิจศึกษาได้รับมอบหมายงานในตำแหน่ง Full Stack Developer โดยรับผิดชอบการพัฒนาระบบ My Academy ซึ่งเป็นระบบบริหารจัดการการเรียนรู้ออนไลน์ (E-learning) ภายใต้ระบบหลัก MyHR เพื่อให้การใช้งานสะดวกสบายขึ้นและระบบสามารถจัดการเกี่ยวกับการเรียนรู้และการประเมินผลพนักงานได้ถูกต้องมากยิ่งขึ้น
 
-#pagebreak()
 === ข้อมูลพนักงานที่ปรึกษา
 
 พนักงานที่ปรึกษาของผู้ปฏิบัติสหกิจศึกษาเป็นผู้ให้คำปรึกษาให้คำแนะนำในการปฏิบัติงานและคอยช่วยเหลือดูแลตลอดระยะเวลาการปฏิบัติงานสหกิจศึกษาครั้งนี้ คือ
