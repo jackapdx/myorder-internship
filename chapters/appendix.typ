@@ -20,3 +20,15 @@
   image("/IN-S006-JACK.pdf", width: 100%, fit: "contain", page: i)
   if i < 2 { pagebreak() }
 }
+
+#pagebreak()
+#align(center + horizon)[
+  #text(size: 20pt)[*ภาคผนวก ข*]
+
+  #text(size: 16pt)[ใบนำส่งและเอกสารสหกิจที่เกี่ยวข้อง]
+]
+#pagebreak()
+
+#align(center + horizon)[
+  #text(size: 14pt, fill: gray)[เอกสารใบนำส่งจะถูกเพิ่มหลังจากได้รับลายเซ็นจากสถานประกอบการ]
+]

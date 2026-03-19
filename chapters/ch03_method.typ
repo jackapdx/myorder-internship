@@ -217,6 +217,291 @@
   )
 ]
 
+== การวิเคราะห์และออกแบบระบบ (System Analysis & Design)
+
+=== แผนภาพยูสเคส (Use Case Diagram)
+
+แผนภาพยูสเคสด้านล่างแสดงความสัมพันธ์ระหว่างผู้ใช้งานหลักของระบบ My Academy ซึ่งประกอบด้วย 2 บทบาทหลัก ได้แก่ HR Admin และ Employee (พนักงาน) โดยแต่ละบทบาทมีขอบเขตการใช้งานที่แตกต่างกันตามหน้าที่และความรับผิดชอบ
+
+#align(center)[
+  #figure(
+    caption: [แผนภาพยูสเคสของระบบ My Academy],
+    rect(stroke: 0.5pt + black, inset: 10pt, text(size: 10pt, diagram(
+      node-stroke: 1pt,
+      edge-stroke: 1pt,
+      spacing: (4em, 3em),
+
+      // Actors (left)
+      node((-2, 0), [HR Admin], shape: circle, width: 5em, height: 5em),
+      node((-2, 5), [Employee], shape: circle, width: 5em, height: 5em),
+
+      // System boundary
+      node((1, 2.5), rect(
+        stroke: 1.5pt + black,
+        inset: 15pt,
+        [
+          #text(size: 12pt, weight: "bold")[My Academy System]
+          #v(0.5em)
+          #text(size: 9pt)[
+            - จัดการคอร์สเรียน\
+            - สร้างแบบประเมิน\
+            - อนุมัติการลงทะเบียน\
+            - ออกใบเกียรติบัตร\
+            - ลงทะเบียนเรียน\
+            - ทำแบบทดสอบ\
+            - ดูรายงานผล
+          ]
+        ]
+      ), width: 12em, height: 10em),
+
+      // Edges
+      edge((-1.5, 0), (0, 1.5), "-|>", text(8pt)[สร้าง/แก้ไขคอร์ส]),
+      edge((-1.5, 0), (0, 2.5), "-|>", text(8pt)[สร้างแบบประเมิน]),
+      edge((-1.5, 0), (0, 3.5), "-|>", text(8pt)[อนุมัติลงทะเบียน]),
+      edge((-1.5, 5), (0, 2), "-|>", text(8pt)[ลงทะเบียนเรียน]),
+      edge((-1.5, 5), (0, 3), "-|>", text(8pt)[ทำแบบทดสอบ]),
+      edge((-1.5, 5), (0, 4), "-|>", text(8pt)[รับใบเกียรติบัตร]),
+    )))
+  )
+]
+
+=== คำอธิบายแผนภาพยูสเคส (Use Case Description)
+
+ตารางด้านล่างแสดงรายละเอียดการทำงานปกติ (Normal Flow) ของ Use Case หลักในระบบ My Academy
+
+#figure(
+  caption: [คำอธิบายยูสเคส: ระบบการประเมินผล (Assessment Management)],
+  kind: table,
+  table(
+    columns: (auto, 1fr),
+    align: (left + horizon, left),
+    table.header([*รายการ*], [*รายละเอียด*]),
+    [*ชื่อ Use Case*], [ระบบการประเมินผล (Assessment Management)],
+    [*ผู้ใช้งานหลัก*], [HR Admin, Employee],
+    [*คำอธิบาย*], [HR Admin สามารถสร้างแบบทดสอบก่อนเรียนและหลังเรียน โดยกำหนดโจทย์ ตัวเลือก และเกณฑ์การผ่าน พนักงานสามารถเข้ามาทำแบบทดสอบและระบบจะคำนวณคะแนนพร้อมแสดงผลทันที],
+    [*ขั้นตอนการทำงานปกติ*], [
+      1. HR Admin เข้าสู่ระบบและเลือกคอร์สที่ต้องการสร้างแบบทดสอบ
+      2. ระบบแสดงหน้าสร้างแบบประเมิน HR Admin กรอกข้อมูลโจทย์และตัวเลือก
+      3. ระบบบันทึกแบบประเมินและสถานะพร้อมใช้งาน
+      4. Employee เข้าสู่ระบบและเลือกคอร์สที่ลงทะเบียน
+      5. Employee ทำแบบทดสอบและกดส่งคำตอบ
+      6. ระบบคำนวณคะแนนและแสดงผลลัพธ์
+    ],
+  ),
+)
+
+=== แผนภาพกิจกรรม (Activity Diagram)
+
+แผนภาพกิจกรรมด้านล่างแสดงลำดับขั้นตอนการทำงานของระบบ Assessment ตั้งแต่ HR สร้างแบบทดสอบจนถึง Employee ได้รับผลลัพธ์
+
+#align(center)[
+  #figure(
+    caption: [แผนภาพกิจกรรม: กระบวนการประเมินผล],
+    rect(stroke: 0.5pt + black, inset: 10pt, text(size: 10pt, diagram(
+      node-stroke: 1pt,
+      edge-stroke: 1pt,
+      spacing: (3em, 2.5em),
+
+      // Start
+      node((0, 0), [เริ่มต้น], shape: circle, width: 3em, height: 3em),
+
+      // HR Flow
+      node((0, 1), [HR: เลือกคอร์ส], shape: rect, width: 8em),
+      node((0, 2), [HR: สร้างโจทย์และตัวเลือก], shape: rect, width: 10em),
+      node((0, 3), [HR: กำหนดเกณฑ์การผ่าน], shape: rect, width: 10em),
+      node((0, 4), [ระบบ: บันทึกแบบประเมิน], shape: rect, width: 10em),
+
+      // Decision
+      node((0, 5), rect(stroke: 1.5pt + blue, [เผยแพร่สำเร็จ?]), width: 7em, height: 3em),
+
+      // Employee Flow
+      node((0, 6.5), [Employee: เลือกคอร์สที่ลงทะเบียน], shape: rect, width: 12em),
+      node((0, 7.5), [Employee: ทำแบบทดสอบ], shape: rect, width: 10em),
+      node((0, 8.5), [Employee: ส่งคำตอบ], shape: rect, width: 8em),
+      node((0, 9.5), [ระบบ: คำนวณคะแนน], shape: rect, width: 9em),
+      node((0, 10.5), [ระบบ: แสดงผลลัพธ์], shape: rect, width: 9em),
+
+      // End
+      node((0, 11.5), [สิ้นสุด], shape: circle, width: 3em, height: 3em),
+
+      // Edges
+      edge((0, 0), (0, 1), "-|>"),
+      edge((0, 1), (0, 2), "-|>"),
+      edge((0, 2), (0, 3), "-|>"),
+      edge((0, 3), (0, 4), "-|>"),
+      edge((0, 4), (0, 5), "-|>"),
+      edge((0, 5), (0, 6.5), "-|>", text(8pt)[ใช่]),
+      edge((0, 5), (3, 5), "-|>", text(8pt)[ไม่], bend: 0deg),
+      edge((3, 5), (3, 2), "-|>"),
+      edge((3, 2), (0, 2), "-|>"),
+      edge((0, 6.5), (0, 7.5), "-|>"),
+      edge((0, 7.5), (0, 8.5), "-|>"),
+      edge((0, 8.5), (0, 9.5), "-|>"),
+      edge((0, 9.5), (0, 10.5), "-|>"),
+      edge((0, 10.5), (0, 11.5), "-|>"),
+    )))
+  )
+]
+
+=== แผนภาพลำดับกิจกรรม (Sequence Diagram)
+
+แผนภาพลำดับกิจกรรมด้านล่างแสดงลำดับการสื่อสารระหว่างผู้ใช้งาน (Employee) ระบบ Frontend และ Backend ในการทำแบบทดสอบ
+
+#align(center)[
+  #figure(
+    caption: [แผนภาพลำดับกิจกรรม: กระบวนการ Employee ทำแบบทดสอบ],
+    rect(stroke: 0.5pt + black, inset: 10pt, text(size: 10pt, diagram(
+      node-stroke: 1pt,
+      edge-stroke: 1pt,
+      spacing: (5em, 2.5em),
+
+      // Lifelines
+      node((0, 0), [Employee], shape: rect, fill: gray.lighten(90%), width: 5em),
+      node((1, 0), [Frontend], shape: rect, fill: gray.lighten(90%), width: 5em),
+      node((2, 0), [Backend API], shape: rect, fill: gray.lighten(90%), width: 5em),
+      node((3, 0), [Database], shape: rect, fill: gray.lighten(90%), width: 5em),
+
+      // Vertical lines
+      edge((0, 0.5), (0, 8), stroke: (dash: "dashed")),
+      edge((1, 0.5), (1, 8), stroke: (dash: "dashed")),
+      edge((2, 0.5), (2, 8), stroke: (dash: "dashed")),
+      edge((3, 0.5), (3, 8), stroke: (dash: "dashed")),
+
+      // Messages
+      edge((0, 1), (1, 1.5), "-|>", text(8pt)[เลือกคอร์ส]),
+      edge((1, 1.5), (2, 2), "-|>", text(8pt)[GET /assessments]),
+      edge((2, 2), (3, 2.5), "-|>", text(8pt)[Query]),
+      edge((3, 2.5), (2, 3), "-|>", text(8pt)[ข้อมูลแบบทดสอบ]),
+      edge((2, 3), (1, 3.5), "-|>", text(8pt)[Response JSON]),
+      edge((1, 3.5), (0, 4), "-|>", text(8pt)[แสดงแบบทดสอบ]),
+
+      edge((0, 4.5), (1, 5), "-|>", text(8pt)[ส่งคำตอบ]),
+      edge((1, 5), (2, 5.5), "-|>", text(8pt)[POST /submit]),
+      edge((2, 5.5), (3, 6), "-|>", text(8pt)[Save & Calculate]),
+      edge((3, 6), (2, 6.5), "-|>", text(8pt)[ผลคะแนน]),
+      edge((2, 6.5), (1, 7), "-|>", text(8pt)[Response]),
+      edge((1, 7), (0, 7.5), "-|>", text(8pt)[แสดงผลลัพธ์]),
+    )))
+  )
+]
+
+=== แผนภาพแสดงความสัมพันธ์ของคลาส (Class Diagram)
+
+แผนภาพแสดงความสัมพันธ์ของคลาสด้านล่างแสดงโครงสร้างข้อมูลหลักของระบบ Assessment ใน My Academy
+
+#align(center)[
+  #figure(
+    caption: [แผนภาพแสดงความสัมพันธ์ของคลาส: ระบบ Assessment],
+    rect(stroke: 0.5pt + black, inset: 10pt, text(size: 9pt, diagram(
+      node-stroke: 1pt,
+      edge-stroke: 1pt,
+      spacing: (5em, 3em),
+
+      // Course
+      node((-1, 0), rect(
+        [
+          #text(weight: "bold")[Course]
+          #line(length: 100%, stroke: 0.5pt)
+          - id: UUID\
+          - title: string\
+          - description: string\
+          - status: enum\
+          - poster_url: string
+          #line(length: 100%, stroke: 0.5pt)
+          + create()\
+          + update()\
+          + publish()
+        ]
+      ), width: 9em),
+
+      // Assessment
+      node((2, 0), rect(
+        [
+          #text(weight: "bold")[Assessment]
+          #line(length: 100%, stroke: 0.5pt)
+          - id: UUID\
+          - course_id: UUID\
+          - type: enum\
+          - passing_score: int\
+          - time_limit: int
+          #line(length: 100%, stroke: 0.5pt)
+          + create()\
+          + addQuestion()\
+          + calculateScore()
+        ]
+      ), width: 10em),
+
+      // Question
+      node((2, -3), rect(
+        [
+          #text(weight: "bold")[Question]
+          #line(length: 100%, stroke: 0.5pt)
+          - id: UUID\
+          - assessment_id: UUID\
+          - text: string\
+          - order: int
+          #line(length: 100%, stroke: 0.5pt)
+          + create()\
+          + addChoice()
+        ]
+      ), width: 9em),
+
+      // Choice
+      node((2, -6), rect(
+        [
+          #text(weight: "bold")[Choice]
+          #line(length: 100%, stroke: 0.5pt)
+          - id: UUID\
+          - question_id: UUID\
+          - text: string\
+          - is_correct: boolean
+          #line(length: 100%, stroke: 0.5pt)
+          + create()\
+          + update()
+        ]
+      ), width: 9em),
+
+      // Attempt
+      node((5, 0), rect(
+        [
+          #text(weight: "bold")[AssessmentAttempt]
+          #line(length: 100%, stroke: 0.5pt)
+          - id: UUID\
+          - assessment_id: UUID\
+          - employee_id: UUID\
+          - score: int\
+          - passed: boolean
+          #line(length: 100%, stroke: 0.5pt)
+          + submit()\
+          + getResult()
+        ]
+      ), width: 10em),
+
+      // AttemptAnswer
+      node((5, -3), rect(
+        [
+          #text(weight: "bold")[AttemptAnswer]
+          #line(length: 100%, stroke: 0.5pt)
+          - id: UUID\
+          - attempt_id: UUID\
+          - question_id: UUID\
+          - choice_id: UUID
+          #line(length: 100%, stroke: 0.5pt)
+          + save()\
+          + evaluate()
+        ]
+      ), width: 10em),
+
+      // Relationships
+      edge((-1, 0), (2, 0), "<->", text(8pt)[1  : N]),
+      edge((2, 0), (2, -3), "<|-|>", text(8pt)[1  : N]),
+      edge((2, -3), (2, -6), "<|-|>", text(8pt)[1  : N]),
+      edge((2, 0), (5, 0), "<->", text(8pt)[1  : N]),
+      edge((5, 0), (5, -3), "<|-|>", text(8pt)[1  : N]),
+    )))
+  )
+]
+
 == ขั้นตอนการดำเนินงานและภาพประกอบ (Implementation Details)
 
 เพื่อให้เห็นภาพการทำงานจริงในแต่ละขั้นตอน จึงได้รวบรวมภาพประกอบและรายละเอียดการใช้เครื่องมือต่างๆ ตามลำดับการพัฒนาระบบ ดังนี้
