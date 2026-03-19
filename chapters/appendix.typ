@@ -1,3 +1,5 @@
+#import "../config/common.typ": *
+
 #set heading(numbering: none)
 
 #align(center + horizon)[#text(size: 20pt)[*ภาคผนวก*]]
@@ -10,10 +12,11 @@
 ]
 #pagebreak()
 
-#figure(
-  image("../images/docs/s006.pdf", page: 1, width: 100%),
+#set page(
+  background: none,
 )
 
-#figure(
-  image("../images/docs/s006.pdf", page: 2, width: 100%),
-)
+#for i in range(1, 3) {
+  image("/IN-S006-JACK.pdf", width: 100%, fit: "contain", page: i)
+  if i < 2 { pagebreak() }
+}

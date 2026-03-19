@@ -13,11 +13,3 @@ Thumbs.db
 .temp
 
 config/common.typ
-images/docs
-
-# Custom contents
-chapters/ch03_method.typ
-chapters/ch04_result.typ
-chapters/ch05_summary.typ
-images/ch3
-images/ch4

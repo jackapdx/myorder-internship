@@ -58,7 +58,10 @@
   ],
 )
 
-#figure(
-  image("/images/docs/INC005.jpg", width: 100%),
-  outlined: false,
+#pagebreak()
+
+#set page(
+  background: none,
 )
+
+#image("/images/docs/INC005.jpg", width: 100%, fit: "contain")

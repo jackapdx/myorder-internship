@@ -1,19 +1,11 @@
-#import "/config/common.typ": *
 #import "@preview/fletcher:0.5.6" as fletcher: diagram, edge, node
-
-#let toolFigure = (src, alt, cap, w: 10cm, h: auto) => {
-  figure(
-    image(src, width: w, height: h, alt: alt, fit: "contain"),
-    caption: cap,
-    kind: image,
-  )
-}
+#import "/config/common.typ": *
 
 = วิธีการดำเนินงานสหกิจศึกษา
 
 บทนี้กล่าวถึงรายละเอียดการปฏิบัติงานภายใต้โครงงานสหกิจศึกษา ซึ่งครอบคลุมกระบวนการพัฒนาระบบ
 
-เดิมทีระบบที่จะต้องพัฒนานั้น เป็นโครงงานที่เพื่อนนักศึกษาฝึกงานรุ่นก่อนหน้าได้ริเริ่มและพัฒนาขึ้นโครงสร้างจากศูนย์ ทำให้กระบวนการเรียนรู้และเติบโตของซอฟต์แวร์ดำเนินไปควบคู่กัน เมื่อทีมของพวกเราได้เข้ามารับช่วงต่อ จึงจำเป็นอย่างยิ่งที่จะต้องเริ่มต้นจากการทำความเข้าใจและเรียนรู้โครงสร้างรหัสเดิม (Legacy Codebase) อย่างลึกซึ้ง โดยมีเป้าหมายหลักในการขยายขีดความสามารถและพัฒนาฟีเจอร์ E-Learning Management System ซึ่งมีชื่อว่า "My Academy" ซึ่งเป็นส่วนหนึ่งของโมดูลในระบบหลักอย่าง MyHR
+เดิมทีระบบที่จะต้องพัฒนานั้น เป็นโครงงานที่เพื่อนนักศึกษาฝึกงานรุ่นก่อนหน้าได้ริเริ่มและพัฒนาขึ้นโครงสร้างจากศูนย์ ทำให้กระบวนการเรียนรู้และเติบโตของซอฟต์แวร์ดำเนินไปควบคู่กัน เมื่อทีมของพวกเราได้เข้ามารับช่วงต่อ จึงจำเป็นอย่างยิ่งที่จะต้องเริ่มต้นจากการทำความเข้าใจและเรียนรู้โครงสร้างรหัสเดิม (Legacy Codebase) อย่างลึกซึ้ง โดยมีเป้าหมายหลักในการขยายขีดความสามารถและพัฒนาฟีเจอร์ E-Learning Management System ซึ่งมีชื่อว่า “My Academy” ซึ่งเป็นส่วนหนึ่งของโมดูลในระบบหลักอย่าง MyHR
 
 ในการจัดทำรายงานฉบับนี้ จะมุ่งเน้นอธิบายกระบวนการในส่วนของโมดูลและฟีเจอร์ที่ผู้จัดทำได้รับผิดชอบพัฒนาเป็นหลัก (โดยเฉพาะระบบ Assessment) ซึ่งมีขั้นตอนการทำงาน ได้แก่:
 
@@ -30,72 +22,84 @@
 ในการพัฒนาระบบ MyHR ได้มีการเลือกใช้เทคโนโลยีและเครื่องมือสมัยใหม่เพื่อให้เกิดประสิทธิภาพสูงสุดในการทำงานแบบ Monorepo (รวมทั้ง Frontend, Backend และ Tests ไว้ใน Repository เดียว) โดยมีรายละเอียดดังนี้:
 
 === การจัดการโปรเจ็กต์ด้วย Taskfile และ pnpm
-- *Taskfile*: ใช้แทน Makefile ดั้งเดิม เพื่อการทำงานข้ามแพลตฟอร์ม (Cross-Platform) ที่ดีขึ้น รองรับรูปแบบการเขียนด้วย YAML ทำให้อ่านง่าย และสามารถจัดเตรียมคำสั่งแบบขนาน (Parallel Execution) ได้อย่างมีประสิทธิภาพ เช่น คำสั่ง `task init` หรือ `task dev`
-- *pnpm*: ใช้เป็น Package Manager หลักเนื่องจากมีความเร็วในการติดตั้งสูง ประหยัดพื้นที่ดิสก์อย่างมาก (ผ่านระบบ Hard Links/Symlinks ไปส่วนกลาง) และสนับสนุนการทำงานกับโครงสร้างแบบ Workspace ได้อย่างยอดเยี่ยม หมดปัญหาเรื่อง Phantom Dependencies
 
-#pagebreak()
+- *Taskfile:* ใช้แทน Makefile ดั้งเดิม เพื่อการทำงานข้ามแพลตฟอร์ม (Cross-Platform) ที่ดีขึ้น รองรับรูปแบบการเขียนด้วย YAML ทำให้อ่านง่าย และสามารถจัดเตรียมคำสั่งแบบขนาน (Parallel Execution) ได้อย่างมีประสิทธิภาพ เช่น คำสั่ง task init หรือ task dev
+- *pnpm:* ใช้เป็น Package Manager หลักเนื่องจากมีความเร็วในการติดตั้งสูง ประหยัดพื้นที่ดิสก์อย่างมาก (ผ่านระบบ Hard Links/Symlinks ไปส่วนกลาง) และสนับสนุนการทำงานกับโครงสร้างแบบ Workspace ได้อย่างยอดเยี่ยม หมดปัญหาเรื่อง Phantom Dependencies
+
 === การควบคุมคุณภาพและกระบวนการทำงานด้วย Husky
+
 มีการใช้ Husky ในการสร้าง Git Hooks เพื่อตรวจสอบคุณภาพโค้ดแบบอัตโนมัติ:
-- *Pre-commit*: ทำงานร่วมกับ `lint-staged` เพื่อรัน ESLint และ Prettier เฉพาะไฟล์ที่ถูกเปลี่ยนแปลง ทำให้โค้ดตรงตามมาตรฐานโดยอัตโนมัติและไม่เสียเวลาตรวจสอบทั้งโปรเจ็กต์
-- *Pre-push*: บังคับรัน Task ของการทดสอบ (`test-unit`) และการบิวด์ (`build-all`) หากมีส่วนอัปเดตที่ไม่ผ่านเกณฑ์ จะไม่สามารถส่งขึ้น Repository (Git Push) ได้ ป้องกัน Build พัง
+
+- *Pre-commit:* ทำงานร่วมกับ lint-staged เพื่อรัน ESLint และ Prettier เฉพาะไฟล์ที่ถูกเปลี่ยนแปลง ทำให้โค้ดตรงตามมาตรฐานโดยอัตโนมัติและไม่เสียเวลาตรวจสอบทั้งโปรเจ็กต์
+- *Pre-push:* บังคับรัน Task ของการทดสอบ (test-unit) และการบิวด์ (build-all) หากมีส่วนอัปเดตที่ไม่ผ่านเกณฑ์ จะไม่สามารถส่งขึ้น Repository (Git Push) ได้ ป้องกัน Build พัง
 
 === ประสิทธิภาพในการทดสอบ (Faster Testing Environments)
-- *SWC และ Vitest*: ได้ถูกนำมาใช้แทน Jest และ Babel ในฝั่ง Backend เพื่อแก้ปัญหาความล่าช้าในการจับคู่ไฟล์ (Compilation) ส่งผลให้การพัฒนาและการรัน Unit Test ไวขึ้นถึง 10 เท่า ใช้หน่วยความจำลดลง รองรับ Native ESM อย่างเต็มตัว และบรรทัดฐานยังถูกออกแบบให้เข้ากับโค้ดแบบ Jest Syntax
-- *Mountebank (Merge JSON Strategy)*: นำมาใช้จำลอง API (Mock Server) โดยออกแบบให้แยกไฟล์ตามแต่ละฟังก์ชันการทำงานส่วนย่อย (เช่น auth, employees) แล้วทำกระบวนการอัตโนมัติรวบรวมเป็นไฟล์เดียว ทำให้โครงสร้างการดูแลง่ายและแก้ไขโค้ดร่วมกันโดยไม่ชนกัน
-- *Bruno (collection.bru)*: เครื่องมือสำหรับทดสอบ API โดยมีการนำ Centralized Data Definition มาใช้รวบรวมตัวแปรหลัก เช่น Token หรือ User ID ไว้ที่เดียว ช่วยลดความซ้ำซ้อนของการกำหนดค่าตั้งต้นสำหรับแต่ละการทดสอบ
+
+- *SWC และ Vitest:* ได้ถูกนำมาใช้แทน Jest และ Babel ในฝั่ง Backend เพื่อแก้ปัญหาความล่าช้าในการจับคู่ไฟล์ (Compilation) ส่งผลให้การพัฒนาและการรัน Unit Test ไวขึ้นถึง 10 เท่า ใช้หน่วยความจำลดลง รองรับ Native ESM อย่างเต็มตัว และบรรทัดฐานยังถูกออกแบบให้เข้ากับโค้ดแบบ Jest Syntax
+- *Mountebank (Merge JSON Strategy):* นำมาใช้จำลอง API (Mock Server) โดยออกแบบให้แยกไฟล์ตามแต่ละฟังก์ชันการทำงานส่วนย่อย (เช่น auth, employees) แล้วทำกระบวนการอัตโนมัติรวบรวมเป็นไฟล์เดียว ทำให้โครงสร้างการดูแลง่ายและแก้ไขโค้ดร่วมกันโดยไม่ชนกัน
+- *Bruno (collection.bru):* เครื่องมือสำหรับทดสอบ API โดยมีการนำ Centralized Data Definition มาใช้รวบรวมตัวแปรหลัก เช่น Token หรือ User ID ไว้ที่เดียว ช่วยลดความซ้ำซ้อนของการกำหนดค่าตั้งต้นสำหรับแต่ละการทดสอบ
 
 === โครงสร้างเฟรมเวิร์กและเทคโนโลยีหลัก (Core Framework & Technologies)
-- *Backend (NestJS 11+)*: พัฒนาด้วย TypeScript เชิงวัตถุ ใช้ PostgreSQL เป็นฐานข้อมูลหลักผ่านการเขียนตัวกรองคำสั่งด้วย `Knex.js` (Query Builder) และใช้ `Liquibase` ในการจัดการลำดับชั้นการเปลี่ยนแปลงฐานข้อมูล (Migrations/Seeds) อย่างเป็นระบบ การประมวลผลพื้นหลังหรือส่วนงานคิวใช้ `BullMQ` และ `Redis` เพิ่มประสิทธิผลในการเชื่อมต่อให้ทัดเทียมกับระบบขนาดใหญ่
-- *Frontend (Angular 21+)*: นำเสนอประสบการณ์ผู้ใช้ด้วยระบบโครงสร้าง Angular เวอร์ชันใหม่ โดยกำหนดให้เป็น `Standalone Components` ล้วน ไร้โครงสร้างซับซ้อนของรูปแบบเก่า ใช้ TailwindCSS และ DaisyUI ช่วยเสริมสไตล์ และจัดการความสัมพันธ์ของสถานะระบบเบราว์เซอร์ผ่าน `NgRx Signal Store` และ `Signals` อย่างมีประสิทธิภาพ
 
-#pagebreak()
+- *Backend (NestJS 11+):* พัฒนาด้วย TypeScript เชิงวัตถุ ใช้ PostgreSQL เป็นฐานข้อมูลหลักผ่านการเขียนตัวกรองคำสั่งด้วย Knex.js (Query Builder) และใช้ Liquibase ในการจัดการลำดับชั้นการเปลี่ยนแปลงฐานข้อมูล (Migrations/Seeds) อย่างเป็นระบบ การประมวลผลพื้นหลังหรือส่วนงานคิวใช้ BullMQ และ Redis เพิ่มประสิทธิผลในการเชื่อมต่อให้ทัดเทียมกับระบบขนาดใหญ่
+- *Frontend (Angular 21+):* นำเสนอประสบการณ์ผู้ใช้ด้วยระบบโครงสร้าง Angular เวอร์ชันใหม่ โดยกำหนดให้เป็น Standalone Components ล้วน ไร้โครงสร้างซับซ้อนของรูปแบบเก่า ใช้ TailwindCSS และ DaisyUI ช่วยเสริมสไตล์ และจัดการความสัมพันธ์ของสถานะระบบเบราว์เซอร์ผ่าน NgRx Signal Store และ Signals อย่างมีประสิทธิภาพ
+
 == รูปแบบสถาปัตยกรรมและหลักการเขียนโค้ด (Software Architecture & Design Patterns)
 
 ระบบได้ออกแบบแยกเป็นส่วน (Modular Concept) ทั้งฝั่งผู้ใช้งานส่วนหน้าต่างเว็บไซต์ (Frontend) และแอปพลิเคชันฝั่งเซิร์ฟเวอร์ (Backend) โดยมีแนวปฏิบัติที่เข้มงวด ดังนี้:
 
 === แนวทางการพัฒนา Frontend (Frontend Patterns)
-- *Single File Components (SFC)*: ระบบ Angular จะถูกรวมโค้ดส่วนของ HTML Template, CSS Styles, และ TypeScript Logic เข้าไว้ในไฟล์เดียวเป็นหลัก เพื่อส่งผ่านและควบคุมลอจิกขนาดเล็กได้อย่างรัดกุม
-- *Modern Angular Reactivity*: ปรับกลไกการประกาศตัวแปรให้โปร่งใส ลดการใช้ Decorator ต่างๆ ลง หันมาประยุกต์ใช้ ฟังก์ชัน `inject()`, `input()`, `output()`, และการควบคุมโครงสร้างระดับเทมเพลตผ่านกล่องคำสั่ง `@if`, `@for` สร้างความรัดกุมและโค้ดมีขนาดที่กระชับ
-- *State Management*: การไหลข้อมูลมีการคุมเส้นทางที่ชัดเจน โดยการประยุกต์ใช้ Signals ของ Angular และ NgRx เข้ามาเสริมให้การอัปเดตข้อมูลที่ซับซ้อน (Reactivity) ผ่านช่องทิศทางที่จัดการแบบ Functional
+
+- *Single File Components (SFC):* ระบบ Angular จะถูกรวมโค้ดส่วนของ HTML Template, CSS Styles, และ TypeScript Logic เข้าไว้ในไฟล์เดียวเป็นหลัก เพื่อส่งผ่านและควบคุมลอจิกขนาดเล็กได้อย่างรัดกุม
+- *Modern Angular Reactivity:* ปรับกลไกการประกาศตัวแปรให้โปร่งใส ลดการใช้ Decorator ต่าง ๆ ลง หันมาประยุกต์ใช้ฟังก์ชัน inject(), input(), output(), และการควบคุมโครงสร้างระดับเทมเพลตผ่านกล่องคำสั่ง \@if, \@for สร้างความรัดกุมและโค้ดมีขนาดที่กระชับ
+- *State Management:* การไหลข้อมูลมีการคุมเส้นทางที่ชัดเจน โดยการประยุกต์ใช้ Signals ของ Angular และ NgRx เข้ามาเสริมให้การอัปเดตข้อมูลที่ซับซ้อน (Reactivity) ผ่านช่องทิศทางที่จัดการแบบ Functional
 
 === แนวทางการพัฒนา Backend (Backend Patterns)
-- *Repository Pattern*: คัดแยกชั้นของการจัดการข้อมูล (Data Access Layer) ออกจากชั้นควบคุมลอจิก (Business Logic) อย่างชัดเจน ป้องกันปัญหาความวุ่นวายระหว่างฟังก์ชันและสะดวกสำหรับการตรวจสอบ (Unit Tests)
-- *Robust DTOs & Validation*: กำหนดโครงสร้างข้อมูลที่แลกเปลี่ยนระหว่างระบบเป็นชนิด DTO (Data Transfer Object) ประกอบกับไลบรารี `class-validator` เพื่อคัดกรองข้อมูลรบกวนแต่แรกและหลีกเลี่ยงการเจาะเข้าจัดการ Object ผิดระเบียบ
-- *Unit Testing (DAMP Principle)*: ให้ความสำคัญในการตั้งชื่อ Case ว่าเป้าหมายต้องการทดสอบอะไร (Descriptive And Meaningful Phrases) เน้นทดสอบพฤติกรรมของฝั่งธุรกิจ ไม่ให้ปะปนกับการทำงานทางเทคนิค
+
+- *Repository Pattern:* คัดแยกชั้นของการจัดการข้อมูล (Data Access Layer) ออกจากชั้นควบคุมลอจิก (Business Logic) อย่างชัดเจน ป้องกันปัญหาความวุ่นวายระหว่างฟังก์ชันและสะดวกสำหรับการตรวจสอบ (Unit Tests)
+- *Robust DTOs & Validation:* กำหนดโครงสร้างข้อมูลที่แลกเปลี่ยนระหว่างระบบเป็นชนิด DTO (Data Transfer Object) ประกอบกับไลบรารี class-validator เพื่อคัดกรองข้อมูลรบกวนแต่แรกและหลีกเลี่ยงการเจาะเข้าจัดการ Object ผิดระเบียบ
+- *Unit Testing (DAMP Principle):* ให้ความสำคัญในการตั้งชื่อ Case ว่าเป้าหมายต้องการทดสอบอะไร (Descriptive And Meaningful Phrases) เน้นทดสอบพฤติกรรมของฝั่งธุรกิจ ไม่ให้ปะปนกับการทำงานทางเทคนิค
 
 == รูปแบบการพัฒนาซอฟต์แวร์ด้วยแนวคิด Scrum และ eXtreme Programming (XP)
 
-ในการพัฒนาระบบ MyHR ได้มีการประยุกต์ใช้ระเบียบวิธีแบบ Agile โดยผสมผสานระหว่าง *Scrum* และ *eXtreme Programming (XP)* เพื่อให้การทำงานมีความคล่องตัวและได้ซอฟต์แวร์ที่มีคุณภาพสูง:
+ในการพัฒนาระบบ MyHR ได้มีการประยุกต์ใช้ระเบียบวิธีแบบ Agile โดยผสมผสานระหว่าง Scrum และ eXtreme Programming (XP) เพื่อให้การทำงานมีความคล่องตัวและได้ซอฟต์แวร์ที่มีคุณภาพสูง:
 
 === การประยุกต์ใช้ Scrum
-- *Sprint Planning & Daily Stand-up*: มีการวางแผนงานเป็นรอบ (Sprint) เพื่อให้เห็นเป้าหมายที่ชัดเจน และมีการติดตามความคืบหน้า รวมถึงปัญหาที่พบในแต่ละวัน
-- *Iterative Delivery*: เน้นการส่งมอบซอฟต์แวร์ที่พัฒนาได้ในแต่ละรอบของ Sprint เพื่อให้พร้อมใช้งานและนำข้อเสนอแนะกลับมาปรับปรุงได้อย่างรวดเร็ว
+
+- *Sprint Planning & Daily Stand-up:* มีการวางแผนงานเป็นรอบ (Sprint) เพื่อให้เห็นเป้าหมายที่ชัดเจน และมีการติดตามความคืบหน้า รวมถึงปัญหาที่พบในแต่ละวัน
+- *Iterative Delivery:* เน้นการส่งมอบซอฟต์แวร์ที่พัฒนาได้ในแต่ละรอบของ Sprint เพื่อให้พร้อมใช้งานและนำข้อเสนอแนะกลับมาปรับปรุงได้อย่างรวดเร็ว
 
 === การประยุกต์ใช้ eXtreme Programming (XP)
-- *Test-Driven Development (TDD)*: ให้ความสำคัญกับ Automated Testing ทั้ง Unit Test, API Test และ E2E Test เสมอ โดยการวิเคราะห์เชิงคุณภาพการพึ่งพิงลอจิกการทำงานก่อนจะปรับโครงสร้างการทำงาน
-- *Continuous Integration / Continuous Deployment (CI/CD)*: มีการนำ Husky เข้ามาจำกัดสิทธิ์ในส่วน Local โดยการบังคับและตรวจสอบ (Lint, Test, Build) กรองโค้ดขยะชั้นแรก
-- *Refactoring & Code Standards*: ควบคุมมาตรฐานโค้ดสม่ำเสมอ โดยมีการกำหนดรูปแบบมาตรฐานการตั้งชื่อ (Conventional Commits) บน GitHub ผูกการเปลี่ยนแปลงเข้ากับ Branch เป็นข้อบังคับสำคัญ
+
+- *Test-Driven Development (TDD):* ให้ความสำคัญกับ Automated Testing ทั้ง Unit Test, API Test และ E2E Test เสมอ โดยการวิเคราะห์เชิงคุณภาพการพึ่งพิงลอจิกการทำงานก่อนจะปรับโครงสร้างการทำงาน
+- *Continuous Integration / Continuous Deployment (CI/CD):* มีการนำ Husky เข้ามาจำกัดสิทธิ์ในส่วน Local โดยการบังคับและตรวจสอบ (Lint, Test, Build) กรองโค้ดขยะชั้นแรก
+- *Refactoring & Code Standards:* ควบคุมมาตรฐานโค้ดสม่ำเสมอ โดยมีการกำหนดรูปแบบมาตรฐานการตั้งชื่อ (Conventional Commits) บน GitHub ผูกการเปลี่ยนแปลงเข้ากับ Branch เป็นข้อบังคับสำคัญ
 
 #align(center)[
   #figure(
     caption: [ความสัมพันธ์ระหว่าง Scrum และ XP ในการปฏิบัติงาน],
-    rect(stroke: 0.5pt + black, inset: 20pt, diagram(
+    rect(stroke: 0.5pt + black, inset: 15pt, text(size: 11pt, diagram(
       node-stroke: 1pt,
       edge-stroke: 1pt,
-      spacing: (8em, 3em),
+      spacing: (8em, 2em),
 
-      node((0,0), [Management\ (Scrum)], fill: blue.lighten(90%), stroke: blue, width: 7em),
-      node((1,0), [Engineering\ (XP)], fill: green.lighten(90%), stroke: green, width: 7em),
+      // Top Boxes
+      node((0,0), [*Management*\ (Scrum)], corner-radius: 2pt, fill: blue.lighten(90%), stroke: blue, width: 8em, height: 3em),
+      node((1,0), [*Engineering*\ (XP)], corner-radius: 2pt, fill: green.lighten(90%), stroke: green, width: 8em, height: 3em),
 
-      edge((0,0), (1,0), "<->", label: text(12pt)[Support Each Other], label-side: left),
+      // Arrow
+      edge((0,0), (1,0), "<->", [Support Each Other]),
 
-      node((0,1), text(14pt)[Sprint Planning\ Daily Stand-up\ Retrospective], shape: rect, stroke: 0.5pt, width: 8.5em),
-      node((1,1), text(14pt)[TDD\ Pair Programming\ CI/CD], shape: rect, stroke: 0.5pt, width: 8.5em),
+      // Bottom Boxes
+      node((0,1), [Sprint Planning\ Daily Stand-up\ Retrospective], corner-radius: 2pt, stroke: black, width: 8em, height: 4em),
+      node((1,1), [TDD\ Pair Programming\ CI/CD], corner-radius: 2pt, stroke: black, width: 8em, height: 4em),
 
-      edge((0,0), (0,1), "--"),
-      edge((1,0), (1,1), "--"),
-    ))
-  )]
+      // Dashed lines
+      edge((0,0), (0,1), "--", stroke: (dash: "dashed")),
+      edge((1,0), (1,1), "--", stroke: (dash: "dashed")),
+    )))
+  )
+]
 
 == แผนภาพแสดงสถาปัตยกรรมกระบวนการ (Architecture & Workflow Diagram)
 
@@ -104,21 +108,26 @@
 #align(center)[
   #figure(
     caption: [ขั้นตอน Git Hooks อัตโนมัติด้วย Husky],
-    rect(stroke: 0.5pt + black, diagram(
+    rect(stroke: 0.5pt + black, inset: 15pt, text(size: 11pt, diagram(
       node-stroke: 1pt,
       edge-stroke: 1pt,
-      node((0, 0), [ผู้พัฒนา\ (Developer)], corner-radius: 5pt),
-      edge("-|>"),
-      node((0, 1), [git commit], corner-radius: 5pt),
-      edge("-|>"),
-      node((0, 2), [Husky: pre-commit\ (lint & format)], corner-radius: 5pt, stroke: blue),
-      edge("-|>"),
-      node((0, 3), [git push], corner-radius: 5pt),
-      edge("-|>"),
-      node((0, 4), [Husky: pre-push\ (test & build)], corner-radius: 5pt, stroke: blue),
-      edge("-|>"),
-      node((0, 5), [Git Repository], corner-radius: 5pt, fill: green.lighten(80%)),
-    )),
+      spacing: (2em, 2.5em),
+
+      // Nodes
+      node((0,0), [ผู้พัฒนา\ (Developer)], corner-radius: 5pt, width: 10em),
+      node((0,1), [git commit], corner-radius: 5pt, width: 8em),
+      node((0,2), [Husky: pre-commit\ (lint & format)], corner-radius: 5pt, stroke: blue, width: 14em),
+      node((0,3), [git push], corner-radius: 5pt, width: 8em),
+      node((0,4), [Husky: pre-push\ (test & build)], corner-radius: 5pt, stroke: blue, width: 14em),
+      node((0,5), [Git Repository], corner-radius: 5pt, width: 10em),
+
+      // Edges
+      edge((0,0), (0,1), "-|>"),
+      edge((0,1), (0,2), "-|>"),
+      edge((0,2), (0,3), "-|>"),
+      edge((0,3), (0,4), "-|>"),
+      edge((0,4), (0,5), "-|>"),
+    )))
   )
 ]
 
@@ -127,7 +136,9 @@
 ในการรวบรวมความต้องการและออกแบบฟีเจอร์ของระบบให้ออกมาตรงตามความต้องการทางธุรกิจ (Business Requirements) ขององค์กร ทางทีมได้ปรับใช้วิธีการทำงานให้อยู่ในรูปแบบของการออกแบบร่วมกันแบบทันท่วงที รวมถึงการกำหนดเส้นทางกรณีศึกษาอย่างละเอียด:
 
 === การออกแบบและทำงานร่วมกันด้วยการเขียนเอกสารสดผ่าน Miro (Miro as a Living Document)
-เพื่อให้ผู้พัฒนาหน้าใหม่, Project Manager, และผู้มีส่วนได้ส่วนเสีย (Stakeholders) ทั้งหมดมีภาพของระบบภาพเดียวกัน ได้มีการนำแพลตฟอร์ม Miro เข้ามาเป็น *Living Document* หรือศูนย์กลางในการออกแบบอย่างครอบคลุม ได้แก่:
+
+เพื่อให้ผู้พัฒนาหน้าใหม่, Project Manager, และผู้มีส่วนได้ส่วนเสีย (Stakeholders) ทั้งหมดมีภาพของระบบภาพเดียวกัน ได้มีการนำแพลตฟอร์ม Miro เข้ามาเป็น Living Document หรือศูนย์กลางในการออกแบบอย่างครอบคลุม ได้แก่:
+
 - กำหนดสถาปัตยกรรมระบบ โฟลว์การทำงาน และโครงร่างหน้าจอ (Wireframes) เชื่อมโยงเข้าด้วยกัน
 - การเขียนแผนผังความสัมพันธ์ (Entity-Relationship Diagram) และการออกแบบสคีมาฐานข้อมูลร่วมกัน
 - การร่วมกันระดมสมอง (Brainstorming) เพื่อกำหนดข้อจำกัดและกติกาเชิงธุรกิจ (Business Logic) เมื่อมีความต้องการส่วนใดเปลี่ยน การอัปเดตบน Miro จะเป็นจุดรวมที่ทุกคนจะยึดเป็นพื้นที่อ้างอิงหลัก ทำให้กระบวนการพัฒนาและตรวจสอบสอดคล้องกันอย่างชัดเจน ไร้ความสับสนของเวอร์ชันเอกสารไฟล์ที่ซ้ำซ้อน
@@ -135,69 +146,74 @@
 #align(center)[
   #figure(
     caption: [แนวคิด Miro เป็นเอกสารที่มีชีวิต (Living Document) ประจำทีม],
-    rect(stroke: 0.5pt + black, inset: 10pt, diagram(
+    rect(stroke: 0.5pt + black, inset: 15pt, text(size: 11pt, diagram(
       node-stroke: 1pt,
       edge-stroke: 1pt,
-      spacing: (2em, 2em),
+      spacing: (4em, 4em),
 
-      node((0,0), [User Flow], shape: rect, fill: yellow.lighten(90%)),
-      node((1,0), [ER-Diagram], shape: rect, fill: blue.lighten(90%)),
-      node((2,0), [Wireframes], shape: rect, fill: green.lighten(90%)),
+      // Top row
+      node((-1, -1), [User Flow], fill: yellow.lighten(90%), width: 7em),
+      node((0, -1), [ER-Diagram], fill: blue.lighten(90%), width: 7em),
+      node((1, -1), [Wireframes], fill: green.lighten(90%), width: 7em),
 
-      node((1, 1.5), [*Miro Canvas*\ (Single Source of Truth)], width: 12em, height: 4em, corner-radius: 10pt, stroke: 2pt + orange, fill: orange.lighten(95%)),
+      // Middle row
+      node((0, 0), [*Miro Canvas*\ (Single Source of Truth)], corner-radius: 8pt, stroke: 2pt + orange, width: 15em, height: 5em),
 
-      edge((0,0), (1, 1.5), "-|>"),
-      edge((1,0), (1, 1.5), "-|>"),
-      edge((2,0), (1, 1.5), "-|>"),
+      // Bottom row
+      node((-1, 1), [Developer], shape: circle, width: 5.5em),
+      node((0, 1), [Designer], shape: circle, width: 5.5em),
+      node((1, 1), [Product Owner], shape: circle, width: 5.5em),
 
-      node((0, 3), [Developer], shape: circle),
-      node((1, 3), [Designer], shape: circle),
-      node((2, 3), [Product Owner], shape: circle),
+      // Edges top to middle
+      edge((-1, -1), (0, 0), "-|>"),
+      edge((0, -1), (0, 0), "-|>"),
+      edge((1, -1), (0, 0), "-|>"),
 
-      edge((0, 3), (1, 1.5), "<->"),
-      edge((1, 3), (1, 1.5), "<->"),
-      edge((2, 3), (1, 1.5), "<->"),
-    ))
+      // Edges middle to bottom
+      edge((0, 0), (-1, 1), "<->"),
+      edge((0, 0), (0, 1), "<->"),
+      edge((0, 0), (1, 1), "<->"),
+    )))
   )
 ]
 
 === การวิเคราะห์ Scenarios และการออกแบบ A-DAPT Blueprint (Customer Visible Layer)
 
-เพื่อให้ระบบบริหารจัดการการเรียนรู้ออนไลน์ My Academy ภายใต้ระบบหลัก MyHR สามารถตอบสนองการปฏิบัติงานของผู้ใช้งานเป้าหมายหลัก (HR) ได้อย่างครบถ้วน ทีมพัฒนาได้ใช้แนวคิด *A-DAPT Blueprint* โดยเริ่มต้นจากการวิเคราะห์ในส่วนของ *Customer Visible Layer* เพื่อทำความเข้าใจพฤติกรรมและความต้องการผ่านกรณีการใช้งานจริง โดยสรุปออกมาเป็นเคสการใช้งาน (Scenarios) สำคัญที่ถูกหยิบยกมาพัฒนาเป็นหลัก ดังนี้:
+เพื่อให้ระบบบริหารจัดการการเรียนรู้ออนไลน์ My Academy ภายใต้ระบบหลัก MyHR สามารถตอบสนองการปฏิบัติงานของผู้ใช้งานเป้าหมายหลัก (HR) ได้อย่างครบถ้วน ทีมพัฒนาได้ใช้แนวคิด A-DAPT Blueprint โดยเริ่มต้นจากการวิเคราะห์ในส่วนของ Customer Visible Layer เพื่อทำความเข้าใจพฤติกรรมและความต้องการผ่านกรณีการใช้งานจริง โดยสรุปออกมาเป็นเคสการใช้งาน (Scenarios) สำคัญที่ถูกหยิบยกมาพัฒนาเป็นหลัก ดังนี้:
 
-- *ระบบคอร์สปฐมนิเทศและการออกใบประกาศนียบัตร (Mandatory Orientation & Certificate):*
-  ใช้สำหรับพนักงานเข้าใหม่ ในการรับชมวิดีโอปฐมนิเทศ โดยระบบป้องกันไม่ให้ทำการกรอวิดีโอ (Seek forward) หรือดาวน์โหลดตัววิดีโอเก็บไว้ และเมื่อรับชมเสร็จสมบูรณ์ ระบบจะออกใบประกาศนียบัตรให้เป็นหลักฐานยืนยันแบบอัตโนมัติ
-- *กระบวนการควบคุมแบบประเมินและข้อสอบ (Exam & Evaluation System):*
-  สนับสนุนทีมงานผู้ออกแบบหลักสูตร (Instructional Designer) ในการสร้างข้อสอบ ตั้งแต่การกำหนดโจทย์ ตัวเลือก และเกณฑ์การผ่าน ระบบรองรับรูปแบบตั้งแต่ การทำแบบทดสอบก่อนเรียน (Pre-test) หลังเรียนจบ (Post-test) ไปจนถึงการประเมินตนเอง (Self-evaluation)
-- *การบริหารจัดการและยื่นรายงานภาครัฐ (CSV Documents & Reports Export):*
-  นำมาใช้เพื่อลดภาระของ HR Manager โดยรองรับการสรุปยอดผู้สำเร็จหลักสูตรเพื่อนำส่งรายงานต่อกรมพัฒนาฝีมือแรงงานผ่านการ Export มาเป็นไฟล์ CSV พร้อมทั้งความสามารถในการดาวน์โหลดใบรับรองให้พนักงานแบบรวมกลุ่ม (Bulk Download) โดยระบบจะยื่นเข้าคิวงานประมวลผล (Worker & Job Queue) ให้ทำการรวมเป็นไฟล์บีบอัด (.zip) ทำให้ไม่กระทบต่อประสิทธิภาพโดยรวม
-- *การบริหารจัดการเนื้อหาหลักสูตร (Content & Course Management):*
-  ทีมพัฒนาทักษะองค์กร (L&D Specialist) สามารถบริหารข้อมูลคอร์ส อัปเดตวิดีโอ โปสเตอร์ปก โดยการลบหลักสูตรจะอยู่ในรูปแบบ Soft Delete เพื่อป้องกันผลกระทบบนสถิติการเรียน
-- *เส้นทางการขอสิทธิ์เข้าเรียนอันหลากหลาย (Flexible Enrollment Flow):*
-  ระบบรองรับระบบการควบคุมสิทธิการเข้าเรียนถึง 2 รูปแบบ คือกติกาที่ *HR บังคับเลือกลงทะเบียนอัตโนมัติ (Force Enroll)* รายวิชาจะปรากฏในหลักสูตรของฉันทันที และกติกาที่จำกัดโควตาผู้เรียน *(Request-to-Enroll)* ซึ่งพนักงานจะส่งคำขอเข้ามาเป็นสถานะรอดำเนินการ (Pending) จนกว่าหัวหน้าหรือ HR Manager จะตรวจสอบคุณสมบัติและเข้ามากดให้การอนุมัติ
+- *ระบบคอร์สปฐมนิเทศและการออกใบประกาศนียบัตร (Mandatory Orientation & Certificate):* ใช้สำหรับพนักงานเข้าใหม่ ในการรับชมวิดีโอปฐมนิเทศ โดยระบบป้องกันไม่ให้ทำการกรอวิดีโอ (Seek forward) หรือดาวน์โหลดตัววิดีโอเก็บไว้ และเมื่อรับชมเสร็จสมบูรณ์ ระบบจะออกใบประกาศนียบัตรให้เป็นหลักฐานยืนยันแบบอัตโนมัติ
+- *กระบวนการควบคุมแบบประเมินและข้อสอบ (Exam & Evaluation System):* สนับสนุนทีมงานผู้ออกแบบหลักสูตร (Instructional Designer) ในการสร้างข้อสอบ ตั้งแต่การกำหนดโจทย์ ตัวเลือก และเกณฑ์การผ่าน ระบบรองรับรูปแบบตั้งแต่ การทำแบบทดสอบก่อนเรียน (Pre-test) หลังเรียนจบ (Post-test) ไปจนถึงการประเมินตนเอง (Self-evaluation)
+- *การบริหารจัดการและยื่นรายงานภาครัฐ (CSV Documents & Reports Export):* นำมาใช้เพื่อลดภาระของ HR Manager โดยรองรับการสรุปยอดผู้สำเร็จหลักสูตรเพื่อนำส่งรายงานต่อกรมพัฒนาฝีมือแรงงานผ่านการ Export มาเป็นไฟล์ CSV พร้อมทั้งความสามารถในการดาวน์โหลดใบรับรองให้พนักงานแบบรวมกลุ่ม (Bulk Download) โดยระบบจะยื่นเข้าคิวงานประมวลผล (Worker & Job Queue) ให้ทำการรวมเป็นไฟล์บีบอัด (.zip) ทำให้ไม่กระทบต่อประสิทธิภาพโดยรวม
+- *การบริหารจัดการเนื้อหาหลักสูตร (Content & Course Management):* ทีมพัฒนาทักษะองค์กร (L&D Specialist) สามารถบริหารข้อมูลคอร์ส อัปเดตวิดีโอ โปสเตอร์ปก โดยการลบหลักสูตรจะอยู่ในรูปแบบ Soft Delete เพื่อป้องกันผลกระทบบนสถิติการเรียน
+- *เส้นทางขอสิทธิ์เข้าเรียนอันหลากหลาย (Flexible Enrollment Flow):* ระบบรองรับระบบการควบคุมสิทธิการเข้าเรียนถึง 2 รูปแบบ คือกติกาที่ HR บังคับเลือกลงทะเบียนอัตโนมัติ (Force Enroll) รายวิชาจะปรากฏในหลักสูตรของฉันทันที และกติกาที่จำกัดโควตาผู้เรียน (Request-to-Enroll) ซึ่งพนักงานจะส่งคำขอเข้ามาเป็นสถานะรอดำเนินการ (Pending) จนกว่าหัวหน้าหรือ HR Manager จะตรวจสอบคุณสมบัติและเข้ามากดให้การอนุมัติ
+
 #align(center)[
   #figure(
     caption: [การทำงานแบบ Monorepo และเครื่องมือการทดสอบ],
-    [
-      #set text(size: 0.85em)
-      #rect(stroke: 0.5pt + black, inset: 15pt, diagram(
-        node-stroke: 1pt,
-        edge-stroke: 1pt,
-        node-inset: 5pt,
-        spacing: (3.5em, 5em),
-        node((0, 0), [pnpm Workspace], corner-radius: 5pt, fill: orange.lighten(80%)),
-        edge((0, 0), (0, 1), "-|>", [แชร์ไลบรารี], label-side: left),
-        node((0, 1), [Backend\ (NestJS 11)], corner-radius: 5pt),
-        edge((0, 1), (1.5, 1), "<|-|>", [API Testing\ (Bruno / Mountebank)], label-pos: 0.5, label-sep: 10pt),
-        node((1.5, 1), [API Tests], corner-radius: 5pt),
-        edge((0, 1), (0, 2), "-|>", [SWC + Vitest]),
-        node((0, 2), [Unit Tests], corner-radius: 5pt, fill: green.lighten(80%)),
-        edge((0, 0), (-1.5, 1), "-|>", [แชร์ไลบรารี]),
-        node((-1.5, 1), [Frontend\ (Angular 21)], corner-radius: 5pt),
-        edge((-1.5, 1), (-1.5, 2), "-|>", [State Management\ (NgRx Signal Store)]),
-        node((-1.5, 2), [UI / Components], corner-radius: 5pt, fill: blue.lighten(80%)),
-      ))
-    ],
+    rect(stroke: 0.5pt + black, inset: 10pt, text(size: 9pt, diagram(
+      node-stroke: 1pt,
+      edge-stroke: 1pt,
+      spacing: (4.5em, 3em),
+
+      // Nodes
+      node((0, 0), [pnpm Workspace], corner-radius: 5pt, width: 8em),
+
+      node((-1, 1), [Frontend\ (Angular 21)], corner-radius: 5pt, width: 7.5em),
+      node((-1, 2), [UI / Components], corner-radius: 5pt, fill: blue.lighten(95%), width: 8em),
+
+      node((1, 1), [Backend\ (NestJS 11)], corner-radius: 5pt, width: 7.5em),
+      node((1, 2), [Unit Tests], corner-radius: 5pt, fill: blue.lighten(95%), width: 7em),
+      node((2, 1), [API Tests], corner-radius: 5pt, width: 6em),
+
+      // Edges
+      edge((0, 0), (-1, 1), "-|>", label: [แชร์ไลบรารี], label-pos: 0.4, label-side: left),
+      edge((0, 0), (1, 1), "-|>", label: [แชร์ไลบรารี], label-pos: 0.4, label-side: right),
+
+      edge((-1, 1), (-1, 2), "-|>", label: [State Management\ (NgRx Signal Store)], label-side: left),
+
+      edge((1, 1), (1, 2), "-|>", label: [SWC + Vitest], label-side: left),
+      edge((1, 1), (2, 1), "<->", label: [API Testing\ (Bruno / Mountebank)], label-pos: 0.9, label-side: left, label-sep: 1.2em),
+    )))
   )
 ]
 
@@ -207,9 +223,9 @@
 
 === การออกแบบ Blueprint ด้วยการประยุกต์ใช้แนวคิด A-DAPT Blueprint
 
-เริ่มแรกของการพัฒนาระบบ ทีมงานได้นำแนวคิด *A-DAPT Blueprint* (ตามที่กล่าวไว้ในบทที่ 2) มาประยุกต์ใช้เป็นกรอบในการออกแบบร่วมกัน โดยใช้แพลตฟอร์ม Miro เป็นศูนย์กลาง (Living Document) ในการจัดวาง Blueprint ของแต่ละฟีเจอร์ ซึ่งแบ่งออกเป็น 2 มุมมองหลักตามหลักการ A-DAPT ได้แก่
+เริ่มแรกของการพัฒนาระบบ ทีมงานได้นำแนวคิด A-DAPT Blueprint (ตามที่กล่าวไว้ในบทที่ 2) มาประยุกต์ใช้เป็นกรอบในการออกแบบร่วมกัน โดยใช้แพลตฟอร์ม Miro เป็นศูนย์กลาง (Living Document) ในการจัดวาง Blueprint ของแต่ละฟีเจอร์ซึ่งแบ่งออกเป็น 2 มุมมองหลักตามหลักการ A-DAPT ได้แก่
 
-*Customer Visible Layer* — ขอบเขตที่ผู้ใช้สามารถมองเห็นและมีปฏิสัมพันธ์ได้ ประกอบด้วย:
+*Customer Visible Layer* — ขอบเขตที่ผู้ใช้สามารถมองเห็นและมีปฏิสัมพันธ์ได้ประกอบด้วย:
 - *Acceptance Test:* ทีมร่วมกันกำหนดเกณฑ์การยอมรับ (Acceptance Criteria) ของแต่ละ Scenario ไว้ล่วงหน้า เพื่อใช้เป็นข้อตกลงร่วมกันว่าฟีเจอร์จะสำเร็จเมื่อไหร่
 - *UI (Wireframes):* ออกแบบโครงร่างหน้าจอ (Wireframes) และ User Flow บน Miro เพื่อให้ทุกคนเห็นภาพเส้นทางการใช้งานของผู้ใช้จริง
 
@@ -218,17 +234,18 @@
 - *Database:* ออกแบบ Entity-Relationship Diagram (ERD) และ Schema ของฐานข้อมูลร่วมกัน
 - *Support:* ระบุส่วนสนับสนุนอื่นๆ เช่น ระบบ Authentication, การเชื่อมต่อ API ภายนอก หรือระบบคิวงาน (BullMQ)
 
-การจัดวาง Blueprint ในรูปแบบนี้ช่วยให้ทีมใช้ *Outside-In Approach* — เริ่มมองจากมุมผู้ใช้ก่อน แล้วค่อยลงลึกไปยังโครงสร้างเบื้องหลัง ทำให้สามารถระบุสิ่งที่ต้องพัฒนาได้อย่างครบถ้วนตั้งแต่ขั้นตอนวางแผน ลดปัญหาการสื่อสารที่คลาดเคลื่อน และเป็นแนวทางที่ดีในการสร้างชุดทดสอบล่วงหน้า (Test-First) ก่อนลงมือเขียนโค้ดจริง
+การจัดวาง Blueprint ในรูปแบบนี้ช่วยให้ทีมใช้ Outside-In Approach — เริ่มมองจากมุมผู้ใช้ก่อน แล้วค่อยลงลึกไปยังโครงสร้างเบื้องหลัง ทำให้สามารถระบุสิ่งที่ต้องพัฒนาได้อย่างครบถ้วนตั้งแต่ขั้นตอนวางแผน ลดปัญหาการสื่อสารที่คลาดเคลื่อน และเป็นแนวทางที่ดีในการสร้างชุดทดสอบล่วงหน้า (Test-First) ก่อนลงมือเขียนโค้ดจริง
 
 #align(center)[
-  #toolFigure("../images/ch3/blueprints/miro-blueprint-assessment.webp", "miro blueprint assessment", [ตัวอย่างการออกแบบระบบ Assessment บน Miro])
+  #figure(
+    image("/images/ch3/example-blueprint-design-on-miro.png", width: 100%),
+    caption: [ตัวอย่างการออกแบบระบบ Assessment บน Miro],
+  )
 ]
 
 #align(center)[
   #figure(
-    rotate(90deg, reflow: true)[
-      #image("../images/ch3/blueprints/assessment.svg", width: 22cm)
-    ],
+    image("/images/ch3/adapt_blueprint.png", width: 100%),
     caption: [ภาพแสดงการออกแบบ A-DAPT Blueprint ของ feature Assessment],
   )
 ]
@@ -239,64 +256,61 @@
 
 #align(center)[
   #figure(
-    image("../images/ch3/code/mountebank.png", width: 70%),
+    image("/images/ch3/imposter_structure.png", width: 70%),
     caption: [ภาพแสดงโครงสร้างไฟล์ Imposter ที่แยกตามฟังก์ชัน],
   )
 ]
 
 #align(center)[
   #figure(
-    image("../images/ch3/code/mb-response.png"),
+    image("/images/ch3/mountebank_response.png", width: 100%),
     caption: [ภาพตัวอย่างการจำลอง Response ด้วย Mountebank],
   )
 ]
 
-#pagebreak()
 === การทดสอบ API ด้วย Bruno (Bruno)
 
-สำหรับทดสอบการตอบสนองของ API ขาต่างๆ อิงโครงสร้างจากโฟลเดอร์ `tests/api` โซน Backend ในโปรเจกต์ ทางทีมเลือกใช้ Bruno โดยใช้แนวคิด DAMP (Descriptive And Meaningful Phrases) over DRY เพื่อให้การทดสอบอ่านง่ายและแสดงเจตนาชัดเจน ควบคู่กับการประยุกต์ใช้ Centralized Data Definition บน `collection.bru` เพื่อรวมตัวแปรหลัก เช่น Token หรือ User ID ไว้ที่เดียว ช่วยลดความซ้ำซ้อนของการกำหนดค่าตั้งต้นสำหรับการทดสอบแต่ละกรณี
+สำหรับทดสอบการตอบสนองของ API ขาต่างๆ อิงโครงสร้างจากโฟลเดอร์ tests/api โซน Backend ในโปรเจ็กต์ ทางทีมเลือกใช้ Bruno โดยใช้แนวคิด DAMP (Descriptive And Meaningful Phrases) over DRY เพื่อให้การทดสอบอ่านง่ายและแสดงเจตนาชัดเจน ควบคู่กับการประยุกต์ใช้ Centralized Data Definition บน collection.bru เพื่อรวมตัวแปรหลัก เช่น Token หรือ User ID ไว้ที่เดียว ช่วยลดความซ้ำซ้อนของการกำหนดค่าตั้งต้นสำหรับการทดสอบแต่ละกรณี
 
 #align(center)[
   #figure(
-    image("../images/ch3/code/bruno.png"),
+    image("/images/ch3/collection_bru.png", width: 80%),
     caption: [ภาพแสดงการกำหนด Centralized Data ใน collection.bru],
   )
 ]
 
 #align(center)[
   #figure(
-    image("../images/ch3/code/api-test.png"),
+    image("/images/ch3/api_test_damp.png", width: 80%),
     caption: [ภาพการทดสอบ API และการใช้ DAMP Pattern],
   )
 ]
 
-#pagebreak()
 === การทดสอบหน่วยย่อย (Unit Test)
 
-การเขียน Unit Test ในฝั่ง Backend จะอิงตามโฟลเดอร์ Service ย่อยต่างๆ ภายใน `/backend` ซึ่งมีการย้ายจาก Jest มาใช้ SWC และ Vitest เพื่อเพิ่มความเร็วในการทดสอบ โดยแนวทางการเขียนเทสต์จะเน้นจำลอง Mock Data อย่างระมัดระวัง และใช้หลักการตั้งชื่อแบบ DAMP (Descriptive And Meaningful Phrases) ให้กรณีทดสอบ (Test Case) ตรงกับเป้าหมายทางธุรกิจที่ต้องการตรวจสอบ เพื่อลดข้อผิดพลาดก่อนที่จะเข้าสู่กระบวนการต่อไป
+การเขียน Unit Test ในฝั่ง Backend จะอิงตามโฟลเดอร์ Service ย่อยต่างๆ ภายใน /backend ซึ่งมีการย้ายจาก Jest มาใช้ SWC และ Vitest เพื่อเพิ่มความเร็วในการทดสอบ โดยแนวทางการเขียนเทสต์จะเน้นจำลอง Mock Data อย่างระมัดระวัง และใช้หลักการตั้งชื่อแบบ DAMP (Descriptive And Meaningful Phrases) ให้กรณีทดสอบ (Test Case) ตรงกับเป้าหมายทางธุรกิจที่ต้องการตรวจสอบ เพื่อลดข้อผิดพลาดก่อนที่จะเข้าสู่กระบวนการต่อไป
 
 #align(center)[
   #figure(
-    image("../images/ch3/code/unit-test.png"),
+    image("/images/ch3/unit_test_vitest.png", width: 100%),
     caption: [ภาพแสดงตัวอย่างการเขียน Unit Test ด้วย Vitest],
   )
 ]
 
 #align(center)[
   #figure(
-    image("../images/ch3/code/passed-unit-test.png"),
+    image("/images/ch3/unit_test_results.png", width: 100%),
     caption: [ภาพแสดงผลลัพธ์การรัน Unit Test ที่ผ่านเกณฑ์],
   )
 ]
 
-#pagebreak()
 === การพัฒนาและโฟกัสที่ระบบการประเมินผล (Full-Stack Assessment Development)
 
-การพัฒนาทั้งในฝั่ง Frontend, Backend และระบบจัดการฐานข้อมูล ทางผู้จัดทำมุ่งเน้นในส่วนระบบการประเมินและทดสอบพนักงาน (Assessment System) เป็นส่วนหลัก ซึ่งรับผิดชอบพัฒนาแบบวงจรสมบูรณ์ (Full-Stack) ท่ามกลางโค้ดเบสรวม โดยยึดหลักตามมาตรฐานคู่มือ (อาทิ `copilot-instruction.md` และเอกสารสคีมา) รูปแบบโค้ดในโปรเจกต์จึงได้รับการรักษาไว้อย่างเป็นระเบียบ ทำให้ง่ายต่อผู้ร่วมพัฒนาคนอื่นในการตีความและสานต่อผลงานได้ไหลลื่น
+การพัฒนาทั้งในฝั่ง Frontend, Backend และระบบจัดการฐานข้อมูล ทางผู้จัดทำมุ่งเน้นในส่วนระบบการประเมินและทดสอบพนักงาน (Assessment System) เป็นส่วนหลัก ซึ่งรับผิดชอบพัฒนาแบบวงจรสมบูรณ์ (Full-Stack) ท่ามกลางโค้ดเบสรวม โดยยึดหลักตามมาตรฐานคู่มือ (อาทิ copilot-instruction.md และเอกสารสคีมา) รูปแบบโค้ดในโปรเจ็กต์จึงได้รับการรักษาไว้อย่างเป็นระเบียบ ทำให้ง่ายต่อผู้ร่วมพัฒนาคนอื่นในการตีความและสานต่อผลงานได้ไหลลื่น
 
 === กระบวนการ Deploy และจัดการสภาพแวดล้อม (Deployment Process)
 
-ในระดับการดำเนินงานของ#company_name มีการเตรียมชั้นวางระบบสภาพแวดล้อมเพื่อจัดการการปล่อยซอฟต์แวร์ (Software Deployment) ไว้หลายระดับด้วยกัน ได้แก่ Beta, Staging และระดับผู้ใช้งานจริง (Production) โดยแต่ละช่วงชั้นจะถูกจัดสรรและควบคุมดูแลโดยทีมวิศวกรและผู้เชี่ยวชาญ (DevOps) อย่างเป็นสัดส่วน
+ในระดับการดำเนินงานของบริษัท มายออเดอร์ อินเทลลิเจนซ์ จำกัด มีการเตรียมชั้นวางระบบสภาพแวดล้อมเพื่อจัดการการปล่อยซอฟต์แวร์ (Software Deployment) ไว้หลายระดับด้วยกัน ได้แก่ Beta, Staging และระดับผู้ใช้งานจริง (Production) โดยแต่ละช่วงชั้นจะถูกจัดสรรและควบคุมดูแลโดยทีมวิศวกรและผู้เชี่ยวชาญ (DevOps) อย่างเป็นสัดส่วน
 
 ข้อจำกัดของระบบ MyHR ภายใต้การดูแลเดิม คือซอฟต์แวร์ยังไม่เคยผ่านการผสานขึ้นสู่สภาพแวดล้อมระดับ Production เลย อันเป็นผลสืบเนื่องจากสาเหตุความบกพร่องที่ไม่ลงตัวหลายประการ อย่างไรก็ตาม ทีมพัฒนารุ่นปัจจุบันได้พยายามเข้ามาอุดช่องโหว่ แก้ไขปัญหาสะสม รวมถึงเสริมคุณภาพการดำเนินงานอย่างเป็นขั้นตอน เพื่อปูทางให้ความพร้อมของระบบสามารถเปิดทำการ และเดินหน้าต่อไปถึงผู้ใช้งานในที่สุด
 
