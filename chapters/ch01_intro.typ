@@ -158,7 +158,7 @@
 
 การปฏิบัติการสหกิจศึกษาสำหรับภาคเรียนที่ 2 ประจำปีการศึกษา 2568 ระยะเวลานับตั้งแต่ วันที่ 13 พฤศจิกายน พ.ศ. 2568 ถึงวันที่ 13 มีนาคม พ.ศ. 2569 รวมทั้งสิ้นเป็นระยะเวลา 4 เดือน จำนวน 17 สัปดาห์
 
-#let fill-block = box(width: 100%, height: 1em, fill: gray.lighten(40%), radius: 2pt)
+#let fill-arrow = layout(bounds => [$#math.stretch(sym.arrow.l.r, size: bounds.width)$])
 #figure(caption: [ระยะเวลาการดำเนินงาน], kind: table, table(
   columns: (45%, ..(1fr,) * 20),
   inset: 8pt,
@@ -176,20 +176,20 @@
   ),
   // total 20 week cells (5 months × 4 weeks)
   table.cell(inset: (left: 10pt))[1. ศึกษาและเรียนรู้หลักการออกแบบและเครื่องมือการทำงานขององค์กร],
-  table.cell(colspan: 4, align: center)[#fill-block], ..([],) * 16,
+  table.cell(colspan: 4, align: center)[#fill-arrow], ..([],) * 16,
 
   table.cell(inset: (left: 10pt))[2. ทำความเข้าใจโครงสร้างระบบ MyHR],
-  ..([],) * 4, table.cell(colspan: 4, align: center)[#fill-block], ..([],) * 12,
+  ..([],) * 4, table.cell(colspan: 4, align: center)[#fill-arrow], ..([],) * 12,
 
   table.cell(inset: (left: 10pt))[3. รวบรวมความต้องการของ Stakeholder และออกแบบระบบ],
-  ..([],) * 4, table.cell(colspan: 4, align: center)[#fill-block], ..([],) * 12,
+  ..([],) * 4, table.cell(colspan: 4, align: center)[#fill-arrow], ..([],) * 12,
 
   table.cell(inset: (left: 10pt))[4. ออกแบบระบบและพัฒนาฟีเจอร์อื่น ๆ],
-  ..([],) * 4, table.cell(colspan: 12, align: center)[#fill-block], ..([],) * 4,
+  ..([],) * 4, table.cell(colspan: 12, align: center)[#fill-arrow], ..([],) * 4,
 
   table.cell(inset: (left: 10pt))[5. พัฒนาฟีเจอร์การจัดการแบบประเมินผลการเรียนรู้จากการเรียนหลักสูตร (Assignment Management)],
-  ..([],) * 12, table.cell(colspan: 4, align: center)[#fill-block], ..([],) * 4,
+  ..([],) * 12, table.cell(colspan: 4, align: center)[#fill-arrow], ..([],) * 4,
 
   table.cell(inset: (left: 10pt))[6. ตรวจสอบความถูกต้องของระบบและทำเอกสารประกอบการปฏิบัติงาน],
-  ..([],) * 16, table.cell(colspan: 4, align: center)[#fill-block],
+  ..([],) * 16, table.cell(colspan: 4, align: center)[#fill-arrow],
 ))
