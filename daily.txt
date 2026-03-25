@@ -1,0 +1,280 @@
+﻿Goal for today (26/01/2026)
+* download certificate จาก gcs ที่เป็น zip และ download ผ่าน backend storage (Mheng)
+* แก้ไข sign url ให้ใช้งานได้ (Atom)
+* mockup certificate 200 cer บน gcs และ database บน production (Wave)
+* เริ่ม design ของ BC5 และ implement ส่วน data / api test (Jack)
+
+
+Goal for today (27/01/2026)
+* Integrate download certificate zip with frontend and fix รูปแบบการ process ของการ download (Meng)
+* discuss with devops about using Redis on beta (Meng)
+* deploy success with SignURL via Cloudflare and handle blueprint 1 case’s Google Cloud Storage (ATOM)
+* implement BC4 ให้เสร็จ และตรวจสอบความถูกต้อง data BC1-BC5 (Jack)
+* เริ่ม implement BC4 (Wave)
+
+
+
+
+Goal for today (28/01/2026)
+* implement ฝั่ง ui ของ blueprint ที่ 3 ให้เสร็จ (Wave)
+* Insert Monitoring Lib to MyAcademy System and deploy success on beta
+* add file path to certificate seed data
+* Integrate frontend and backend for download certificate zip 
+* Refactor bruno structure ให้สะท้อนกับ blueprint / business conditions จริง (Jack)
+* Validate seed data ให้เหมือนกับ data ใน blueprint (Jack)
+
+
+Goal for today (29/01/2026)
+* Loading file function and component (Meng)
+* Test API BC2 and test data (Meng)
+* Fix search name in course report (Meng)
+* Remove date filter for student and add date filter on course filter (Meng)
+* Design & Implement blueprint 4 (Jack)
+* validation data flow and related tests (Jack)
+* finish blueprint 3 (Wave)
+* deploy blueprint 2 on beta (เสร็จ)(Atom)
+* setting and deploy on staging (เสร็จ)(Atom)
+* Implement blueprint 3 (Atom)(Wave)(Jack)
+
+
+Goal for today (30/01/2026)
+* Test API BC2 and test data (Meng)
+* Validate Blueprint BC2-3 (Meng) (เพิ่ม rowperpage, search handling)
+* UI Design by Stitch for user discuss (Meng)
+* ลองใช้ new development strategy Micro-PR (Jack)
+* update blueprints and validate all tests (Jack) 
+* deploy bc2-3 on develop
+* deploy overall on staging
+* blog about security awareness by ATOM
+* เคลียร์ task ที่เหลือใน blueprint 3 ให้เสร็จ (Wave)
+* blog about security and other (Wave) 
+
+
+Goal for today (02/02/2026)
+* Learn Sprint Planning by P’Nut
+* Test API BC2 and Test data 05,06,07 (Meng)
+* plan for split codebase to pull request (ATOM)
+
+
+Goal for today (03/02/2026)
+* rebase branch dev-review to match with develop (Jack)
+* UI Design BC6-10 for discuss and confirm from P.Fai (Meng)
+* Kanban board sprint planning (Meng)
+* Set Environment for Beta Deploy presentation to P’Faii (ATOM)
+* deploy Blueprint 3 to beta stage (ATOM)
+* plan for coding gitops and take require credential for DevOps Support (ATOM)
+* ทำหน้า edit course, lesson ให้เสร็จสมบูรณ์ (รวมถึงการ upload vdo สำหรับ lesson)(Wave)
+
+
+Goal for today (04/02/2026)
+* ทำ feature ลบ course, lesson ให้สำเร็จ (Wave)
+* แก้ bug ของ blueprint 3 (Wave)
+* Refinement Pipeline Develop branch (ATOM)
+* Split Develop branch (new version) for PR to master (ATOM)
+* Design the rest of blueprints (UI component + Mountebank only) (Jack)
+* Design UI and Data for rest of blueprint (Meng)
+
+
+
+
+
+
+
+
+
+
+
+Goal for today (05/02/2026)
+   * pr feature delete course, lesson เข้า branch develop (Wave)
+   * ทำ design blueprint ของ bc ต่างๆ (Wave)
+   * connect database new way from devops at beta deploy(ATOM)
+   * merge code delete course, delete lesson to beta(ATOM)
+   * resolve git PR, design and implement the rest scenario (mountebank+frontend) (Jack) 
+   * API and DATA for UI Scenario 8-9 (Meng)
+   * 
+
+
+
+Goal for today (06/02/2026)
+   * Test API with mountebank and test data for scenario 6 (Meng)
+   * Continue design blueprint & implement UI of the rest scenario (5,6,7) (Jack)
+   * Merge delete course to Develop branch (ATOM)
+   * Fix conflict bug on develop branch (FFMPEG Problem) (ATOM)
+   * Merge feat/0.5 feat/0.6 feat/0.7 to master (ATOM)
+
+
+Goal for today (09/02/2026)
+   * Fix bug bp 3 (Wave)
+   * ทำ blueprint bc9 ให้สมบูรณ์(Wave)
+   * POC FFmpeg Woker (ATOM)
+   * prepare data for demo beta stage (ATOM)
+   * รับ feedback และ requirement เพิ่มเติมจาก hr(พี่ฝ้าย)
+   * Refinement ปรับแต่ง Scenario 6, 8 และ Test Data ให้ถูกต้อง (Meng)
+   * API Test, Data, Mockup API SC6 09-16 Test case (Meng)
+   * Refactor mountebank structure ให้สอดคล้องกับ scenario (Jack)
+   * Remove directory shared at root. fix redundant interfaces (Jack)
+   * Continue Implement UI of the rest scenario (6,7) (Jack)
+
+
+________________
+Goal for today (10/02/2026)
+   * Continue Implement UI of the rest scenario (6,7) (Jack)
+   * FFmpeg Woker POC Complete and write Documents to Outline (ATOM)
+   * API-Test-Mock-SC8 Get Employee  (Meng)
+   * implement UI blueprint 4 (Wave)
+
+
+Goal for today (11/02/2026)
+   * implement backend blueprint scenario 8 (Wave) (Meng)
+   * Refinement blueprint scenario 8 position selection (Meng)
+   * validate/implement integration blueprint of scenarios 9,7 (Jack)
+   * Create security domain for FFmpeg Worker (ATOM)
+   * Create documents for FFmpeg Worker (ATOM)
+   * merge and resolve BUG (ATOM)
+
+
+
+
+Goal for today (12/02/2026)
+   * ทำ blueprint 4 (scenario 8) ให้เสร็จ (Wave)
+   * validate integration frontend and backend of scenario 6-7(Jack)
+   * PR sections 0 branch feature to master (ATOM)
+   * Create Develop Branch Checkpoint for Future PR master (ATOM)
+   * Frontend Integration Scenario 8 and Refinement UI (Meng)
+   * Task test api seed for seeding test data before test api with backend (Meng)
+
+
+Goal for today (13/02/2026)
+   * validate api test sc1-sc6 (Jack) 
+   * validate frontend and backend integration of feature assessment (Jack)
+   * PR sections 0 branch feature to master (ATOM)
+   * ADR Video Processing Worker (ATOM)
+   * Test sent mail for many user (Meng)
+   * Unit test mail (Meng)
+   *    * pull request branch scenario8/backend to branch develop (Wave)
+   * fix bug scenario8 (Wave)
+
+________________
+
+
+Goal for today (16/02/2026)
+      * develop full working functional feature assessment (pre/post/evaluate) (Jack)
+      * แก้ไข api test (Wave)
+      * เริ่ม implement scenario 5 (Wave)
+      * PR sections 0 branch feature to master (ATOM)
+      * ADR Video Processing Worker (ATOM)
+      * Price Compare Video Processing Worker (ATOM)
+      * Prepare branch develop for Demo (ATOM
+      * Sprint Planning (Wave,ATOM,Jack,Meng)
+      * Refinement Blueprint (Meng)
+
+
+
+
+Goal for today (17/02/2026)
+      * implement scenario 5 ให้เสร็จ(Wave)
+      * separate branch for PR Master (ATOM)
+      * integrate feat/asm (Jack)
+      * integrate scenario 10 (Meng)
+      * seed data for scenario 10 (Meng)
+      * api test for scenario 10 (Meng)
+      * prepare and  fix to demo sc2-3-4
+
+
+Goal for today (18/02/2026)
+      * integrate feat/asm (Jack)
+      * fix and prepare to demo scenario (Meng)
+      * prepare for demo data (ATOM)
+Goal for today (19/02/2026)
+      * improve course management (Meng)
+      * ทำเล่มรายงานเบื้องต้น (Jack)
+      * ทำให้ scenario 5 สมบูรณ์ (Wave)
+      * separate branch for PR Master (ATOM) ->deepseek token is gone
+      * deploy beta with video processing worker (ATOM)
+________________
+Goal for today (20/02/2026)
+         * ทำเล่มรายงานต่อ (Jack)
+         * update Miro document (Jack)
+         * separate branch for PR Master (ATOM)
+         * ทำ feature lesson progress (Wave)
+         * improve academy home page for enrollment (Meng)
+         * validate and fix assessment management (Meng)
+
+
+Goal for Sprint 4 (23/02/2026)
+         * finished all MVP scenario
+         * refinement and refactor api test and unit test
+         * user can play scenario on beta
+         * separate branch for PR Master
+         * internship report document
+Goal for today (24/02/2026)
+         * fix bug in scenario assessment management (Jack)
+         * refinement video upload preview on lesson management (Meng)
+         * validate all scenario and bug reports (Meng)
+         * separate branch for PR Master (ATOM)
+         * finish feature lesson progress(Wave)
+
+
+Goal for today (25/02/2026)
+         * finish flow employee do pre-test, learn lesson, do post-test, get certificate(Wave)
+         * refactor unit test (Wave)
+         * fix issue following bug reports (Meng,Jack)
+         * use VPW on beta deploy (ATOM)
+         * separate branch for PR Master (ATOM)
+         * update blueprint (Jack)
+
+
+________________
+Goal for today (25/02/2026)
+         * e2e test lesson progress (Wave)
+         * refactor unit test (Wave)
+         * refactor API test scenario 4 course management (Meng)
+         * validate learning progress scnenario (Meng)         
+         * separate branch for PR Master (ATOM)
+         * update documentation of project (Jack)
+         * update blueprints (Jack)
+
+
+
+
+
+
+
+
+Goal for today (26/02/2026)
+         * แก้ไข migration file ให้ขึ้น Beta ได้  (Meng)
+         * แก้ไข unit test ของ my academy (Wave)
+         * update เล่มรายงาน (Jack)
+         * update document of project (Jack)
+         * separate branch for PR Master (ATOM)
+
+
+Goal for today (27/02/2026)
+         * แก้ไข bug ของ lesson progress (Wave)
+         * refactor unit test & repository (Wave)
+         * separate branch for PR Master (ATOM)
+         * เขียนเล่มรายงานส่วนของตนเอง (ATOM)
+         * seed data on beta (Meng)
+         * validate scenario on beta (Meng)
+         * fix api test (Meng)
+         * validate integration on beta (Jack)
+         * update เล่มรายงาน (Jack)
+
+
+
+
+________________
+
+
+Goal for today (04/03/2026)
+         * ทำเล่มรายงาน (All)
+
+
+Goal for today (16/03/2026)
+         * แก้ [Bug] บน production certificate ตอนเรียน course นั้นจบไม่แสดง (เกิด error 404) (Wave)
+         * แก้ [Bug] หลักสูตรไม่ควรเผยแพรได้ถ้าไม่มี lesson (Wave)
+         * แก้ [Bug] Total Enrolled ไม่แสดง (Wave)
+         * แก้ [Bug] Certificate qr-code เข้าถึงไม่ได้ (Wave)
+         * จัดการ Designwork space, backlog และวาง road map ใหม่  (Meng, Jack)
+         * Feature ล็อควันที่ในการให้เรียน ตามที่หลักสูตรกำหนด (Meng)
+         * Fix Bug duplicate emails when use task (Jack)

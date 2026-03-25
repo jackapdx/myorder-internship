@@ -1,4 +1,4 @@
-#import "@preview/fletcher:0.5.6" as fletcher: diagram, edge, node
+#import "@preview/fletcher:0.5.6" as fletcher: diagram, edge, node, shapes
 #import "/config/common.typ": *
 
 = วิธีการดำเนินงานสหกิจศึกษา
@@ -160,9 +160,9 @@
       node((0, 0), [*Miro Canvas*\ (Single Source of Truth)], corner-radius: 8pt, stroke: 2pt + orange, width: 15em, height: 5em),
 
       // Bottom row
-      node((-1, 1), [Developer], shape: circle, width: 5.5em),
-      node((0, 1), [Designer], shape: circle, width: 5.5em),
-      node((1, 1), [Product Owner], shape: circle, width: 5.5em),
+      node((-1, 1), [Developer], shape: shapes.circle, width: 5.5em),
+      node((0, 1), [Designer], shape: shapes.circle, width: 5.5em),
+      node((1, 1), [Product Owner], shape: shapes.circle, width: 5.5em),
 
       // Edges top to middle
       edge((-1, -1), (0, 0), "-|>"),
@@ -221,46 +221,43 @@
 
 === แผนภาพยูสเคส (Use Case Diagram)
 
-แผนภาพยูสเคสด้านล่างแสดงความสัมพันธ์ระหว่างผู้ใช้งานหลักของระบบ My Academy ซึ่งประกอบด้วย 2 บทบาทหลัก ได้แก่ HR Admin และ Employee (พนักงาน) โดยแต่ละบทบาทมีขอบเขตการใช้งานที่แตกต่างกันตามหน้าที่และความรับผิดชอบ
+แผนภาพยูสเคสด้านล่างแสดงความสัมพันธ์ระหว่างผู้ใช้งานหลักในระบบ My Academy ซึ่งประกอบด้วย 2 บทบาทหลัก ได้แก่ HR Admin และ Employee (พนักงาน) โดยแต่ละบทบาทมีขอบเขตการใช้งานที่ครอบคลุมฟังก์ชันการเรียนรู้และการประเมินผล
 
 #align(center)[
   #figure(
     caption: [แผนภาพยูสเคสของระบบ My Academy],
-    rect(stroke: 0.5pt + black, inset: 10pt, text(size: 10pt, diagram(
-      node-stroke: 1pt,
-      edge-stroke: 1pt,
-      spacing: (4em, 3em),
+    rect(stroke: 0.5pt + black, inset: 10pt, text(size: 9pt, diagram(
+      node-stroke: 0.8pt,
+      edge-stroke: 0.8pt,
+      spacing: (10em, 2em),
 
-      // Actors (left)
-      node((-2, 0), [HR Admin], shape: circle, width: 5em, height: 5em),
-      node((-2, 5), [Employee], shape: circle, width: 5em, height: 5em),
+      // Actors
+      node((-1.5, 2.0), [HR\ Admin], shape: shapes.circle, name: <hr>, width: 4.5em, height: 4.5em),
+      node((-1.5, 5.0), [Employee], shape: shapes.circle, name: <emp>, width: 4.5em, height: 4.5em),
 
-      // System boundary
-      node((1, 2.5), rect(
-        stroke: 1.5pt + black,
-        inset: 15pt,
-        [
-          #text(size: 12pt, weight: "bold")[My Academy System]
-          #v(0.5em)
-          #text(size: 9pt)[
-            - จัดการคอร์สเรียน\
-            - สร้างแบบประเมิน\
-            - อนุมัติการลงทะเบียน\
-            - ออกใบเกียรติบัตร\
-            - ลงทะเบียนเรียน\
-            - ทำแบบทดสอบ\
-            - ดูรายงานผล
-          ]
-        ]
-      ), width: 12em, height: 10em),
+      // System Boundary
+      node((1, 4), rect(stroke: 1pt + black, width: 14em, height: 25em), stroke: none),
+      node((1, 0.2), text(size: 11pt, weight: "bold")[My Academy System], stroke: none),
 
-      // Edges
-      edge((-1.5, 0), (0, 1.5), "-|>", text(8pt)[สร้าง/แก้ไขคอร์ส]),
-      edge((-1.5, 0), (0, 2.5), "-|>", text(8pt)[สร้างแบบประเมิน]),
-      edge((-1.5, 0), (0, 3.5), "-|>", text(8pt)[อนุมัติลงทะเบียน]),
-      edge((-1.5, 5), (0, 2), "-|>", text(8pt)[ลงทะเบียนเรียน]),
-      edge((-1.5, 5), (0, 3), "-|>", text(8pt)[ทำแบบทดสอบ]),
-      edge((-1.5, 5), (0, 4), "-|>", text(8pt)[รับใบเกียรติบัตร]),
+      // Use Cases
+      node((1, 1), [จัดการคอร์สเรียน], shape: shapes.pill, name: <uc1>, width: 10em),
+      node((1, 2), [สร้างแบบประเมิน], shape: shapes.pill, name: <uc2>, width: 10em),
+      node((1, 3), [อนุมัติการลงทะเบียน], shape: shapes.pill, name: <uc3>, width: 10em),
+      node((1, 4), [ดูรายงานผล], shape: shapes.pill, name: <uc4>, width: 10em),
+      node((1, 5), [ลงทะเบียนเรียน], shape: shapes.pill, name: <uc5>, width: 10em),
+      node((1, 6), [ทำแบบทดสอบ], shape: shapes.pill, name: <uc6>, width: 10em),
+      node((1, 7), [รับใบเกียรติบัตร], shape: shapes.pill, name: <uc7>, width: 10em),
+
+      // Edges (Associations)
+      edge(<hr>, <uc1>, "-"),
+      edge(<hr>, <uc2>, "-"),
+      edge(<hr>, <uc3>, "-"),
+      edge(<hr>, <uc4>, "-"),
+      
+      edge(<emp>, <uc4>, "-"),
+      edge(<emp>, <uc5>, "-"),
+      edge(<emp>, <uc6>, "-"),
+      edge(<emp>, <uc7>, "-"),
     )))
   )
 ]
@@ -303,7 +300,7 @@
       spacing: (3em, 2.5em),
 
       // Start
-      node((0, 0), [เริ่มต้น], shape: circle, width: 3em, height: 3em),
+      node((0, 0), [เริ่มต้น], shape: shapes.circle, width: 3em, height: 3em),
 
       // HR Flow
       node((0, 1), [HR: เลือกคอร์ส], shape: rect, width: 8em),
@@ -322,7 +319,7 @@
       node((0, 10.5), [ระบบ: แสดงผลลัพธ์], shape: rect, width: 9em),
 
       // End
-      node((0, 11.5), [สิ้นสุด], shape: circle, width: 3em, height: 3em),
+      node((0, 11.5), [สิ้นสุด], shape: shapes.circle, width: 3em, height: 3em),
 
       // Edges
       edge((0, 0), (0, 1), "-|>"),
@@ -392,13 +389,13 @@
 #align(center)[
   #figure(
     caption: [แผนภาพแสดงความสัมพันธ์ของคลาส: ระบบ Assessment],
-    rect(stroke: 0.5pt + black, inset: 10pt, text(size: 9pt, diagram(
+    rect(stroke: 0.5pt + black, inset: 10pt, text(size: 8pt, diagram(
       node-stroke: 1pt,
       edge-stroke: 1pt,
-      spacing: (5em, 3em),
+      spacing: (4em, 4em),
 
       // Course
-      node((-1, 0), rect(
+      node((0, 0), rect(
         [
           #text(weight: "bold")[Course]
           #line(length: 100%, stroke: 0.5pt)
@@ -412,10 +409,10 @@
           + update()\
           + publish()
         ]
-      ), width: 9em),
+      ), width: 9em, name: <course>),
 
       // Assessment
-      node((2, 0), rect(
+      node((1.5, 0), rect(
         [
           #text(weight: "bold")[Assessment]
           #line(length: 100%, stroke: 0.5pt)
@@ -429,10 +426,10 @@
           + addQuestion()\
           + calculateScore()
         ]
-      ), width: 10em),
+      ), width: 10em, name: <assessment>),
 
       // Question
-      node((2, -3), rect(
+      node((3, 0), rect(
         [
           #text(weight: "bold")[Question]
           #line(length: 100%, stroke: 0.5pt)
@@ -444,10 +441,10 @@
           + create()\
           + addChoice()
         ]
-      ), width: 9em),
+      ), width: 9em, name: <question>),
 
       // Choice
-      node((2, -6), rect(
+      node((3, 1.2), rect(
         [
           #text(weight: "bold")[Choice]
           #line(length: 100%, stroke: 0.5pt)
@@ -459,10 +456,10 @@
           + create()\
           + update()
         ]
-      ), width: 9em),
+      ), width: 9em, name: <choice>),
 
       // Attempt
-      node((5, 0), rect(
+      node((1.5, 1.2), rect(
         [
           #text(weight: "bold")[AssessmentAttempt]
           #line(length: 100%, stroke: 0.5pt)
@@ -475,10 +472,10 @@
           + submit()\
           + getResult()
         ]
-      ), width: 10em),
+      ), width: 10em, name: <attempt>),
 
       // AttemptAnswer
-      node((5, -3), rect(
+      node((0, 1.2), rect(
         [
           #text(weight: "bold")[AttemptAnswer]
           #line(length: 100%, stroke: 0.5pt)
@@ -490,14 +487,15 @@
           + save()\
           + evaluate()
         ]
-      ), width: 10em),
+      ), width: 10em, name: <answer>),
 
       // Relationships
-      edge((-1, 0), (2, 0), "<->", text(8pt)[1  : N]),
-      edge((2, 0), (2, -3), "<|-|>", text(8pt)[1  : N]),
-      edge((2, -3), (2, -6), "<|-|>", text(8pt)[1  : N]),
-      edge((2, 0), (5, 0), "<->", text(8pt)[1  : N]),
-      edge((5, 0), (5, -3), "<|-|>", text(8pt)[1  : N]),
+      edge(<course>, <assessment>, "<->", label: [1 : N], label-pos: 0.5, label-side: left),
+      edge(<assessment>, <question>, "<|-|>", label: [1 : N], label-pos: 0.5, label-side: left),
+      edge(<question>, <choice>, "<|-|>", label: [1 : N], label-pos: 0.5, label-side: left),
+      edge(<assessment>, <attempt>, "<->", label: [1 : N], label-pos: 0.5, label-side: left),
+      edge(<attempt>, <answer>, "<|-|>", label: [1 : N], label-pos: 0.5, label-side: left),
+      edge(<question>, <answer>, "..>", label: [ref], label-pos: 0.5, label-side: right),
     )))
   )
 ]

@@ -112,7 +112,7 @@
 #show heading.where(level: 2): set block(above: 1.5em, below: 1em)
 
 #show heading.where(level: 3): set text(size: 16pt, weight: "bold")
-#show heading.where(level: 3): set block(above: 1.5em, below: 1em)
+#show heading.where(level: 3): set block(above: 0.8em, below: 0.5em)
 
 // การจัดการลิสต์ให้เยื้องเข้าเล็กน้อยและไม่มีการย่อหน้าแบบพารากราฟซ้อน
 #set list(indent: 1em)
