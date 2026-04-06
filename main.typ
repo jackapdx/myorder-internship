@@ -192,7 +192,7 @@
 // ฟังก์ชันสำหรับสร้างสารบัญ
 #let create-outline(title, target, left-col-name) = {
   // ขยาย Margin ด้านบนเฉพาะหน้าสารบัญ เพื่อให้ Header และเนื้อหาไม่ซ้อนทับกัน
-  set page(margin: (top: 4.5cm, bottom: 2.5cm, left: 3cm, right: 2.5cm))
+  set page(margin: (top: 4.5cm, bottom: 2.54cm, left: 3.81cm, right: 2.54cm))
 
   header_title.update(title)
   let outline_grid = grid(
@@ -256,7 +256,7 @@
 #pagebreak()
 
 // ส่วนหลัง (Back Matter)
-#set page(margin: (top: 4.5cm, bottom: 2.5cm, left: 3cm, right: 2.5cm), header: shared-header)
+#set page(margin: (top: 4.5cm, bottom: 2.54cm, left: 3.81cm, right: 2.54cm), header: shared-header)
 #include "chapters/bibliography.typ"
 #pagebreak()
 #include "chapters/appendix.typ"
