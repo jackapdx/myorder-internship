@@ -2,11 +2,15 @@
 
 #set page(numbering: none)
 
+// Override global image stroke rule for certificate page
+#show image: it => it
+
 #set page(
   background: context {
     place(
       center + horizon,
       dy: 3cm,
+      dx: 0.5cm,
       box(width: 100%)[
         #place(center + horizon)[#image("/images/buu-logo-inter.webp", width: 45%)]
         #place(center + horizon)[#rect(width: 100%, height: 100%, fill: rgb(255, 255, 255, 95%), stroke: none)]
