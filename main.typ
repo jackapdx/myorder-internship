@@ -81,6 +81,7 @@
   },
 )
 #set figure.caption(separator: [ ])
+#show figure: set align(center)
 
 // การตั้งค่าตาราง (Table Figure)
 #show figure.where(kind: table): set figure(

@@ -21,7 +21,7 @@
 
 == นิยามศัพท์ของคำสำคัญ
 
-นิยามศัพท์ของคำสำคัญ เป็นส่วนที่อธิบายถึงความหมายของคำศัพท์สำคัญที่เกี่ยวข้องกับการออกแบบและพัฒนาระบบทั้งหมด ที่ผู้ปฏิบัติสหกิจศึกษาได้รับมอบหมาย ซึ่งจำเป็นต้องเข้าใจความหมายเพื่อให้เกิดความเข้าใจและส่งผลให้การทำงานเป็นไปได้อย่างราบรื่น โดยประกอบไปด้วยคำศัพท์ ดังตารางที่ 2-1
+นิยามศัพท์ของคำสำคัญ เป็นส่วนที่อธิบายถึงความหมายของคำศัพท์สำคัญที่เกี่ยวข้องกับการออกแบบและพัฒนาระบบทั้งหมด ที่ผู้ปฏิบัติสหกิจศึกษาได้รับมอบหมาย ซึ่งจำเป็นต้องเข้าใจความหมายเพื่อให้เกิดความเข้าใจและส่งผลให้การทำงานเป็นไปได้อย่างราบรื่น โดยประกอบไปด้วยคำศัพท์ ดัง@tab:2-1 แสดงนิยามความหมายของคำศัพท์ส่วนแรก
 
 #show figure.where(kind: table): set block(breakable: true)
 
@@ -48,12 +48,10 @@
     [#rowNum()], [Beta], [ขั้นตอนการทดสอบซอฟต์แวร์โดยกลุ่มผู้ใช้จริง เพื่อหาข้อผิดพลาดก่อนเปิดตัวเป็นทางการ],
     [#rowNum()], [Staging], [สภาพแวดล้อมจำลองที่เหมือน Production มากที่สุด เพื่อใช้ทดสอบระบบครั้งสุดท้ายก่อนขึ้นจริง],
     [#rowNum()], [Production], [สภาพแวดล้อมของระบบที่เปิดให้ผู้ใช้งานจริง (End Users) เข้ามาใช้งานได้],
-    [#rowNum()], [DevOps], [แนวคิดหรือกระบวนการที่เชื่อมโยงการพัฒนา (Dev) และการปฏิบัติการ (Ops) เข้าด้วยกันเพื่อความรวดเร็วและคุณภาพ],
   ),
-)
+) <tab:2-1>
 
 #counter(figure.where(kind: table)).update(n => n - 1)
-
 #figure(
   caption: [นิยามความหมายของคำศัพท์ (ต่อ)],
   kind: table,
@@ -61,6 +59,7 @@
     columns: (auto, auto, 1fr),
     align: (center, center, left),
     table.header([ลำดับ], [คำศัพท์], [ความหมาย]),
+    [#rowNum()], [DevOps], [แนวคิดหรือกระบวนการที่เชื่อมโยงการพัฒนา (Dev) และการปฏิบัติการ (Ops) เข้าด้วยกันเพื่อความรวดเร็วและคุณภาพ],
     [#rowNum()], [POC], [Proof of Concept: การพิสูจน์แนวคิดหรือการทำตัวอย่างขนาดเล็กเพื่อยืนยันว่าทฤษฎีหรือไอเดียนั้นทำได้จริง],
     [#rowNum()], [Stakeholder], [ผู้มีส่วนได้ส่วนเสียซึ่งหมายถึงใครก็ตามที่สามารถได้รับผลกระทบหรือส่งผลกระทบต่อธุรกิจได้ เนื่องจากเป็นผู้ที่เกี่ยวโยงกับธุรกิจทางใดทางหนึ่งไม่ว่าจะเป็นผู้ที่มีส่วนได้ส่วนเสียกับบริษัทโดยตรงหรือโดยอ้อมก็ตาม],
     [#rowNum()], [Service], [ส่วนที่ใช้จัดการ Business Logic หรือการประมวลผลหลักของระบบ (นิยมใช้ในสถาปัตยกรรม NestJS/Angular)],
@@ -76,7 +75,7 @@
     [Pair Programming],
     [เทคนิคการพัฒนาซอฟต์แวร์ที่ให้โปรแกรมเมอร์ 2 คน ทำงานร่วมกันบนคอมพิวเตอร์เครื่องเดียว โดยคนหนึ่งเป็นคนเขียนโค้ด (Driver) และอีกคนเป็นคนตรวจสอบและคิดภาพรวม (Navigator)],
   ),
-)
+) <tab:2-2>
 
 == หลักการและทฤษฏีที่เกี่ยวข้อง
 
@@ -84,16 +83,15 @@
 
 แกนหลักของแนวคิดที่เกี่ยวข้องในโครงงานถูกแบ่งออกเป็น 5 ส่วน ได้แก่ วงจรการพัฒนาซอฟต์แวร์ (Software Development Life Cycle - SDLC) ที่ใช้เป็นแนวทางหลักในกระบวนการทำงานภาพรวม, การคิดเชิงตรรกะและการแก้ปัญหา (Logical Thinking and Problem Solving) ที่ช่วยให้สามารถวิเคราะห์จัดการปัญหาได้อย่างเป็นระบบ, การพัฒนาซอฟต์แวร์แบบโปร่งใสและยืดหยุ่น (Agile, Scrum และ XP) สำหรับเป็นแกนในการบริหารเพื่อส่งมอบผลิตภัณฑ์, กลยุทธ์การทดสอบระบบ (Testing Strategies) สำหรับรับประกันคุณภาพการทำงาน, และการออกแบบ Blueprint และสถาปัตยกรรม (Blueprint & Architecture) ที่ช่วยสร้างรากฐานโครงสร้างโค้ดให้สอดคล้องกับมาตรฐาน ซึ่งทั้งหมดนี้จะช่วยลดความซับซ้อน และเตรียมระบบให้พร้อมรองรับการขยายตัวในอนาคตได้อย่างมีประสิทธิภาพ โดยมีรายละเอียดเชิงลึกดังต่อไปนี้
 
-#pagebreak()
 === วงจรการพัฒนาซอฟต์แวร์ (Software Development Life Cycle - SDLC)
 
 วงจรการพัฒนาซอฟต์แวร์ (Software Development Life Cycle หรือ SDLC) เป็นกรอบแนวคิดเชิงโครงสร้าง (Structured Framework) ที่องค์กรใช้ในการออกแบบ (Design) พัฒนา (Develop) และทดสอบ (Test) ซอฟต์แวร์คุณภาพสูง โดยครอบคลุมกระบวนการทั้งหมดตั้งแต่จุดเริ่มต้นของการเสนอไอเดียไปจนถึงการนำไปใช้งานจริง (Deployment) และการบำรุงรักษา (Maintenance) จุดประสงค์หลักของ SDLC คือการสร้างซอฟต์แวร์ที่ตอบสนองหรือเกินความคาดหวังของลูกค้า ภายใต้กรอบเวลาและงบประมาณที่กำหนดไว้ เพื่อให้ง่ายต่อการบำรุงรักษา (GeeksforGeeks, 2024)
 
 SDLC ที่ชัดเจนมีความสำคัญอย่างยิ่ง เนื่องจากหากขาดกระบวนการนี้ การพัฒนาซอฟต์แวร์จะขาดความมีระบบระเบียบ ซึ่งอาจนำไปสู่ปัญหาการตกหล่นของความต้องการ งบประมาณบานปลาย หรือได้ซอฟต์แวร์ที่มีข้อผิดพลาด กระบวนการ SDLC จึงช่วยเรื่องความโปร่งใส (Visibility) ให้ผู้มีส่วนได้ส่วนเสียรับทราบความคืบหน้าตลอดเวลา, ควบคุมคุณภาพ (Quality Control) ให้ผนวกเข้ากันกับกระบวนการทำงาน, บริหารความเสี่ยง (Risk Management) ตั้งแต่ช่วงวางแผน, และประเมินงบประมาณ (Cost Estimation) ที่แม่นยำขึ้น
 
-ขั้นตอนของวงจรการพัฒนาซอฟต์แวร์ มักประกอบด้วย 6-7 ระยะหลัก ได้แก่ การวางแผนและวิเคราะห์ความต้องการ (Planning and Requirement Analysis), การกำหนดรายละเอียดความต้องการ (Defining Requirements), การออกแบบสถาปัตยกรรม (Designing Architecture), การพัฒนาและเขียนโค้ด (Development/Coding), การทดสอบ (Testing), การนำซอฟต์แวร์ไปใช้งานจริง (Deployment), และการบำรุงรักษา (Maintenance)
+ขั้นตอนของวงจรการพัฒนาซอฟต์แวร์ มักประกอบด้วย 6-7 ระยะหลัก ได้แก่ การวางแผนและวิเคราะห์ความต้องการ (Planning and Requirement Analysis), การกำหนดรายละเอียดความต้องการ (Defining Requirements), การออกแบบสถาปัตยกรรม (Designing Architecture), การพัฒนาและเขียนโค้ด (Development/Coding), การทดสอบ (Testing), การนำซอฟต์แวร์ไปใช้งานจริง (Deployment), และการบำรุงรักษา (Maintenance) ดัง@fig:2-1 แสดงวงจรการพัฒนาซอฟต์แวร์ (SDLC)
 
-#toolFigure("../images/ch2/SDLC.webp", "sdlc diagram", "วงจรการพัฒนาซอฟต์แวร์ (SDLC)")
+#toolFigure("../images/ch2/SDLC.webp", "sdlc diagram", "วงจรการพัฒนาซอฟต์แวร์ (SDLC)") <fig:2-1>
 
 === การคิดเชิงตรรกะและการแก้ปัญหา
 
@@ -142,47 +140,45 @@ SDLC ที่ชัดเจนมีความสำคัญอย่าง
 + *On-site Customer (มีตัวแทนลูกค้าร่วมทีม):* การกำหนดให้มีผู้ใช้งานหรือลูกค้าเข้าร่วมกลุ่มกับทีมพัฒนาเพื่อตอบคำถามอย่างรวดเร็วอยู่เสมอ
 + *Coding Standard (มาตรฐานการเขียนโค้ด):* การยึดมั่นที่จะเขียนสไตล์โค้ดหรือจัดบรรทัดตามกติกาแบบเดียวกันทั้งทีม
 
-#h(1cm) หลักปฏิบัติทั้งสิบสองประการข้างต้นล้วนช่วยเหลือและพึ่งพิงกันและกันในเชิงปฏิบัติเพื่อตอบโจทย์ทางธุรกิจและช่วยสร้างความมั่นใจในทุกขั้นตอนการพัฒนาแบบองค์รวม
+#h(1cm) หลักปฏิบัติทั้งสิบสองประการข้างต้นล้วนช่วยเหลือและพึ่งพิงกันและกันในเชิงปฏิบัติเพื่อตอบโจทย์ทางธุรกิจและช่วยสร้างความมั่นใจในทุกขั้นตอนการพัฒนาแบบองค์รวม ดัง@fig:2-2 แสดงกระบวนการทำงานแบบผสมผสาน (Hybrid Scrum + XP Workflow)
+#figure(
+  caption: [กระบวนการทำงานแบบผสมผสาน (Hybrid Scrum + XP Workflow)],
+  rect(stroke: 0.5pt + black, inset: 8pt, diagram(
+    node-stroke: 1pt,
+    edge-stroke: 1pt,
+    spacing: (5em, 2em),
 
-#align(center)[
-  #figure(
-    caption: [กระบวนการทำงานแบบผสมผสาน (Hybrid Scrum + XP Workflow)],
-    rect(stroke: 0.5pt + black, inset: 8pt, diagram(
-      node-stroke: 1pt,
-      edge-stroke: 1pt,
-      spacing: (5em, 2em),
+    // Nodes (Vertical Flow)
+    node((0,0), [Product\ Backlog], corner-radius: 2pt, fill: gray.lighten(90%), width: 6em),
+    node((0,1), [Sprint\ Planning], corner-radius: 5pt, width: 6em),
+    node((0,2), [Sprint\ Backlog], corner-radius: 2pt, fill: gray.lighten(90%), width: 6em),
 
-      // Nodes (Vertical Flow)
-      node((0,0), [Product\ Backlog], corner-radius: 2pt, fill: gray.lighten(90%), width: 6em),
-      node((0,1), [Sprint\ Planning], corner-radius: 5pt, width: 6em),
-      node((0,2), [Sprint\ Backlog], corner-radius: 2pt, fill: gray.lighten(90%), width: 6em),
+    // Iteration Loop
+    node((0,3), [Execution Loop\ (Sprint)], corner-radius: 2pt, stroke: 1.5pt + blue, width: 3.5em, height: 3.5em),
 
-      // Iteration Loop
-      node((0,3), [Execution Loop\ (Sprint)], corner-radius: 2pt, stroke: 1.5pt + blue, width: 3.5em, height: 3.5em),
+    // XP Practices (Left of Loop)
+    node((-1, 3), text(12pt)[XP Practices:\ TDD, Pair,\ Continuous Int.], shape: rect, stroke: (dash: "dashed"), fill: green.lighten(95%), width: 8em),
 
-      // XP Practices (Left of Loop)
-      node((-1, 3), text(12pt)[XP Practices:\ TDD, Pair,\ Continuous Int.], shape: rect, stroke: (dash: "dashed"), fill: green.lighten(95%), width: 8em),
+    node((0,4), [Product\ Increment], corner-radius: 2pt, fill: blue.lighten(90%), width: 6em),
+    node((0,5), [Review &\ Retro], corner-radius: 5pt, width: 6em),
 
-      node((0,4), [Product\ Increment], corner-radius: 2pt, fill: blue.lighten(90%), width: 6em),
-      node((0,5), [Review &\ Retro], corner-radius: 5pt, width: 6em),
+    // Edges
+    edge((0,0), (0,1), "-|>"),
+    edge((0,1), (0,2), "-|>"),
+    edge((0,2), (0,3), "-|>"),
+    edge((0,3), (0,4), "-|>"),
+    edge((0,4), (0,5), "-|>"),
+    edge((0,5), (0,0), "..|>", text(10pt)[Feedback Loop], bend: -50deg),
 
-      // Edges
-      edge((0,0), (0,1), "-|>"),
-      edge((0,1), (0,2), "-|>"),
-      edge((0,2), (0,3), "-|>"),
-      edge((0,3), (0,4), "-|>"),
-      edge((0,4), (0,5), "-|>"),
-      edge((0,5), (0,0), "..|>", text(10pt)[Feedback Loop], bend: -50deg),
+    // XP Connection
+    edge((0,3), (-1.3, 3), "<->", stroke: (dash: "dashed")),
 
-      // XP Connection
-      edge((0,3), (-1.3, 3), "<->", stroke: (dash: "dashed")),
+    // Daily Scrum (Right of Loop)
+    node((1.1, 3), [Daily Scrum], width: 2em, height: 2em, corner-radius: 2pt, stroke: 0.5pt),
+    edge((0,3), (1.1, 3), "<->"),
+  ))
+) <fig:2-2>
 
-      // Daily Scrum (Right of Loop)
-      node((1.1, 3), [Daily Scrum], width: 2em, height: 2em, corner-radius: 2pt, stroke: 0.5pt),
-      edge((0,3), (1.1, 3), "<->"),
-    ))
-  )
-]
 
 === กลยุทธ์การทดสอบระบบ (Testing Strategies)
 
@@ -201,26 +197,24 @@ SDLC ที่ชัดเจนมีความสำคัญอย่าง
 - *Formulation (การจัดรูปแบบ):* การนำตัวอย่างที่ค้นพบมาจัดเรียงให้อยู่ในรูปแบบเอกสารสเปคที่มนุษย์อ่านเข้าใจและคอมพิวเตอร์สามารถนำไปใช้รันอัตโนมัติได้ (Executable Specification) เพื่อยืนยันว่าระบบ "ควรจะทำสิ่งใด" (What it should do)
 - *Automation (การสร้างระบบอัตโนมัติ):* การนำสเปคที่เขียนไว้มาผูกเข้ากับระบบทดสอบอัตโนมัติ เพื่อขับเคลื่อนการเขียนโค้ดและยืนยันว่าระบบ "ทำงานได้ตามนั้นจริงๆ" (What it actually does)
 
-#h(1cm) *Acceptance Test-Driven Development (ATDD)* เป็นการสร้างเกณฑ์การยอมรับก่อนเริ่มพัฒนา เพื่อช่วยให้ทุกคนในทีมรู้ขอบเขตและเข้าใจเป้าหมายที่ตรงกันก่อนมีการเขียนโค้ด
+#h(1cm) *Acceptance Test-Driven Development (ATDD)* เป็นการสร้างเกณฑ์การยอมรับก่อนเริ่มพัฒนา เพื่อช่วยให้ทุกคนในทีมรู้ขอบเขตและเข้าใจเป้าหมายที่ตรงกันก่อนมีการเขียนโค้ด ดัง@fig:2-3 แสดงวงจรการพัฒนาแบบ TDD (Red-Green-Refactor Cycle)
+#figure(
+  caption: [วงจรการพัฒนาแบบ TDD (Red-Green-Refactor Cycle)],
+  rect(stroke: 0.5pt + black, inset: 8pt, diagram(
+    node-stroke: 1pt,
+    edge-stroke: 1pt,
+    spacing: (2.5em, 2.5em),
 
-#align(center)[
-  #figure(
-    caption: [วงจรการพัฒนาแบบ TDD (Red-Green-Refactor Cycle)],
-    rect(stroke: 0.5pt + black, inset: 8pt, diagram(
-      node-stroke: 1pt,
-      edge-stroke: 1pt,
-      spacing: (2.5em, 2.5em),
+    node((0,0), text(11.5pt)[*RED* \ (Write failing test)], shape: circle, fill: red.lighten(90%), stroke: red, width: 4.5em, height: 4.5em),
+    node((1,1), text(12pt)[*GREEN* \ (Make test pass)], shape: circle, fill: green.lighten(90%), stroke: green, width: 4.5em, height: 4.5em),
+    node((-1,1), text(12pt)[*REFACTOR* \ (Clean up code)], shape: circle, fill: blue.lighten(90%), stroke: blue, width: 4.5em, height: 4.5em),
 
-      node((0,0), text(11.5pt)[*RED* \ (Write failing test)], shape: circle, fill: red.lighten(90%), stroke: red, width: 4.5em, height: 4.5em),
-      node((1,1), text(12pt)[*GREEN* \ (Make test pass)], shape: circle, fill: green.lighten(90%), stroke: green, width: 4.5em, height: 4.5em),
-      node((-1,1), text(12pt)[*REFACTOR* \ (Clean up code)], shape: circle, fill: blue.lighten(90%), stroke: blue, width: 4.5em, height: 4.5em),
+    edge((0,0), (1,1), "-|>", text(10pt)[1. Write Test], bend: 20deg),
+    edge((1,1), (-1,1), "-|>", text(10pt)[2. Write Code], bend: 20deg),
+    edge((-1,1), (0,0), "-|>", text(10pt)[3. Improve Code], bend: 20deg),
+  ))
+) <fig:2-3>
 
-      edge((0,0), (1,1), "-|>", text(10pt)[1. Write Test], bend: 20deg),
-      edge((1,1), (-1,1), "-|>", text(10pt)[2. Write Code], bend: 20deg),
-      edge((-1,1), (0,0), "-|>", text(10pt)[3. Improve Code], bend: 20deg),
-    ))
-  )
-]
 
 *Holistic Testing (การทดสอบแบบองค์รวม)*
  เป็นรูปแบบจำลอง (Model) ทางแนวคิดที่ริเริ่มโดย Janet Gregory และ Lisa Crispin ซึ่งพัฒนาต่อยอดมาจากแนวคิด Continuous Testing ของ Dan Ashby (Crispin & Gregory, 2024) กระบวนการนี้เน้นมองคุณภาพซอฟต์แวร์แบบองค์รวม และถือว่าคุณภาพเป็น "ความรับผิดชอบร่วมกันของทุกคนในทีม" (Whole-team approach) โดยผูกกิจกรรมการทดสอบเข้ากับทุกช่วงเวลาของวงจรการพัฒนาซอฟต์แวร์อย่างต่อเนื่อง ตั้งแต่ขั้นตอนการสกัดความต้องการและวางแผน (Shift-left Testing) ไปจนถึงการสังเกตการใช้งานจริงบนโปรดักชัน (Shift-right Testing) เพื่อตรวจจับปัญหาตั้งแต่ระยะแรก ซึ่งส่งผลให้ต้นทุนในการแก้ไขข้อผิดพลาดลดลง สำหรับในประเทศไทย แนวคิดนี้ถูกนำมาผลักดันและเผยแพร่อย่างจริงจังผ่านหลักสูตรของกลุ่มสยามชำนาญกิจ (Siam Chamnankit, 2024)
@@ -243,11 +237,10 @@ SDLC ที่ชัดเจนมีความสำคัญอย่าง
 การประยุกต์ใช้ A-DAPT Blueprint มักทำร่วมกันในขั้นตอนการวางแผน (Planning) โดยให้ทีมงานร่วมกันแจกแจงองค์ประกอบต่างๆ ลงบนกระดาน การมองภาพแบบ Outside-In Approach จะช่วยให้ทีมสามารถระบุ API, ฐานข้อมูล และเงื่อนไขทางธุรกิจที่จำเป็นได้อย่างครบถ้วน ช่วยลดปัญหาการสื่อสารที่คลาดเคลื่อนและเป็นแนวทางที่ดีในการสร้างชุดทดสอบล่วงหน้าก่อนลงมือพัฒนาจริงได้อย่างมีประสิทธิภาพ (Siam Chamnankit, 2024; KakyKad, 2023; Ploy Chonnikan, 2020, 2021; Smalldog124, 2020)
 
 #h(1cm)
-นอกจากนี้ การวางแผนและการจัดลำดับความสำคัญของฟีเจอร์ยังมักใช้เทคนิค *"User Story Mapping"* ซึ่งคิดค้นโดย Jeff Patton เทคนิคนี้เป็นการจัดเวิร์กช็อปที่นำเอา Product Manager, Designer และ Engineer มาร่วมกันวาดภาพการเดินทางของผู้ใช้ (User Journey) อย่างเป็นระบบ โดยแบ่งออกเป็น 3 ระดับ ได้แก่ ผู้ใช้/เป้าหมาย (Users/Personas) กิจกรรมหลักที่เป็นแกนกระดูกสันหลัง (Activities/Backbone) และเรื่องราวของผู้ใช้ (User Stories/Options) การใช้ User Story Mapping ช่วยให้ทีมมองเห็นภาพรวมหลุดพ้นจากข้อจำกัดของ Flat Backlog ธรรมดา และช่วยในการกำหนดขอบเขตของ MVP (Minimum Viable Product) ได้อย่างแม่นยำ (Strunk, 2026)
+นอกจากนี้ การวางแผนและการจัดลำดับความสำคัญของฟีเจอร์ยังมักใช้เทคนิค *"User Story Mapping"* ซึ่งคิดค้นโดย Jeff Patton เทคนิคนี้เป็นการจัดเวิร์กช็อปที่นำเอา Product Manager, Designer และ Engineer มาร่วมกันวาดภาพการเดินทางของผู้ใช้ (User Journey) อย่างเป็นระบบ โดยแบ่งออกเป็น 3 ระดับ ได้แก่ ผู้ใช้/เป้าหมาย (Users/Personas) กิจกรรมหลักที่เป็นแกนกระดูกสันหลัง (Activities/Backbone) และเรื่องราวของผู้ใช้ (User Stories/Options) การใช้ User Story Mapping ช่วยให้ทีมมองเห็นภาพรวมหลุดพ้นจากข้อจำกัดของ Flat Backlog ธรรมดา และช่วยในการกำหนดขอบเขตของ MVP (Minimum Viable Product) ได้อย่างแม่นยำ (Strunk, 2026) ดัง@fig:2-4 แสดงโครงสร้างของ User Story Mapping
 
-#align(center)[
-  #toolFigure("../images/ch2/User-Story-Mapping.png", "user story mapping structure", [โครงสร้างของ User Story Mapping], h:25%)
-]
+#toolFigure("../images/ch2/User-Story-Mapping.png", "user story mapping structure", [โครงสร้างของ User Story Mapping], h:20%) <fig:2-4>
+
 
 #pagebreak()
 == เครื่องมือและเทคโนโลยีที่ใช้ในการปฏิบัติงาน
@@ -256,27 +249,27 @@ SDLC ที่ชัดเจนมีความสำคัญอย่าง
 
 *VSCode (Visual Studio Code)* เป็นโปรแกรมแก้ไขโค้ด (Code Editor) แบบ Open-source ที่พัฒนาโดย Microsoft ซึ่งครองใจนักพัฒนาทั่วโลกด้วยความเบาแต่ทรงพลัง ตัวโปรแกรมถูกสร้างขึ้นบน Electron รองรับการทำงานข้ามแพลตฟอร์มทั้ง Windows, macOS และ Linux โดยมีจุดเด่นอยู่ที่ระบบ Ecosystem ของ Extension ที่มีให้เลือกใช้มหาศาล
 
-นักพัฒนาใช้ VSCode เป็นศูนย์กลางในการเขียนโปรแกรม ตั้งแต่การจัดการไฟล์โปรเจกต์ การเขียนโค้ดที่มีระบบ IntelliSense ช่วยเติมคำอัตโนมัติ ไปจนถึงการใช้ Terminal ในตัวเพื่อรันคำสั่งต่างๆ นอกจากนี้ยังสามารถเชื่อมต่อกับ Git เพื่อจัดการเวอร์ชันของโค้ด และใช้เครื่องมือ Debugging เพื่อไล่สายพานการทำงานของโปรแกรมได้ในหน้าต่างเดียว (Microsoft, 2024b)
+นักพัฒนาใช้ VSCode เป็นศูนย์กลางในการเขียนโปรแกรม ตั้งแต่การจัดการไฟล์โปรเจกต์ การเขียนโค้ดที่มีระบบ IntelliSense ช่วยเติมคำอัตโนมัติ ไปจนถึงการใช้ Terminal ในตัวเพื่อรันคำสั่งต่างๆ นอกจากนี้ยังสามารถเชื่อมต่อกับ Git เพื่อจัดการเวอร์ชันของโค้ด และใช้เครื่องมือ Debugging เพื่อไล่สายพานการทำงานของโปรแกรมได้ในหน้าต่างเดียว (Microsoft, 2024b) ดัง@fig:2-5 แสดงหน้าตาของโปรแกรม VSCode
 
-#toolFigure("../images/ch2/vscode.webp", "vscode interface", "หน้าตาของโปรแกรม VSCode")
+#toolFigure("../images/ch2/vscode.webp", "vscode interface", "หน้าตาของโปรแกรม VSCode") <fig:2-5>
 
 #pagebreak()
 === Discord
 
 *Discord* คือ แพลตฟอร์มสื่อสารที่แต่เดิมเน้นกลุ่มเกมเมอร์ แต่ถูกประยุกต์ใช้ในวงการเทคโนโลยีอย่างแพร่หลายเนื่องจากระบบ Voice Channel ที่เสถียรและโครงสร้างการแบ่งห้องแชทที่ยืดหยุ่น รองรับทั้งการแชทตัวต่อตัว การสร้างกลุ่มปิด และการเปิด Server ขนาดใหญ่ที่มีการจัดการสิทธิ์การเข้าถึงอย่างละเอียด
 
-ในทีมพัฒนา มักใช้ Discord เป็น "Virtual Office" โดยสมาชิกจะสแตนบายอยู่ใน Voice Channel เพื่อให้เพื่อนร่วมทีมสามารถกดเข้ามาพูดคุยหรือสอบถามงานได้ทันทีเหมือนนั่งโต๊ะข้างกัน รวมถึงใช้ฟีเจอร์ Go Live เพื่อแชร์หน้าจอโค้ดความละเอียดสูงสำหรับการช่วยกันแก้บั๊ก (Pair Programming) หรือการประชุมทีมย่อย (Discord Inc., 2024)
+ในทีมพัฒนา มักใช้ Discord เป็น "Virtual Office" โดยสมาชิกจะสแตนบายอยู่ใน Voice Channel เพื่อให้เพื่อนร่วมทีมสามารถกดเข้ามาพูดคุยหรือสอบถามงานได้ทันทีเหมือนนั่งโต๊ะข้างกัน รวมถึงใช้ฟีเจอร์ Go Live เพื่อแชร์หน้าจอโค้ดความละเอียดสูงสำหรับการช่วยกันแก้บั๊ก (Pair Programming) หรือการประชุมทีมย่อย (Discord Inc., 2024) ดัง@fig:2-6 แสดงหน้าตาของโปรแกรม Discord
 
-#toolFigure("../images/ch2/discord.webp", "discord interface", "หน้าตาของโปรแกรม Discord")
+#toolFigure("../images/ch2/discord.webp", "discord interface", "หน้าตาของโปรแกรม Discord") <fig:2-6>
 
 #pagebreak()
 === Slack
 
 *Slack* เป็นเครื่องมือสื่อสารระดับองค์กรที่เน้นความเป็นทางการและการจัดการข้อมูลอย่างเป็นระบบ มีโครงสร้างการทำงานแบบ Channels ที่สามารถแยกตามแผนก โปรเจกต์ หรือหัวข้อเฉพาะทางได้ชัดเจน พร้อมระบบการค้นหาข้อความและไฟล์ย้อนหลังที่มีประสิทธิภาพสูงมาก
 
-ทีมใช้ Slack ในการประสานงานหลัก โดยเชื่อมต่อ (Integrate) เข้ากับเครื่องมืออื่นๆ เช่น เมื่อมีการ Push Code ขึ้นระบบ หรือเมื่อ Server เกิดปัญหา Bot จะแจ้งเตือนเข้ามาใน Slack Channel ทันที ทำให้ทีมไม่ต้องคอยเช็คหน้าจอมอนิเตอร์ตลอดเวลา และยังใช้ฟีเจอร์ Huddles สำหรับการคุยเสียงสั้นๆ เพื่ออัปเดตงานประจำวัน (Slack Technologies, LLC, 2024)
+ทีมใช้ Slack ในการประสานงานหลัก โดยเชื่อมต่อ (Integrate) เข้ากับเครื่องมืออื่นๆ เช่น เมื่อมีการ Push Code ขึ้นระบบ หรือเมื่อ Server เกิดปัญหา Bot จะแจ้งเตือนเข้ามาใน Slack Channel ทันที ทำให้ทีมไม่ต้องคอยเช็คหน้าจอมอนิเตอร์ตลอดเวลา และยังใช้ฟีเจอร์ Huddles สำหรับการคุยเสียงสั้นๆ เพื่ออัปเดตงานประจำวัน (Slack Technologies, LLC, 2024) ดัง@fig:2-7 แสดงหน้าตาของโปรแกรม Slack
 
-#toolFigure("../images/ch2/slack.webp", "slack interface", "หน้าตาของโปรแกรม Slack")
+#toolFigure("../images/ch2/slack.webp", "slack interface", "หน้าตาของโปรแกรม Slack") <fig:2-7>
 
 #pagebreak()
 === Miro
@@ -285,9 +278,9 @@ SDLC ที่ชัดเจนมีความสำคัญอย่าง
 
 ในการทำงานจริง ทีมพัฒนามักใช้ Miro ในช่วงการระดมสมอง (Brainstorming) เพื่อวางโครงสร้างโปรเจกต์ เช่น การเขียน User Flow, การออกแบบ Database Schema (ER Diagram), การทำ Retrospective หลังจบ Sprint หรือแม้แต่การวางแผน Roadmap ของผลิตภัณฑ์ เพื่อให้ทุกคนในทีมเห็นภาพรวมของระบบที่กำลังจะสร้างตรงกัน
 
-*Miro* ช่วยเปลี่ยนไอเดียที่ซับซ้อนและเป็นนามธรรมให้กลายเป็นภาพที่เข้าใจง่าย ลดความเข้าใจคลาดเคลื่อนระหว่าง Designer, Developer และ Product Owner ได้อย่างดีเยี่ยม นอกจากนี้ยังทำหน้าที่เป็นเอกสารที่มีชีวิต (Living Documentation) ที่ทีมสามารถกลับมาแก้ไขและอ้างอิงได้ตลอดเวลา แทนการใช้กระดานไวท์บอร์ดจริงๆ ในออฟฟิศ (Miro, 2024)
+*Miro* ช่วยเปลี่ยนไอเดียที่ซับซ้อนและเป็นนามธรรมให้กลายเป็นภาพที่เข้าใจง่าย ลดความเข้าใจคลาดเคลื่อนระหว่าง Designer, Developer และ Product Owner ได้อย่างดีเยี่ยม นอกจากนี้ยังทำหน้าที่เป็นเอกสารที่มีชีวิต (Living Documentation) ที่ทีมสามารถกลับมาแก้ไขและอ้างอิงได้ตลอดเวลา แทนการใช้กระดานไวท์บอร์ดจริงๆ ในออฟฟิศ (Miro, 2024) ดัง@fig:2-8 แสดงตัวอย่างกระดาน Miro
 
-#toolFigure("../images/ch2/miro.webp", "miro board", "ตัวอย่างกระดาน Miro")
+#toolFigure("../images/ch2/miro.webp", "miro board", "ตัวอย่างกระดาน Miro") <fig:2-8>
 
 #pagebreak()
 === TypeScript
@@ -296,9 +289,9 @@ SDLC ที่ชัดเจนมีความสำคัญอย่าง
 
 ในโปรเจกต์ขนาดใหญ่ TypeScript มีบทบาทสำคัญอย่างมากในการช่วยจัดการโครงสร้างโค้ดที่ซับซ้อน โดยเฉพาะเมื่อทำงานร่วมกับเฟรมเวิร์กอย่าง Angular และ NestJS เพราะระบบ Typing จะช่วยให้การส่งต่อข้อมูลระหว่างคอมโพเนนต์หรือโมดูลต่าง ๆ มีความแม่นยำและปลอดภัย ลดโอกาสเกิดข้อผิดพลาดประเภท "undefined" หรือการส่งข้อมูลผิดประเภทได้อย่างมีนัยสำคัญ
 
-*TypeScript* ยังช่วยเพิ่มประสิทธิภาพในการทำงานผ่านเครื่องมืออย่าง IntelliSense ใน Code Editor ที่สามารถเสนอแนะนำฟังก์ชันและตัวแปรได้อย่างแม่นยำ ทำให้การเขียนโค้ดทำได้รวดเร็วขึ้นและง่ายต่อการบำรุงรักษาในระยะยาว (Microsoft, 2024)
+*TypeScript* ยังช่วยเพิ่มประสิทธิภาพในการทำงานผ่านเครื่องมืออย่าง IntelliSense ใน Code Editor ที่สามารถเสนอแนะนำฟังก์ชันและตัวแปรได้อย่างแม่นยำ ทำให้การเขียนโค้ดทำได้รวดเร็วขึ้นและง่ายต่อการบำรุงรักษาในระยะยาว (Microsoft, 2024) ดัง@fig:2-9 แสดงตัวอย่าง TypeScript
 
-#toolFigure("../images/ch2/typescript.png", "typescript example", "ตัวอย่าง TypeScript", w:auto)
+#toolFigure("../images/ch2/typescript.png", "typescript example", "ตัวอย่าง TypeScript", w:auto) <fig:2-9>
 
 #pagebreak()
 === Angular
@@ -335,9 +328,9 @@ SDLC ที่ชัดเจนมีความสำคัญอย่าง
 
 นักพัฒนาใช้ Knex เขียนฟังก์ชันในรูปแบบ JavaScript Object เพื่อสั่ง Query ข้อมูล เช่น `.select()`, `.where()`, `.insert()` นอกจากนี้ยังใช้ฟีเจอร์ Migrations ในการสร้างหรือแก้ไขโครงสร้างตารางในฐานข้อมูลผ่านโค้ด ซึ่งช่วยให้ทีมงานทุกคนมีโครงสร้างฐานข้อมูลที่ตรงกันเสมอ
 
-*Knex.js* ช่วยเพิ่มความปลอดภัยจากการโจมตีประเภท SQL Injection และทำให้โค้ดอ่านง่ายขึ้น นอกจากนี้ยังช่วยให้การย้ายประเภทฐานข้อมูล (เช่น จาก MySQL ไป PostgreSQL) ทำได้ง่ายกว่าการเขียน SQL ดิบ เพราะ Knex จะช่วยจัดการเรื่องความแตกต่างของไวยากรณ์แต่ละฐานข้อมูลให้บางส่วน (Griesser, 2024)
+*Knex.js* ช่วยเพิ่มความปลอดภัยจากการโจมตีประเภท SQL Injection และทำให้โค้ดอ่านง่ายขึ้น นอกจากนี้ยังช่วยให้การย้ายประเภทฐานข้อมูล (เช่น จาก MySQL ไป PostgreSQL) ทำได้ง่ายกว่าการเขียน SQL ดิบ เพราะ Knex จะช่วยจัดการเรื่องความแตกต่างของไวยากรณ์แต่ละฐานข้อมูลให้บางส่วน (Griesser, 2024) ดัง@fig:2-10 แสดงตัวอย่างการใช้งาน Knex.js
 
-#toolFigure("../images/ch2/knex-example-code.png", "knexjs code example", "ตัวอย่างการใช้งาน Knex.js")
+#toolFigure("../images/ch2/knex-example-code.png", "knexjs code example", "ตัวอย่างการใช้งาน Knex.js") <fig:2-10>
 
 #pagebreak()
 === Jest
@@ -346,9 +339,9 @@ SDLC ที่ชัดเจนมีความสำคัญอย่าง
 
 นักพัฒนาเขียน Script ทดสอบ (Test Suite) เพื่อจำลองการทำงานของฟังก์ชันต่างๆ ในโปรแกรม เช่น การทดสอบว่าถ้าใส่ตัวเลข 1 กับ 1 เข้าไป ฟังก์ชันบวกเลขต้องคืนค่า 2 ออกมาเสมอ โดย Jest จะแสดงผลลัพธ์ว่า "Pass" หรือ "Fail" พร้อมระบุจุดที่ผิดพลาดอย่างละเอียด
 
-*Jest* ช่วยสร้างความมั่นใจว่าการแก้ไขโค้ดในส่วนหนึ่งจะไม่ไปทำให้ส่วนอื่นพัง (Regression Testing) และช่วยให้กระบวนการ Deploy งานทำได้รวดเร็วขึ้น เพราะเราสามารถมั่นใจได้ว่าโค้ดที่ผ่านการทดสอบด้วย Jest มีคุณภาพและความถูกต้องตามที่กำหนดไว้ (Meta Platforms, Inc., 2024)
+*Jest* ช่วยสร้างความมั่นใจว่าการแก้ไขโค้ดในส่วนหนึ่งจะไม่ไปทำให้ส่วนอื่นพัง (Regression Testing) และช่วยให้กระบวนการ Deploy งานทำได้รวดเร็วขึ้น เพราะเราสามารถมั่นใจได้ว่าโค้ดที่ผ่านการทดสอบด้วย Jest มีคุณภาพและความถูกต้องตามที่กำหนดไว้ (Meta Platforms, Inc., 2024) ดัง@fig:2-11 แสดงตัวอย่างการใช้งาน Jest
 
-#toolFigure("../images/ch2/jest-example-code.png", "jest test example", "ตัวอย่างการใช้งาน Jest")
+#toolFigure("../images/ch2/jest-example-code.png", "jest test example", "ตัวอย่างการใช้งาน Jest") <fig:2-11>
 
 #pagebreak()
 === Vitest
@@ -357,18 +350,18 @@ SDLC ที่ชัดเจนมีความสำคัญอย่าง
 
 มีการใช้งานที่คล้ายคลึงกับ Jest มาก (API แทบจะเหมือนกัน) นักพัฒนาจึงสามารถเปลี่ยนจาก Jest มาใช้ Vitest ได้ง่าย โดยมักใช้ในโปรเจกต์ที่ต้องการความเร็วในการพัฒนา (Fast Feedback Loop) เช่น ขณะเขียนโค้ดไป Vitest จะรัน Test ใหม่ให้ทันทีในเสี้ยววินาทีเมื่อมีการบันทึกไฟล์
 
-*Vitest* ช่วยลดเวลาที่นักพัฒนาต้องนั่งรอให้ Test รันเสร็จ ซึ่งในโปรเจกต์ขนาดใหญ่ที่ต้องรัน Test เป็นพันครั้ง ความเร็วที่เพิ่มขึ้นนี้จะช่วยลดอาการ "เบื่อหน่าย" ของนักพัฒนาจ และทำให้รอบการส่งมอบงาน (Delivery Cycle) สั้นลงอย่างมีนัยสำคัญ (Vitest Team, 2024)
+*Vitest* ช่วยลดเวลาที่นักพัฒนาต้องนั่งรอให้ Test รันเสร็จ ซึ่งในโปรเจกต์ขนาดใหญ่ที่ต้องรัน Test เป็นพันครั้ง ความเร็วที่เพิ่มขึ้นนี้จะช่วยลดอาการ "เบื่อหน่าย" ของนักพัฒนาจ และทำให้รอบการส่งมอบงาน (Delivery Cycle) สั้นลงอย่างมีนัยสำคัญ (Vitest Team, 2024) ดัง@fig:2-12 แสดงหน้าตาของ Vitest
 
-#toolFigure("../images/ch2/vitest-example-code.png", "vitest interface", "หน้าตาของ Vitest", h: 66%)
+#toolFigure("../images/ch2/vitest-example-code.png", "vitest interface", "หน้าตาของ Vitest", h: 64%) <fig:2-12>
 
 #pagebreak()
 === Bruno
 
 *Bruno* เครื่องมือสำหรับทดสอบและจัดการ API (API Client) แบบ Open-source ที่เน้นความเป็นส่วนตัวและเรียบง่าย โดยจุดเด่นที่สุดคือการเก็บข้อมูลการทดสอบไว้ในรูปแบบไฟล์ธรรมดา (Plain Text) ภายในโฟลเดอร์โปรเจกต์ของผู้ใช้เอง
 
-ใช้แทนโปรแกรมอย่าง Postman เพื่อยิง Request ไปยัง Server เพื่อตรวจสอบว่า API คืนค่ากลับมาถูกต้องไหม โดยนักพัฒนาสามารถแชร์คอลเลกชันของ API ที่สร้างไว้ใน Bruno ผ่าน Git ร่วมกับโค้ดหลักของโปรเจกต์ได้เลย ทำให้ทุกคนในทีมมีข้อมูลการทดสอบเดียวกันเสมอ (Anoop, 2024)
+ใช้แทนโปรแกรมอย่าง Postman เพื่อยิง Request ไปยัง Server เพื่อตรวจสอบว่า API คืนค่ากลับมาถูกต้องไหม โดยนักพัฒนาสามารถแชร์คอลเลกชันของ API ที่สร้างไว้ใน Bruno ผ่าน Git ร่วมกับโค้ดหลักของโปรเจกต์ได้เลย ทำให้ทุกคนในทีมมีข้อมูลการทดสอบเดียวกันเสมอ (Anoop, 2024) ดัง@fig:2-13 แสดงหน้าตาของโปรแกรม Bruno
 
-#toolFigure("../images/ch2/bruno.webp", "bruno app", "หน้าตาของโปรแกรม Bruno")
+#toolFigure("../images/ch2/bruno.webp", "bruno app", "หน้าตาของโปรแกรม Bruno") <fig:2-13>
 
 === Mountebank
 
@@ -383,18 +376,18 @@ SDLC ที่ชัดเจนมีความสำคัญอย่าง
 
 ในระบบ MyHR ได้มีการนำ BullMQ มาใช้จัดการงานที่ใช้เวลานานเพื่อไม่ให้กระทบต่อประสบการณ์การใช้งานของผู้ใช้ เช่น การรวมไฟล์เอกสาร (Bulk Download) หรือการประมวลผลสรุปยอดรายงาน โดย BullMQ จะช่วยแยกส่วนงานหนักออกมาจาก API หลัก และมีระบบ Retry อัตโนมัติหากเกิดข้อผิดพลาดขึ้นระหว่างการทำงาน
 
-*BullMQ* ยังโดดเด่นในเรื่องของความยืดหยุ่นในการจัดลำดับความสำคัญของงาน (Priority) และการจัดการงานแบบล่าช้า (Delayed Jobs) ทำให้ทีมพัฒนาสามารถออกแบบระบบที่รองรับการขยายตัวได้ดี (Scalable) และรักษาสมดุลของทรัพยากรเซิร์ฟเวอร์ได้อย่างมีประสิทธิภาพ (Taskforce.sh, 2024)
+*BullMQ* ยังโดดเด่นในเรื่องของความยืดหยุ่นในการจัดลำดับความสำคัญของงาน (Priority) และการจัดการงานแบบล่าช้า (Delayed Jobs) ทำให้ทีมพัฒนาสามารถออกแบบระบบที่รองรับการขยายตัวได้ดี (Scalable) และรักษาสมดุลของทรัพยากรเซิร์ฟเวอร์ได้อย่างมีประสิทธิภาพ (Taskforce.sh, 2024) ดัง@fig:2-14 แสดงการใช้งาน BullMQ
 
-#toolFigure("../images/ch2/bullmq-usage.webp", "bullmq dashboard", "การใช้งาน BullMQ", h: 60%)
+#toolFigure("../images/ch2/bullmq-usage.webp", "bullmq dashboard", "การใช้งาน BullMQ", h: 60%) <fig:2-14>
 
 #pagebreak()
 === Cloudflare Worker
 
 *Cloudflare Worker* เป็นแพลตฟอร์มการประมวลผลแบบ Serverless ที่รันอยู่บนโครงข่าย Edge Network ของ Cloudflare ทั่วโลก ซึ่งต่างจาก Server แบบเดิมตรงที่โค้ดจะถูกรันในจุดที่อยู่ใกล้กับผู้ใช้งานมากที่สุด
 
-นักพัฒนาเขียนโค้ด JavaScript/TypeScript สั้นๆ ไปดักจับ Request ที่วิ่งผ่าน Cloudflare เช่น การทำ Authentication, การปรับแต่ง Header, หรือการแก้ไขเนื้อหาของเว็บไซต์ก่อนจะถึงมือผู้ใช้ รวมถึงการสร้าง API ขนาดเล็กที่ต้องการความเร็วสูงเป็นพิเศษ (Cloudflare, Inc., 2024)
+นักพัฒนาเขียนโค้ด JavaScript/TypeScript สั้นๆ ไปดักจับ Request ที่วิ่งผ่าน Cloudflare เช่น การทำ Authentication, การปรับแต่ง Header, หรือการแก้ไขเนื้อหาของเว็บไซต์ก่อนจะถึงมือผู้ใช้ รวมถึงการสร้าง API ขนาดเล็กที่ต้องการความเร็วสูงเป็นพิเศษ (Cloudflare, Inc., 2024) ดัง@fig:2-15 แสดงแผนภาพการทำงานของ Cloudflare Worker
 
-#toolFigure("../images/ch2/cloudflare-worker-diagram.png", "cloudflare worker diagram", "แผนภาพการทำงานของ Cloudflare Worker")
+#toolFigure("../images/ch2/cloudflare-worker-diagram.png", "cloudflare worker diagram", "แผนภาพการทำงานของ Cloudflare Worker") <fig:2-15>
 
 === GCS — Google Cloud Storage
 
@@ -416,13 +409,13 @@ SDLC ที่ชัดเจนมีความสำคัญอย่าง
 - *Pre-push*: ทำงานก่อนที่จะส่งโค้ดขึ้นสู่เซิร์ฟเวอร์ส่วนกลาง มักใช้รัน Unit Test ทั้งหมดเพื่อให้มั่นใจว่าซอร์สโค้ดมีความถูกต้อง
 - *Post-merge*: ทำงานหลังจากการดึงโค้ดจากส่วนกลางเสร็จสิ้น มักใช้ตรวจสอบการเปลี่ยนแปลงของไลบรารีและทำการติดตั้งโดยอัตโนมัติ
 
+การใช้ Git Hooks มีจุดประสงค์เพื่อให้การพัฒนาซอฟต์แวร์มีมาตรฐานเดียวกันทั้งทีม และลดโอกาสในการส่งโค้ดที่ผิดพลาดขึ้นสู่ระบบส่วนกลาง (Git, 2024) ดัง@fig:2-16 แสดงลำดับขั้นตอนการทำงานของ Git Hooks ระหว่าง Client-Side และ Server-Side
+
 #toolFigure(
   "../images/ch2/git_hooks_flow.png",
   "git hooks lifecycle",
   "ลำดับขั้นตอนการทำงานของ Git Hooks ระหว่าง Client-Side และ Server-Side",
-)
-
-การใช้ Git Hooks มีจุดประสงค์เพื่อให้การพัฒนาซอฟต์แวร์มีมาตรฐานเดียวกันทั้งทีม และลดโอกาสในการส่งโค้ดที่ผิดพลาดขึ้นสู่ระบบส่วนกลาง (Git, 2024)
+) <fig:2-16>
 
 === แนวคิด Monorepo
 

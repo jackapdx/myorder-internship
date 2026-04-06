@@ -34,41 +34,39 @@
 7. HR สามารถสร้างแบบประเมินความพึงพอใจในแต่ละคอร์สที่พนักงานเรียน ซึ่งรองรับทั้งคำถามแบบ Single Choice และ Multi Choice
 8. HR สามารถเลือกชื่อพนักงานที่ต้องการลงทะเบียนเรียนคอร์สและทำการลงทะเบียนให้พนักงานได้โดยตรง และทำการแจ้งเตือนผ่าน Email
 9. พนักงานสามารถเลือกคอร์สที่ต้องการเรียนและส่งคำขอลงทะเบียนผ่านระบบได้
-10. HR สามารถดูคำขอลงทะเบียนของพนักงานและจัดการการลงทะเบียนได้ พร้อมทั้งส่งการแจ้งเตือนผ่าน Email เพื่อแจ้งผลการลงทะเบียน
+10. HR สามารถดูคำขอลงทะเบียนของพนักงานและจัดการการลงทะเบียนได้ พร้อมทั้งส่งการแจ้งเตือนผ่าน Email เพื่อแจ้งผลการลงทะเบียน ดัง@fig:1-1 แสดงขอบเขตของระบบ My Academy ภายใต้ระบบ MyHR
+#figure(
+  caption: [แผนภาพบริบทของระบบ My Academy ภายใต้ MyHR],
+  rect(stroke: 0.5pt + black, inset: 10pt, diagram(
+    node-stroke: 1pt,
+    edge-stroke: 1pt,
+    spacing: (3.5em, 3.5em),
 
-#align(center)[
-  #figure(
-    caption: [แผนภาพบริบทของระบบ My Academy ภายใต้ MyHR],
-    rect(stroke: 0.5pt + black, inset: 10pt, diagram(
-      node-stroke: 1pt,
-      edge-stroke: 1pt,
-      spacing: (3.5em, 3.5em),
+    // External Systems / Roles
+    node((-1, 0), [HR Admin],corner-radius: 10pt,fill: gray.lighten(90%), width: 3.5em, height: 3.5em),
+    node((1, 0), [Employee] ,corner-radius: 10pt, fill: gray.lighten(90%), width: 3.5em, height: 3.5em),
 
-      // External Systems / Roles
-      node((-1, 0), [HR Admin],corner-radius: 10pt,fill: gray.lighten(90%), width: 3.5em, height: 3.5em),
-      node((1, 0), [Employee] ,corner-radius: 10pt, fill: gray.lighten(90%), width: 3.5em, height: 3.5em),
+    // Core System
+    node((0, 1), [MyHR System\ (Main Hub)], corner-radius: 4pt, fill: blue.lighten(90%), width: 6.5em, height: 3em),
 
-      // Core System
-      node((0, 1), [MyHR System\ (Main Hub)], corner-radius: 4pt, fill: blue.lighten(90%), width: 6.5em, height: 3em),
+    // Subsystem
+    node((0, 2), [My Academy\ (E-Learning)], corner-radius: 4pt, fill: green.lighten(80%), stroke: 1.5pt + green, width: 7.5em, height: 3em),
 
-      // Subsystem
-      node((0, 2), [My Academy\ (E-Learning)], corner-radius: 4pt, fill: green.lighten(80%), stroke: 1.5pt + green, width: 7.5em, height: 3em),
+    // Edges with smaller text labels
+    edge((-1, 0), (0, 1), "-|>", text(8pt)[Manage Employees], label-pos: 0.5, label-side: left, bend: 10deg),
+    edge((1, 0), (0, 1), "-|>", text(8pt)[Self-Service], label-pos: 0.5, label-side: right, bend: -10deg),
 
-      // Edges with smaller text labels
-      edge((-1, 0), (0, 1), "-|>", text(8pt)[Manage Employees], label-pos: 0.5, label-side: left, bend: 10deg),
-      edge((1, 0), (0, 1), "-|>", text(8pt)[Self-Service], label-pos: 0.5, label-side: right, bend: -10deg),
+    edge((0, 1), (0, 2), "<|-|>", text(12pt)[Shared Data / Auth], label-pos: 0.5, label-side: right),
 
-      edge((0, 1), (0, 2), "<|-|>", text(12pt)[Shared Data / Auth], label-pos: 0.5, label-side: right),
+    edge((-1, 0), (0, 2), "-|>", text(8pt)[Manage Courses & Assessment], bend: -40deg, label-pos: 0.2, label-side: left),
+    edge((1, 0), (0, 2), "-|>", text(8pt)[Enroll & Learn], bend: 40deg, label-pos: 0.2, label-side: right),
 
-      edge((-1, 0), (0, 2), "-|>", text(8pt)[Manage Courses & Assessment], bend: -40deg, label-pos: 0.2, label-side: left),
-      edge((1, 0), (0, 2), "-|>", text(8pt)[Enroll & Learn], bend: 40deg, label-pos: 0.2, label-side: right),
+    // External Output
+    node((1.1, 2), [Cert\ (PDF)], shape: rect, fill: yellow.lighten(90%), width: 4.5em),
+    edge((0, 2), (1.1, 2), "-|>"),
+  ))
+) <fig:1-1>
 
-      // External Output
-      node((1.1, 2), [Cert\ (PDF)], shape: rect, fill: yellow.lighten(90%), width: 4.5em),
-      edge((0, 2), (1.1, 2), "-|>"),
-    ))
-  )
-]
 
 #pagebreak()
 == เครื่องมือที่ใช้ในการพัฒนา
@@ -103,12 +101,11 @@
 
 === สถานที่ตั้ง #company_name
 
-#company_name ตั้งอยู่ที่ 211 2 ตำบล บางพระ อำเภอศรีราชา ชลบุรี 20110 และเว็บไซต์ https://landing.myorder.ai
-
+#company_name ตั้งอยู่ที่ 211 2 ตำบล บางพระ อำเภอศรีราชา ชลบุรี 20110 และเว็บไซต์ https://landing.myorder.ai ดัง@fig:1-2 แสดงแผนที่ตั้งของ #company_name
 #figure(
   image("../images/ch1/myorder_map.webp", width: 80%),
   caption: [แผนที่ตั้งของ #company_name],
-)
+) <fig:1-2>
 
 === ผลิตภัณฑ์ ผลิตผล หรือการให้บริการของ #company_name
 
@@ -156,7 +153,7 @@
 #pagebreak()
 === ระยะเวลาการปฏิบัติงาน
 
-การปฏิบัติการสหกิจศึกษาสำหรับภาคเรียนที่ 2 ประจำปีการศึกษา 2568 ระยะเวลานับตั้งแต่ วันที่ 13 พฤศจิกายน พ.ศ. 2568 ถึงวันที่ 13 มีนาคม พ.ศ. 2569 รวมทั้งสิ้นเป็นระยะเวลา 4 เดือน จำนวน 17 สัปดาห์
+การปฏิบัติการสหกิจศึกษาสำหรับภาคเรียนที่ 2 ประจำปีการศึกษา 2568 ระยะเวลานับตั้งแต่ วันที่ 13 พฤศจิกายน พ.ศ. 2568 ถึงวันที่ 13 มีนาคม พ.ศ. 2569 รวมทั้งสิ้นเป็นระยะเวลา 4 เดือน จำนวน 17 สัปดาห์ ดัง@tab:1-1 แสดงระยะเวลาการดำเนินงาน
 
 #let fill-arrow = layout(bounds => [$#math.stretch(sym.arrow.l.r, size: bounds.width)$])
 #figure(caption: [ระยะเวลาการดำเนินงาน], kind: table, table(
@@ -192,4 +189,4 @@
 
   table.cell(inset: (left: 10pt))[6. ตรวจสอบความถูกต้องของระบบและทำเอกสารประกอบการปฏิบัติงาน],
   ..([],) * 16, table.cell(colspan: 4, align: center)[#fill-arrow],
-))
+)) <tab:1-1>

@@ -10,89 +10,70 @@
 
 === หน้าจอการเข้าสู่ระบบและสถานะโหลดข้อมูล
 
-ผู้ใช้สามารถเข้าสู่ระบบเพื่อเริ่มต้นใช้งานแอปพลิเคชัน ซึ่งในระหว่างการประมวลผลระบบจะมีการแสดงสถานะการโหลดข้อมูลให้ผู้ใช้ทราบ
+ผู้ใช้สามารถเข้าสู่ระบบเพื่อเริ่มต้นใช้งานแอปพลิเคชัน ซึ่งในระหว่างการประมวลผลระบบจะมีการแสดงสถานะการโหลดข้อมูลให้ผู้ใช้ทราบ ดัง@fig:4-1 แสดงหน้าจอการเข้าสู่ระบบ (Login) และดัง@fig:4-2 แสดงหน้าจอแสดงสถานะการโหลดข้อมูล (Loading)
+#figure(
+  image("/images/ch4/login.png", width: 80%),
+  caption: [หน้าจอการเข้าสู่ระบบ (Login)],
+) <fig:4-1>
 
-#align(center)[
-  #figure(
-    image("/images/ch4/login.png", width: 80%),
-    caption: [หน้าจอการเข้าสู่ระบบ (Login)],
-  )
-]
+#figure(
+  image("/images/ch4/loading.png", width: 80%),
+  caption: [หน้าจอแสดงสถานะการโหลดข้อมูล (Loading)],
+) <fig:4-2>
 
-#align(center)[
-  #figure(
-    image("/images/ch4/loading.png", width: 80%),
-    caption: [หน้าจอแสดงสถานะการโหลดข้อมูล (Loading)],
-  )
-]
 
 === หน้าจอเมนูหลักและคอร์สของฉัน
 
-เมื่อเข้าสู่ระบบเรียบร้อยแล้ว ผู้ใช้จะพบกับหน้าเมนูหลักที่สามารถนำทางไปยังส่วนต่างๆ ของระบบ และสามารถดูรายการคอร์สเรียนทั้งหมดที่ลงทะเบียนไว้ได้ในหน้าคอร์สของฉัน
+เมื่อเข้าสู่ระบบเรียบร้อยแล้ว ผู้ใช้จะพบกับหน้าเมนูหลักที่สามารถนำทางไปยังส่วนต่างๆ ของระบบ และสามารถดูรายการคอร์สเรียนทั้งหมดที่ลงทะเบียนไว้ได้ในหน้าคอร์สของฉัน ดัง@fig:4-3 แสดงหน้าจอเมนูหลัก (Home Menu) และดัง@fig:4-4 แสดงหน้าจอคอร์สของฉัน (My Course)
+#figure(
+  image("/images/ch4/home_menu.png", width: 80%),
+  caption: [หน้าจอเมนูหลัก (Home Menu)],
+) <fig:4-3>
 
-#align(center)[
-  #figure(
-    image("/images/ch4/home_menu.png", width: 80%),
-    caption: [หน้าจอเมนูหลัก (Home Menu)],
-  )
-]
+#figure(
+  image("/images/ch4/my_course.png", width: 80%),
+  caption: [หน้าจอคอร์สของฉัน (My Course)],
+) <fig:4-4>
 
-#align(center)[
-  #figure(
-    image("/images/ch4/my_course.png", width: 80%),
-    caption: [หน้าจอคอร์สของฉัน (My Course)],
-  )
-]
 
 === ข้อมูลพื้นฐานและการแก้ไขคอร์สเรียน
 
-ระบบแสดงข้อมูลพื้นฐานของคอร์สเรียนและเปิดโอกาสให้ผู้ดูแลหรือผู้ที่มีสิทธิ์สามารถเข้าไปแก้ไขรายละเอียดของคอร์สเรียนได้
+ระบบแสดงข้อมูลพื้นฐานของคอร์สเรียนและเปิดโอกาสให้ผู้ดูแลหรือผู้ที่มีสิทธิ์สามารถเข้าไปแก้ไขรายละเอียดของคอร์สเรียนได้ ดัง@fig:4-5 แสดงหน้าจอแสดงข้อมูลพื้นฐานของคอร์สเรียน (Basic Info Course) และดัง@fig:4-6 แสดงหน้าจอสำหรับการแก้ไขข้อมูลคอร์สเรียน (Edit Course)
+#figure(
+  image("/images/ch4/basic_info_course.png", width: 80%),
+  caption: [หน้าจอแสดงข้อมูลพื้นฐานของคอร์สเรียน (Basic Info Course)],
+) <fig:4-5>
 
-#align(center)[
-  #figure(
-    image("/images/ch4/basic_info_course.png", width: 80%),
-    caption: [หน้าจอแสดงข้อมูลพื้นฐานของคอร์สเรียน (Basic Info Course)],
-  )
-]
+#figure(
+  image("/images/ch4/edit_course.png", width: 80%),
+  caption: [หน้าจอสำหรับการแก้ไขข้อมูลคอร์สเรียน (Edit Course)],
+) <fig:4-6>
 
-#align(center)[
-  #figure(
-    image("/images/ch4/edit_course.png", width: 80%),
-    caption: [หน้าจอสำหรับการแก้ไขข้อมูลคอร์สเรียน (Edit Course)],
-  )
-]
 
 === การลงทะเบียนเรียน การทำแบบทดสอบ และรายงาน
 
-ผู้ใช้สามารถลงทะเบียนเรียน ทำแบบทดสอบก่อนเรียนและหลังเรียนเพื่อประเมินผลการเรียนรู้ รวมถึงผู้รับผิดชอบสามารถเรียกดูรายงานข้อมูลของคอร์สเรียนได้
+ผู้ใช้สามารถลงทะเบียนเรียน ทำแบบทดสอบก่อนเรียนและหลังเรียนเพื่อประเมินผลการเรียนรู้ รวมถึงผู้รับผิดชอบสามารถเรียกดูรายงานข้อมูลของคอร์สเรียนได้ ดัง@fig:4-7 แสดงหน้าจอการลงทะเบียนเรียน (Enrollment) @fig:4-8 แสดงหน้าจอแบบทดสอบก่อนเรียน (Pre-test) และ@fig:4-9 แสดงหน้าจอแบบทดสอบหลังเรียน (Post-test) และดัง@fig:4-10 แสดงหน้าจอรายงานคอร์สเรียน (Report Course)
+#figure(
+  image("/images/ch4/enrollment.png", width: 80%),
+  caption: [หน้าจอการลงทะเบียนเรียน (Enrollment)],
+) <fig:4-7>
 
-#align(center)[
-  #figure(
-    image("/images/ch4/enrollment.png", width: 80%),
-    caption: [หน้าจอการลงทะเบียนเรียน (Enrollment)],
-  )
-]
+#figure(
+  image("/images/ch4/pre_test.png", width: 80%),
+  caption: [หน้าจอแบบทดสอบก่อนเรียน (Pre-test)],
+) <fig:4-8>
 
-#align(center)[
-  #figure(
-    image("/images/ch4/pre_test.png", width: 80%),
-    caption: [หน้าจอแบบทดสอบก่อนเรียน (Pre-test)],
-  )
-]
+#figure(
+  image("/images/ch4/post_test.png", width: 80%),
+  caption: [หน้าจอแบบทดสอบหลังเรียน (Post-test)],
+) <fig:4-9>
 
-#align(center)[
-  #figure(
-    image("/images/ch4/post_test.png", width: 80%),
-    caption: [หน้าจอแบบทดสอบหลังเรียน (Post-test)],
-  )
-]
 
-#align(center)[
-  #figure(
-    image("/images/ch4/report_course.png", width: 80%),
-    caption: [หน้าจอรายงานคอร์สเรียน (Report Course)],
-  )
-]
+#figure(
+  image("/images/ch4/report_course.png", width: 80%),
+  caption: [หน้าจอรายงานคอร์สเรียน (Report Course)],
+) <fig:4-10>
+
 
 == ผลการทดสอบซอฟต์แวร์และการตรวจสอบความถูกต้อง (Software Testing & Validation)
 
@@ -100,53 +81,41 @@
 
 === ผลการทดสอบหน่วยย่อย (Unit Test Results)
 
-จากการเขียน Unit Test โดยใช้ Vitest และ SWC เพื่อทดสอบส่วน Service ของระบบการประเมิน (Assessment) พบว่ากรณีทดสอบทั้งหมดผ่านเกณฑ์ (Pass) 100% ซึ่งครอบคลุมลอจิกสำคัญ เช่น การคำนวณคะแนนตามเกณฑ์ที่ HR กำหนด และการตรวจสอบเงื่อนไขการออกใบประกาศนียบัตร
+จากการเขียน Unit Test โดยใช้ Vitest และ SWC เพื่อทดสอบส่วน Service ของระบบการประเมิน (Assessment) พบว่ากรณีทดสอบทั้งหมดผ่านเกณฑ์ (Pass) 100% ซึ่งครอบคลุมลอจิกสำคัญ เช่น การคำนวณคะแนนตามเกณฑ์ที่ HR กำหนด และการตรวจสอบเงื่อนไขการออกใบประกาศนียบัตร ดัง@fig:4-11 แสดงผลการรัน Unit Test ผ่านเกณฑ์
+#figure(
+  image("/images/ch4/unit_test_results_asm.png", width: 80%),
+  caption: [ผลการรัน Unit Test ผ่านเกณฑ์],
+) <fig:4-11>
 
-#align(center)[
-  #figure(
-    image("/images/ch4/unit_test_results_asm.png", width: 80%),
-    caption: [ผลการรัน Unit Test ผ่านเกณฑ์],
-  )
-]
 
 === ผลการทดสอบอินเทอร์เฟซโปรแกรม (API Test Results)
 
-ผลจากการส่งคำขอ (Request) ผ่านเครื่องมือ Bruno เพื่อทดสอบ API Endpoints จริง พบว่าระบบสามารถตอบสนอง (Response) ได้ถูกต้องสอดคล้องกับโครงสร้าง DTO ที่ออกแบบไว้ และสามารถจัดการสถานะ HTTP ได้อย่างเหมาะสมในทุกกรณีศึกษา
+ผลจากการส่งคำขอ (Request) ผ่านเครื่องมือ Bruno เพื่อทดสอบ API Endpoints จริง พบว่าระบบสามารถตอบสนอง (Response) ได้ถูกต้องสอดคล้องกับโครงสร้าง DTO ที่ออกแบบไว้ และสามารถจัดการสถานะ HTTP ได้อย่างเหมาะสมในทุกกรณีศึกษา ดัง@fig:4-12 แสดงผลการทดสอบ API ส่วนที่ 1: จัดการข้อมูลหลักแบบประเมิน (Assessment Management) @fig:4-13 แสดงผลการทดสอบ API ส่วนที่ 2 จัดการคำถาม (Questions CRUD) @fig:4-14 แสดงผลการทดสอบ API ส่วนที่ 3 จัดการตัวเลือก (Choices CRUD) @fig:4-15 แสดงผลการทดสอบ API ส่วนที่ 4 จัดการข้อมูลการทำแบบประเมิน (Assessment Attempts CRUD) และ@fig:4-16 แสดงผลการทดสอบ API ส่วนที่ 5 จัดการคำตอบ (Attempt Answers CRUD)
+#figure(
+  image("/images/ch3/api_test_damp.png", width: 80%),
+  caption: [ผลการทดสอบ API ส่วนที่ 1: จัดการข้อมูลหลักแบบประเมิน (Assessment Management)],
+) <fig:4-12>
 
-#align(center)[
-  #figure(
-    image("/images/ch3/api_test_damp.png", width: 80%),
-    caption: [ผลการทดสอบ API ส่วนที่ 1: จัดการข้อมูลหลักแบบประเมิน (Assessment Management)],
-  )
-]
+#figure(
+  image("/images/ch4/api-test-sc7.png", width: 80%),
+  caption: [ผลการทดสอบ API ส่วนที่ 2: จัดการคำถาม (Questions CRUD)],
+) <fig:4-13>
 
-#align(center)[
-  #figure(
-    image("/images/ch4/api-test-sc7.png", width: 80%),
-    caption: [ผลการทดสอบ API ส่วนที่ 2: จัดการคำถาม (Questions CRUD)],
-  )
-]
+#figure(
+  image("/images/ch4/api-test-sc7a.png", width: 80%),
+  caption: [ผลการทดสอบ API ส่วนที่ 3: จัดการตัวเลือก (Choices CRUD)],
+) <fig:4-14>
 
-#align(center)[
-  #figure(
-    image("/images/ch4/api-test-sc7a.png", width: 80%),
-    caption: [ผลการทดสอบ API ส่วนที่ 3: จัดการตัวเลือก (Choices CRUD)],
-  )
-]
+#figure(
+  image("/images/ch4/api-test-sc7b.png", width: 80%),
+  caption: [ผลการทดสอบ API ส่วนที่ 4: จัดการข้อมูลการทำแบบประเมิน (Assessment Attempts CRUD)],
+) <fig:4-15>
 
-#align(center)[
-  #figure(
-    image("/images/ch4/api-test-sc7b.png", width: 80%),
-    caption: [ผลการทดสอบ API ส่วนที่ 4: จัดการข้อมูลการทำแบบประเมิน (Assessment Attempts CRUD)],
-  )
-]
+#figure(
+  image("/images/ch4/api-test-sc7c.png", width: 80%),
+  caption: [ผลการทดสอบ API ส่วนที่ 5: จัดการคำตอบ (Attempt Answers CRUD)],
+) <fig:4-16>
 
-#align(center)[
-  #figure(
-    image("/images/ch4/api-test-sc7c.png", width: 80%),
-    caption: [ผลการทดสอบ API ส่วนที่ 5: จัดการคำตอบ (Attempt Answers CRUD)],
-  )
-]
 
 == สรุปผลสัมฤทธิ์ของการจัดการข้อมูลและคุณลักษณะของระบบ (Data Management Outcomes)
 

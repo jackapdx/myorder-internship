@@ -73,63 +73,59 @@
 
 - *Test-Driven Development (TDD):* ให้ความสำคัญกับ Automated Testing ทั้ง Unit Test, API Test และ E2E Test เสมอ โดยการวิเคราะห์เชิงคุณภาพการพึ่งพิงลอจิกการทำงานก่อนจะปรับโครงสร้างการทำงาน
 - *Continuous Integration / Continuous Deployment (CI/CD):* มีการนำ Husky เข้ามาจำกัดสิทธิ์ในส่วน Local โดยการบังคับและตรวจสอบ (Lint, Test, Build) กรองโค้ดขยะชั้นแรก
-- *Refactoring & Code Standards:* ควบคุมมาตรฐานโค้ดสม่ำเสมอ โดยมีการกำหนดรูปแบบมาตรฐานการตั้งชื่อ (Conventional Commits) บน GitHub ผูกการเปลี่ยนแปลงเข้ากับ Branch เป็นข้อบังคับสำคัญ
+- *Refactoring & Code Standards:* ควบคุมมาตรฐานโค้ดสม่ำเสมอ โดยมีการกำหนดรูปแบบมาตรฐานการตั้งชื่อ (Conventional Commits) บน GitHub ผูกการเปลี่ยนแปลงเข้ากับ Branch เป็นข้อบังคับสำคัญ ดัง@fig:3-1 แสดงความสัมพันธ์ระหว่าง Scrum และ XP ในการปฏิบัติงาน
+#figure(
+  caption: [ความสัมพันธ์ระหว่าง Scrum และ XP ในการปฏิบัติงาน],
+  rect(stroke: 0.5pt + black, inset: 15pt, text(size: 11pt, diagram(
+    node-stroke: 1pt,
+    edge-stroke: 1pt,
+    spacing: (8em, 2em),
 
-#align(center)[
-  #figure(
-    caption: [ความสัมพันธ์ระหว่าง Scrum และ XP ในการปฏิบัติงาน],
-    rect(stroke: 0.5pt + black, inset: 15pt, text(size: 11pt, diagram(
-      node-stroke: 1pt,
-      edge-stroke: 1pt,
-      spacing: (8em, 2em),
+    // Top Boxes
+    node((0,0), [*Management*\ (Scrum)], corner-radius: 2pt, fill: blue.lighten(90%), stroke: blue, width: 8em, height: 3em),
+    node((1,0), [*Engineering*\ (XP)], corner-radius: 2pt, fill: green.lighten(90%), stroke: green, width: 8em, height: 3em),
 
-      // Top Boxes
-      node((0,0), [*Management*\ (Scrum)], corner-radius: 2pt, fill: blue.lighten(90%), stroke: blue, width: 8em, height: 3em),
-      node((1,0), [*Engineering*\ (XP)], corner-radius: 2pt, fill: green.lighten(90%), stroke: green, width: 8em, height: 3em),
+    // Arrow
+    edge((0,0), (1,0), "<->", [Support Each Other]),
 
-      // Arrow
-      edge((0,0), (1,0), "<->", [Support Each Other]),
+    // Bottom Boxes
+    node((0,1), [Sprint Planning\ Daily Stand-up\ Retrospective], corner-radius: 2pt, stroke: black, width: 8em, height: 4em),
+    node((1,1), [TDD\ Pair Programming\ CI/CD], corner-radius: 2pt, stroke: black, width: 8em, height: 4em),
 
-      // Bottom Boxes
-      node((0,1), [Sprint Planning\ Daily Stand-up\ Retrospective], corner-radius: 2pt, stroke: black, width: 8em, height: 4em),
-      node((1,1), [TDD\ Pair Programming\ CI/CD], corner-radius: 2pt, stroke: black, width: 8em, height: 4em),
+    // Dashed lines
+    edge((0,0), (0,1), "--", stroke: (dash: "dashed")),
+    edge((1,0), (1,1), "--", stroke: (dash: "dashed")),
+  )))
+) <fig:3-1>
 
-      // Dashed lines
-      edge((0,0), (0,1), "--", stroke: (dash: "dashed")),
-      edge((1,0), (1,1), "--", stroke: (dash: "dashed")),
-    )))
-  )
-]
 
 == แผนภาพแสดงสถาปัตยกรรมกระบวนการ (Architecture & Workflow Diagram)
 
-เพื่อให้สามารถทำความเข้าใจโครงสร้างและวิถีการทำงานของ MyHR ได้ดียิ่งขึ้น แผนภาพด้านล่างแสดงถึงขั้นตอนของ Git Lifecycle และการปรับใช้โครงสร้างแบบ Monorepo Workspace:
+เพื่อให้สามารถทำความเข้าใจโครงสร้างและวิถีการทำงานของ MyHR ได้ดียิ่งขึ้น แผนภาพด้านล่างแสดงถึงขั้นตอนของ Git Lifecycle และการปรับใช้โครงสร้างแบบ Monorepo Workspace: ดัง@fig:3-2 แสดงขั้นตอน Git Hooks อัตโนมัติด้วย Husky
+#figure(
+  caption: [ขั้นตอน Git Hooks อัตโนมัติด้วย Husky],
+  rect(stroke: 0.5pt + black, inset: 15pt, text(size: 11pt, diagram(
+    node-stroke: 1pt,
+    edge-stroke: 1pt,
+    spacing: (2em, 2.5em),
 
-#align(center)[
-  #figure(
-    caption: [ขั้นตอน Git Hooks อัตโนมัติด้วย Husky],
-    rect(stroke: 0.5pt + black, inset: 15pt, text(size: 11pt, diagram(
-      node-stroke: 1pt,
-      edge-stroke: 1pt,
-      spacing: (2em, 2.5em),
+    // Nodes
+    node((0,0), [ผู้พัฒนา\ (Developer)], corner-radius: 5pt, width: 10em),
+    node((0,1), [git commit], corner-radius: 5pt, width: 8em),
+    node((0,2), [Husky: pre-commit\ (lint & format)], corner-radius: 5pt, stroke: blue, width: 14em),
+    node((0,3), [git push], corner-radius: 5pt, width: 8em),
+    node((0,4), [Husky: pre-push\ (test & build)], corner-radius: 5pt, stroke: blue, width: 14em),
+    node((0,5), [Git Repository], corner-radius: 5pt, width: 10em),
 
-      // Nodes
-      node((0,0), [ผู้พัฒนา\ (Developer)], corner-radius: 5pt, width: 10em),
-      node((0,1), [git commit], corner-radius: 5pt, width: 8em),
-      node((0,2), [Husky: pre-commit\ (lint & format)], corner-radius: 5pt, stroke: blue, width: 14em),
-      node((0,3), [git push], corner-radius: 5pt, width: 8em),
-      node((0,4), [Husky: pre-push\ (test & build)], corner-radius: 5pt, stroke: blue, width: 14em),
-      node((0,5), [Git Repository], corner-radius: 5pt, width: 10em),
+    // Edges
+    edge((0,0), (0,1), "-|>"),
+    edge((0,1), (0,2), "-|>"),
+    edge((0,2), (0,3), "-|>"),
+    edge((0,3), (0,4), "-|>"),
+    edge((0,4), (0,5), "-|>"),
+  )))
+) <fig:3-2>
 
-      // Edges
-      edge((0,0), (0,1), "-|>"),
-      edge((0,1), (0,2), "-|>"),
-      edge((0,2), (0,3), "-|>"),
-      edge((0,3), (0,4), "-|>"),
-      edge((0,4), (0,5), "-|>"),
-    )))
-  )
-]
 
 == กระบวนการออกแบบและรวบรวมความต้องการของระบบ (System Requirements & Live Design)
 
@@ -141,41 +137,39 @@
 
 - กำหนดสถาปัตยกรรมระบบ โฟลว์การทำงาน และโครงร่างหน้าจอ (Wireframes) เชื่อมโยงเข้าด้วยกัน
 - การเขียนแผนผังความสัมพันธ์ (Entity-Relationship Diagram) และการออกแบบสคีมาฐานข้อมูลร่วมกัน
-- การร่วมกันระดมสมอง (Brainstorming) เพื่อกำหนดข้อจำกัดและกติกาเชิงธุรกิจ (Business Logic) เมื่อมีความต้องการส่วนใดเปลี่ยน การอัปเดตบน Miro จะเป็นจุดรวมที่ทุกคนจะยึดเป็นพื้นที่อ้างอิงหลัก ทำให้กระบวนการพัฒนาและตรวจสอบสอดคล้องกันอย่างชัดเจน ไร้ความสับสนของเวอร์ชันเอกสารไฟล์ที่ซ้ำซ้อน
+- การร่วมกันระดมสมอง (Brainstorming) เพื่อกำหนดข้อจำกัดและกติกาเชิงธุรกิจ (Business Logic) เมื่อมีความต้องการส่วนใดเปลี่ยน การอัปเดตบน Miro จะเป็นจุดรวมที่ทุกคนจะยึดเป็นพื้นที่อ้างอิงหลัก ทำให้กระบวนการพัฒนาและตรวจสอบสอดคล้องกันอย่างชัดเจน ไร้ความสับสนของเวอร์ชันเอกสารไฟล์ที่ซ้ำซ้อน ดัง@fig:3-3 แสดงแนวคิด Miro เป็นเอกสารที่มีชีวิต (Living Document) ประจำทีม
+#figure(
+  caption: [แนวคิด Miro เป็นเอกสารที่มีชีวิต (Living Document) ประจำทีม],
+  rect(stroke: 0.5pt + black, inset: 15pt, text(size: 11pt, diagram(
+    node-stroke: 1pt,
+    edge-stroke: 1pt,
+    spacing: (4em, 4em),
 
-#align(center)[
-  #figure(
-    caption: [แนวคิด Miro เป็นเอกสารที่มีชีวิต (Living Document) ประจำทีม],
-    rect(stroke: 0.5pt + black, inset: 15pt, text(size: 11pt, diagram(
-      node-stroke: 1pt,
-      edge-stroke: 1pt,
-      spacing: (4em, 4em),
+    // Top row
+    node((-1, -1), [User Flow], fill: yellow.lighten(90%), width: 7em),
+    node((0, -1), [ER-Diagram], fill: blue.lighten(90%), width: 7em),
+    node((1, -1), [Wireframes], fill: green.lighten(90%), width: 7em),
 
-      // Top row
-      node((-1, -1), [User Flow], fill: yellow.lighten(90%), width: 7em),
-      node((0, -1), [ER-Diagram], fill: blue.lighten(90%), width: 7em),
-      node((1, -1), [Wireframes], fill: green.lighten(90%), width: 7em),
+    // Middle row
+    node((0, 0), [*Miro Canvas*\ (Single Source of Truth)], corner-radius: 8pt, stroke: 2pt + orange, width: 15em, height: 5em),
 
-      // Middle row
-      node((0, 0), [*Miro Canvas*\ (Single Source of Truth)], corner-radius: 8pt, stroke: 2pt + orange, width: 15em, height: 5em),
+    // Bottom row
+    node((-1, 1), [Developer], shape: shapes.circle, width: 5.5em),
+    node((0, 1), [Designer], shape: shapes.circle, width: 5.5em),
+    node((1, 1), [Product Owner], shape: shapes.circle, width: 5.5em),
 
-      // Bottom row
-      node((-1, 1), [Developer], shape: shapes.circle, width: 5.5em),
-      node((0, 1), [Designer], shape: shapes.circle, width: 5.5em),
-      node((1, 1), [Product Owner], shape: shapes.circle, width: 5.5em),
+    // Edges top to middle
+    edge((-1, -1), (0, 0), "-|>"),
+    edge((0, -1), (0, 0), "-|>"),
+    edge((1, -1), (0, 0), "-|>"),
 
-      // Edges top to middle
-      edge((-1, -1), (0, 0), "-|>"),
-      edge((0, -1), (0, 0), "-|>"),
-      edge((1, -1), (0, 0), "-|>"),
+    // Edges middle to bottom
+    edge((0, 0), (-1, 1), "<->"),
+    edge((0, 0), (0, 1), "<->"),
+    edge((0, 0), (1, 1), "<->"),
+  )))
+) <fig:3-3>
 
-      // Edges middle to bottom
-      edge((0, 0), (-1, 1), "<->"),
-      edge((0, 0), (0, 1), "<->"),
-      edge((0, 0), (1, 1), "<->"),
-    )))
-  )
-]
 
 === การวิเคราะห์ Scenarios และการออกแบบ A-DAPT Blueprint (Customer Visible Layer)
 
@@ -185,87 +179,82 @@
 - *กระบวนการควบคุมแบบประเมินและข้อสอบ (Exam & Evaluation System):* สนับสนุนทีมงานผู้ออกแบบหลักสูตร (Instructional Designer) ในการสร้างข้อสอบ ตั้งแต่การกำหนดโจทย์ ตัวเลือก และเกณฑ์การผ่าน ระบบรองรับรูปแบบตั้งแต่ การทำแบบทดสอบก่อนเรียน (Pre-test) หลังเรียนจบ (Post-test) ไปจนถึงการประเมินตนเอง (Self-evaluation)
 - *การบริหารจัดการและยื่นรายงานภาครัฐ (CSV Documents & Reports Export):* นำมาใช้เพื่อลดภาระของ HR Manager โดยรองรับการสรุปยอดผู้สำเร็จหลักสูตรเพื่อนำส่งรายงานต่อกรมพัฒนาฝีมือแรงงานผ่านการ Export มาเป็นไฟล์ CSV พร้อมทั้งความสามารถในการดาวน์โหลดใบรับรองให้พนักงานแบบรวมกลุ่ม (Bulk Download) โดยระบบจะยื่นเข้าคิวงานประมวลผล (Worker & Job Queue) ให้ทำการรวมเป็นไฟล์บีบอัด (.zip) ทำให้ไม่กระทบต่อประสิทธิภาพโดยรวม
 - *การบริหารจัดการเนื้อหาหลักสูตร (Content & Course Management):* ทีมพัฒนาทักษะองค์กร (L&D Specialist) สามารถบริหารข้อมูลคอร์ส อัปเดตวิดีโอ โปสเตอร์ปก โดยการลบหลักสูตรจะอยู่ในรูปแบบ Soft Delete เพื่อป้องกันผลกระทบบนสถิติการเรียน
-- *เส้นทางขอสิทธิ์เข้าเรียนอันหลากหลาย (Flexible Enrollment Flow):* ระบบรองรับระบบการควบคุมสิทธิการเข้าเรียนถึง 2 รูปแบบ คือกติกาที่ HR บังคับเลือกลงทะเบียนอัตโนมัติ (Force Enroll) รายวิชาจะปรากฏในหลักสูตรของฉันทันที และกติกาที่จำกัดโควตาผู้เรียน (Request-to-Enroll) ซึ่งพนักงานจะส่งคำขอเข้ามาเป็นสถานะรอดำเนินการ (Pending) จนกว่าหัวหน้าหรือ HR Manager จะตรวจสอบคุณสมบัติและเข้ามากดให้การอนุมัติ
+- *เส้นทางขอสิทธิ์เข้าเรียนอันหลากหลาย (Flexible Enrollment Flow):* ระบบรองรับระบบการควบคุมสิทธิการเข้าเรียนถึง 2 รูปแบบ คือกติกาที่ HR บังคับเลือกลงทะเบียนอัตโนมัติ (Force Enroll) รายวิชาจะปรากฏในหลักสูตรของฉันทันที และกติกาที่จำกัดโควตาผู้เรียน (Request-to-Enroll) ซึ่งพนักงานจะส่งคำขอเข้ามาเป็นสถานะรอดำเนินการ (Pending) จนกว่าหัวหน้าหรือ HR Manager จะตรวจสอบคุณสมบัติและเข้ามากดให้การอนุมัติ ดัง@fig:3-4 แสดงการทำงานแบบ Monorepo และเครื่องมือการทดสอบ
+#figure(
+  caption: [การทำงานแบบ Monorepo และเครื่องมือการทดสอบ],
+  rect(stroke: 0.5pt + black, inset: 10pt, text(size: 9pt, diagram(
+    node-stroke: 1pt,
+    edge-stroke: 1pt,
+    spacing: (4.5em, 3em),
 
-#align(center)[
-  #figure(
-    caption: [การทำงานแบบ Monorepo และเครื่องมือการทดสอบ],
-    rect(stroke: 0.5pt + black, inset: 10pt, text(size: 9pt, diagram(
-      node-stroke: 1pt,
-      edge-stroke: 1pt,
-      spacing: (4.5em, 3em),
+    // Nodes
+    node((0, 0), [pnpm Workspace], corner-radius: 5pt, width: 8em),
 
-      // Nodes
-      node((0, 0), [pnpm Workspace], corner-radius: 5pt, width: 8em),
+    node((-1, 1), [Frontend\ (Angular 21)], corner-radius: 5pt, width: 7.5em),
+    node((-1, 2), [UI / Components], corner-radius: 5pt, fill: blue.lighten(95%), width: 8em),
 
-      node((-1, 1), [Frontend\ (Angular 21)], corner-radius: 5pt, width: 7.5em),
-      node((-1, 2), [UI / Components], corner-radius: 5pt, fill: blue.lighten(95%), width: 8em),
+    node((1, 1), [Backend\ (NestJS 11)], corner-radius: 5pt, width: 7.5em),
+    node((1, 2), [Unit Tests], corner-radius: 5pt, fill: blue.lighten(95%), width: 7em),
+    node((2, 1), [API Tests], corner-radius: 5pt, width: 6em),
 
-      node((1, 1), [Backend\ (NestJS 11)], corner-radius: 5pt, width: 7.5em),
-      node((1, 2), [Unit Tests], corner-radius: 5pt, fill: blue.lighten(95%), width: 7em),
-      node((2, 1), [API Tests], corner-radius: 5pt, width: 6em),
+    // Edges
+    edge((0, 0), (-1, 1), "-|>", label: [แชร์ไลบรารี], label-pos: 0.4, label-side: left),
+    edge((0, 0), (1, 1), "-|>", label: [แชร์ไลบรารี], label-pos: 0.4, label-side: right),
 
-      // Edges
-      edge((0, 0), (-1, 1), "-|>", label: [แชร์ไลบรารี], label-pos: 0.4, label-side: left),
-      edge((0, 0), (1, 1), "-|>", label: [แชร์ไลบรารี], label-pos: 0.4, label-side: right),
+    edge((-1, 1), (-1, 2), "-|>", label: [State Management\ (NgRx Signal Store)], label-side: left),
 
-      edge((-1, 1), (-1, 2), "-|>", label: [State Management\ (NgRx Signal Store)], label-side: left),
+    edge((1, 1), (1, 2), "-|>", label: [SWC + Vitest], label-side: left),
+    edge((1, 1), (2, 1), "<->", label: [API Testing\ (Bruno / Mountebank)], label-pos: 0.9, label-side: left, label-sep: 1.2em),
+  )))
+) <fig:3-4>
 
-      edge((1, 1), (1, 2), "-|>", label: [SWC + Vitest], label-side: left),
-      edge((1, 1), (2, 1), "<->", label: [API Testing\ (Bruno / Mountebank)], label-pos: 0.9, label-side: left, label-sep: 1.2em),
-    )))
-  )
-]
 
 == การวิเคราะห์และออกแบบระบบ (System Analysis & Design)
 
 === แผนภาพยูสเคส (Use Case Diagram)
 
-แผนภาพยูสเคสด้านล่างแสดงความสัมพันธ์ระหว่างผู้ใช้งานหลักในระบบ My Academy ซึ่งประกอบด้วย 2 บทบาทหลัก ได้แก่ HR Admin และ Employee (พนักงาน) โดยแต่ละบทบาทมีขอบเขตการใช้งานที่ครอบคลุมฟังก์ชันการเรียนรู้และการประเมินผล
+แผนภาพยูสเคสด้านล่างแสดงความสัมพันธ์ระหว่างผู้ใช้งานหลักในระบบ My Academy ซึ่งประกอบด้วย 2 บทบาทหลัก ได้แก่ HR Admin และ Employee (พนักงาน) โดยแต่ละบทบาทมีขอบเขตการใช้งานที่ครอบคลุมฟังก์ชันการเรียนรู้และการประเมินผล ดัง@fig:3-5 แสดงแผนภาพยูสเคสของระบบ My Academy
+#figure(
+  caption: [แผนภาพยูสเคสของระบบ My Academy],
+  rect(stroke: 0.5pt + black, inset: 10pt, text(size: 9pt, diagram(
+    node-stroke: 0.8pt,
+    edge-stroke: 0.8pt,
+    spacing: (10em, 2em),
 
-#align(center)[
-  #figure(
-    caption: [แผนภาพยูสเคสของระบบ My Academy],
-    rect(stroke: 0.5pt + black, inset: 10pt, text(size: 9pt, diagram(
-      node-stroke: 0.8pt,
-      edge-stroke: 0.8pt,
-      spacing: (10em, 2em),
+    // Actors
+    node((-1.5, 2.0), [HR\ Admin], shape: shapes.circle, name: <hr>, width: 4.5em, height: 4.5em),
+    node((-1.5, 5.0), [Employee], shape: shapes.circle, name: <emp>, width: 4.5em, height: 4.5em),
 
-      // Actors
-      node((-1.5, 2.0), [HR\ Admin], shape: shapes.circle, name: <hr>, width: 4.5em, height: 4.5em),
-      node((-1.5, 5.0), [Employee], shape: shapes.circle, name: <emp>, width: 4.5em, height: 4.5em),
+    // System Boundary
+    node((1, 4), rect(stroke: 1pt + black, width: 14em, height: 25em), stroke: none),
+    node((1, 0.2), text(size: 11pt, weight: "bold")[My Academy System], stroke: none),
 
-      // System Boundary
-      node((1, 4), rect(stroke: 1pt + black, width: 14em, height: 25em), stroke: none),
-      node((1, 0.2), text(size: 11pt, weight: "bold")[My Academy System], stroke: none),
+    // Use Cases
+    node((1, 1), [จัดการคอร์สเรียน], shape: shapes.pill, name: <uc1>, width: 10em),
+    node((1, 2), [สร้างแบบประเมิน], shape: shapes.pill, name: <uc2>, width: 10em),
+    node((1, 3), [อนุมัติการลงทะเบียน], shape: shapes.pill, name: <uc3>, width: 10em),
+    node((1, 4), [ดูรายงานผล], shape: shapes.pill, name: <uc4>, width: 10em),
+    node((1, 5), [ลงทะเบียนเรียน], shape: shapes.pill, name: <uc5>, width: 10em),
+    node((1, 6), [ทำแบบทดสอบ], shape: shapes.pill, name: <uc6>, width: 10em),
+    node((1, 7), [รับใบเกียรติบัตร], shape: shapes.pill, name: <uc7>, width: 10em),
 
-      // Use Cases
-      node((1, 1), [จัดการคอร์สเรียน], shape: shapes.pill, name: <uc1>, width: 10em),
-      node((1, 2), [สร้างแบบประเมิน], shape: shapes.pill, name: <uc2>, width: 10em),
-      node((1, 3), [อนุมัติการลงทะเบียน], shape: shapes.pill, name: <uc3>, width: 10em),
-      node((1, 4), [ดูรายงานผล], shape: shapes.pill, name: <uc4>, width: 10em),
-      node((1, 5), [ลงทะเบียนเรียน], shape: shapes.pill, name: <uc5>, width: 10em),
-      node((1, 6), [ทำแบบทดสอบ], shape: shapes.pill, name: <uc6>, width: 10em),
-      node((1, 7), [รับใบเกียรติบัตร], shape: shapes.pill, name: <uc7>, width: 10em),
+    // Edges (Associations)
+    edge(<hr>, <uc1>, "-"),
+    edge(<hr>, <uc2>, "-"),
+    edge(<hr>, <uc3>, "-"),
+    edge(<hr>, <uc4>, "-"),
+    
+    edge(<emp>, <uc4>, "-"),
+    edge(<emp>, <uc5>, "-"),
+    edge(<emp>, <uc6>, "-"),
+    edge(<emp>, <uc7>, "-"),
+  )))
+) <fig:3-5>
 
-      // Edges (Associations)
-      edge(<hr>, <uc1>, "-"),
-      edge(<hr>, <uc2>, "-"),
-      edge(<hr>, <uc3>, "-"),
-      edge(<hr>, <uc4>, "-"),
-      
-      edge(<emp>, <uc4>, "-"),
-      edge(<emp>, <uc5>, "-"),
-      edge(<emp>, <uc6>, "-"),
-      edge(<emp>, <uc7>, "-"),
-    )))
-  )
-]
 
 === คำอธิบายแผนภาพยูสเคส (Use Case Description)
 
-ตารางด้านล่างแสดงรายละเอียดการทำงานปกติ (Normal Flow) ของ Use Case หลักในระบบ My Academy
-
+ตารางด้านล่างแสดงรายละเอียดการทำงานปกติ (Normal Flow) ของ Use Case หลักในระบบ My Academy ดัง@tab:3-1 แสดงคำอธิบายยูสเคส: ระบบการประเมินผล (Assessment Management)
 #figure(
   caption: [คำอธิบายยูสเคส: ระบบการประเมินผล (Assessment Management)],
   kind: table,
@@ -285,220 +274,214 @@
       6. ระบบคำนวณคะแนนและแสดงผลลัพธ์
     ],
   ),
-)
+) <tab:3-1>
 
 === แผนภาพกิจกรรม (Activity Diagram)
 
-แผนภาพกิจกรรมด้านล่างแสดงลำดับขั้นตอนการทำงานของระบบ Assessment ตั้งแต่ HR สร้างแบบทดสอบจนถึง Employee ได้รับผลลัพธ์
+แผนภาพกิจกรรมด้านล่างแสดงลำดับขั้นตอนการทำงานของระบบ Assessment ตั้งแต่ HR สร้างแบบทดสอบจนถึง Employee ได้รับผลลัพธ์ ดัง@fig:3-6 แสดงแผนภาพกิจกรรม: กระบวนการประเมินผล
+#figure(
+  caption: [แผนภาพกิจกรรม: กระบวนการประเมินผล],
+  rect(stroke: 0.5pt + black, inset: 10pt, text(size: 10pt, diagram(
+    node-stroke: 1pt,
+    edge-stroke: 1pt,
+    spacing: (3em, 2.5em),
 
-#align(center)[
-  #figure(
-    caption: [แผนภาพกิจกรรม: กระบวนการประเมินผล],
-    rect(stroke: 0.5pt + black, inset: 10pt, text(size: 10pt, diagram(
-      node-stroke: 1pt,
-      edge-stroke: 1pt,
-      spacing: (3em, 2.5em),
+    // Start
+    node((0, 0), [เริ่มต้น], shape: shapes.circle, width: 3em, height: 3em),
 
-      // Start
-      node((0, 0), [เริ่มต้น], shape: shapes.circle, width: 3em, height: 3em),
+    // HR Flow
+    node((0, 1), [HR: เลือกคอร์ส], shape: rect, width: 8em),
+    node((0, 2), [HR: สร้างโจทย์และตัวเลือก], shape: rect, width: 10em),
+    node((0, 3), [HR: กำหนดเกณฑ์การผ่าน], shape: rect, width: 10em),
+    node((0, 4), [ระบบ: บันทึกแบบประเมิน], shape: rect, width: 10em),
 
-      // HR Flow
-      node((0, 1), [HR: เลือกคอร์ส], shape: rect, width: 8em),
-      node((0, 2), [HR: สร้างโจทย์และตัวเลือก], shape: rect, width: 10em),
-      node((0, 3), [HR: กำหนดเกณฑ์การผ่าน], shape: rect, width: 10em),
-      node((0, 4), [ระบบ: บันทึกแบบประเมิน], shape: rect, width: 10em),
+    // Decision
+    node((0, 5), rect(stroke: 1.5pt + blue, [เผยแพร่สำเร็จ?]), width: 7em, height: 3em),
 
-      // Decision
-      node((0, 5), rect(stroke: 1.5pt + blue, [เผยแพร่สำเร็จ?]), width: 7em, height: 3em),
+    // Employee Flow
+    node((0, 6.5), [Employee: เลือกคอร์สที่ลงทะเบียน], shape: rect, width: 12em),
+    node((0, 7.5), [Employee: ทำแบบทดสอบ], shape: rect, width: 10em),
+    node((0, 8.5), [Employee: ส่งคำตอบ], shape: rect, width: 8em),
+    node((0, 9.5), [ระบบ: คำนวณคะแนน], shape: rect, width: 9em),
+    node((0, 10.5), [ระบบ: แสดงผลลัพธ์], shape: rect, width: 9em),
 
-      // Employee Flow
-      node((0, 6.5), [Employee: เลือกคอร์สที่ลงทะเบียน], shape: rect, width: 12em),
-      node((0, 7.5), [Employee: ทำแบบทดสอบ], shape: rect, width: 10em),
-      node((0, 8.5), [Employee: ส่งคำตอบ], shape: rect, width: 8em),
-      node((0, 9.5), [ระบบ: คำนวณคะแนน], shape: rect, width: 9em),
-      node((0, 10.5), [ระบบ: แสดงผลลัพธ์], shape: rect, width: 9em),
+    // End
+    node((0, 11.5), [สิ้นสุด], shape: shapes.circle, width: 3em, height: 3em),
 
-      // End
-      node((0, 11.5), [สิ้นสุด], shape: shapes.circle, width: 3em, height: 3em),
+    // Edges
+    edge((0, 0), (0, 1), "-|>"),
+    edge((0, 1), (0, 2), "-|>"),
+    edge((0, 2), (0, 3), "-|>"),
+    edge((0, 3), (0, 4), "-|>"),
+    edge((0, 4), (0, 5), "-|>"),
+    edge((0, 5), (0, 6.5), "-|>", text(8pt)[ใช่]),
+    edge((0, 5), (3, 5), "-|>", text(8pt)[ไม่], bend: 0deg),
+    edge((3, 5), (3, 2), "-|>"),
+    edge((3, 2), (0, 2), "-|>"),
+    edge((0, 6.5), (0, 7.5), "-|>"),
+    edge((0, 7.5), (0, 8.5), "-|>"),
+    edge((0, 8.5), (0, 9.5), "-|>"),
+    edge((0, 9.5), (0, 10.5), "-|>"),
+    edge((0, 10.5), (0, 11.5), "-|>"),
+  )))
+) <fig:3-6>
 
-      // Edges
-      edge((0, 0), (0, 1), "-|>"),
-      edge((0, 1), (0, 2), "-|>"),
-      edge((0, 2), (0, 3), "-|>"),
-      edge((0, 3), (0, 4), "-|>"),
-      edge((0, 4), (0, 5), "-|>"),
-      edge((0, 5), (0, 6.5), "-|>", text(8pt)[ใช่]),
-      edge((0, 5), (3, 5), "-|>", text(8pt)[ไม่], bend: 0deg),
-      edge((3, 5), (3, 2), "-|>"),
-      edge((3, 2), (0, 2), "-|>"),
-      edge((0, 6.5), (0, 7.5), "-|>"),
-      edge((0, 7.5), (0, 8.5), "-|>"),
-      edge((0, 8.5), (0, 9.5), "-|>"),
-      edge((0, 9.5), (0, 10.5), "-|>"),
-      edge((0, 10.5), (0, 11.5), "-|>"),
-    )))
-  )
-]
 
 === แผนภาพลำดับกิจกรรม (Sequence Diagram)
 
-แผนภาพลำดับกิจกรรมด้านล่างแสดงลำดับการสื่อสารระหว่างผู้ใช้งาน (Employee) ระบบ Frontend และ Backend ในการทำแบบทดสอบ
+แผนภาพลำดับกิจกรรมด้านล่างแสดงลำดับการสื่อสารระหว่างผู้ใช้งาน (Employee) ระบบ Frontend และ Backend ในการทำแบบทดสอบ ดัง@fig:3-7 แสดงแผนภาพลำดับกิจกรรม: กระบวนการ Employee ทำแบบทดสอบ
+#figure(
+  caption: [แผนภาพลำดับกิจกรรม: กระบวนการ Employee ทำแบบทดสอบ],
+  rect(stroke: 0.5pt + black, inset: 10pt, text(size: 10pt, diagram(
+    node-stroke: 1pt,
+    edge-stroke: 1pt,
+    spacing: (5em, 2.5em),
 
-#align(center)[
-  #figure(
-    caption: [แผนภาพลำดับกิจกรรม: กระบวนการ Employee ทำแบบทดสอบ],
-    rect(stroke: 0.5pt + black, inset: 10pt, text(size: 10pt, diagram(
-      node-stroke: 1pt,
-      edge-stroke: 1pt,
-      spacing: (5em, 2.5em),
+    // Lifelines
+    node((0, 0), [Employee], shape: rect, fill: gray.lighten(90%), width: 5em),
+    node((1, 0), [Frontend], shape: rect, fill: gray.lighten(90%), width: 5em),
+    node((2, 0), [Backend API], shape: rect, fill: gray.lighten(90%), width: 5em),
+    node((3, 0), [Database], shape: rect, fill: gray.lighten(90%), width: 5em),
 
-      // Lifelines
-      node((0, 0), [Employee], shape: rect, fill: gray.lighten(90%), width: 5em),
-      node((1, 0), [Frontend], shape: rect, fill: gray.lighten(90%), width: 5em),
-      node((2, 0), [Backend API], shape: rect, fill: gray.lighten(90%), width: 5em),
-      node((3, 0), [Database], shape: rect, fill: gray.lighten(90%), width: 5em),
+    // Vertical lines
+    edge((0, 0.5), (0, 8), stroke: (dash: "dashed")),
+    edge((1, 0.5), (1, 8), stroke: (dash: "dashed")),
+    edge((2, 0.5), (2, 8), stroke: (dash: "dashed")),
+    edge((3, 0.5), (3, 8), stroke: (dash: "dashed")),
 
-      // Vertical lines
-      edge((0, 0.5), (0, 8), stroke: (dash: "dashed")),
-      edge((1, 0.5), (1, 8), stroke: (dash: "dashed")),
-      edge((2, 0.5), (2, 8), stroke: (dash: "dashed")),
-      edge((3, 0.5), (3, 8), stroke: (dash: "dashed")),
+    // Messages
+    edge((0, 1), (1, 1.5), "-|>", text(8pt)[เลือกคอร์ส]),
+    edge((1, 1.5), (2, 2), "-|>", text(8pt)[GET /assessments]),
+    edge((2, 2), (3, 2.5), "-|>", text(8pt)[Query]),
+    edge((3, 2.5), (2, 3), "-|>", text(8pt)[ข้อมูลแบบทดสอบ]),
+    edge((2, 3), (1, 3.5), "-|>", text(8pt)[Response JSON]),
+    edge((1, 3.5), (0, 4), "-|>", text(8pt)[แสดงแบบทดสอบ]),
 
-      // Messages
-      edge((0, 1), (1, 1.5), "-|>", text(8pt)[เลือกคอร์ส]),
-      edge((1, 1.5), (2, 2), "-|>", text(8pt)[GET /assessments]),
-      edge((2, 2), (3, 2.5), "-|>", text(8pt)[Query]),
-      edge((3, 2.5), (2, 3), "-|>", text(8pt)[ข้อมูลแบบทดสอบ]),
-      edge((2, 3), (1, 3.5), "-|>", text(8pt)[Response JSON]),
-      edge((1, 3.5), (0, 4), "-|>", text(8pt)[แสดงแบบทดสอบ]),
+    edge((0, 4.5), (1, 5), "-|>", text(8pt)[ส่งคำตอบ]),
+    edge((1, 5), (2, 5.5), "-|>", text(8pt)[POST /submit]),
+    edge((2, 5.5), (3, 6), "-|>", text(8pt)[Save & Calculate]),
+    edge((3, 6), (2, 6.5), "-|>", text(8pt)[ผลคะแนน]),
+    edge((2, 6.5), (1, 7), "-|>", text(8pt)[Response]),
+    edge((1, 7), (0, 7.5), "-|>", text(8pt)[แสดงผลลัพธ์]),
+  )))
+) <fig:3-7>
 
-      edge((0, 4.5), (1, 5), "-|>", text(8pt)[ส่งคำตอบ]),
-      edge((1, 5), (2, 5.5), "-|>", text(8pt)[POST /submit]),
-      edge((2, 5.5), (3, 6), "-|>", text(8pt)[Save & Calculate]),
-      edge((3, 6), (2, 6.5), "-|>", text(8pt)[ผลคะแนน]),
-      edge((2, 6.5), (1, 7), "-|>", text(8pt)[Response]),
-      edge((1, 7), (0, 7.5), "-|>", text(8pt)[แสดงผลลัพธ์]),
-    )))
-  )
-]
 
 === แผนภาพแสดงความสัมพันธ์ของคลาส (Class Diagram)
 
-แผนภาพแสดงความสัมพันธ์ของคลาสด้านล่างแสดงโครงสร้างข้อมูลหลักของระบบ Assessment ใน My Academy
+แผนภาพแสดงความสัมพันธ์ของคลาสด้านล่างแสดงโครงสร้างข้อมูลหลักของระบบ Assessment ใน My Academy ดัง@fig:3-8 แสดงแผนภาพแสดงความสัมพันธ์ของคลาส: ระบบ Assessment
+#figure(
+  caption: [แผนภาพแสดงความสัมพันธ์ของคลาส: ระบบ Assessment],
+  rect(stroke: 0.5pt + black, inset: 10pt, text(size: 8pt, diagram(
+    node-stroke: 1pt,
+    edge-stroke: 1pt,
+    spacing: (4em, 4em),
 
-#align(center)[
-  #figure(
-    caption: [แผนภาพแสดงความสัมพันธ์ของคลาส: ระบบ Assessment],
-    rect(stroke: 0.5pt + black, inset: 10pt, text(size: 8pt, diagram(
-      node-stroke: 1pt,
-      edge-stroke: 1pt,
-      spacing: (4em, 4em),
+    // Course
+    node((0, 0), rect(
+      [
+        #text(weight: "bold")[Course]
+        #line(length: 100%, stroke: 0.5pt)
+        - id: UUID\
+        - title: string\
+        - description: string\
+        - status: enum\
+        - poster_url: string
+        #line(length: 100%, stroke: 0.5pt)
+        + create()\
+        + update()\
+        + publish()
+      ]
+    ), width: 9em, name: <course>),
 
-      // Course
-      node((0, 0), rect(
-        [
-          #text(weight: "bold")[Course]
-          #line(length: 100%, stroke: 0.5pt)
-          - id: UUID\
-          - title: string\
-          - description: string\
-          - status: enum\
-          - poster_url: string
-          #line(length: 100%, stroke: 0.5pt)
-          + create()\
-          + update()\
-          + publish()
-        ]
-      ), width: 9em, name: <course>),
+    // Assessment
+    node((1.5, 0), rect(
+      [
+        #text(weight: "bold")[Assessment]
+        #line(length: 100%, stroke: 0.5pt)
+        - id: UUID\
+        - course_id: UUID\
+        - type: enum\
+        - passing_score: int\
+        - time_limit: int
+        #line(length: 100%, stroke: 0.5pt)
+        + create()\
+        + addQuestion()\
+        + calculateScore()
+      ]
+    ), width: 10em, name: <assessment>),
 
-      // Assessment
-      node((1.5, 0), rect(
-        [
-          #text(weight: "bold")[Assessment]
-          #line(length: 100%, stroke: 0.5pt)
-          - id: UUID\
-          - course_id: UUID\
-          - type: enum\
-          - passing_score: int\
-          - time_limit: int
-          #line(length: 100%, stroke: 0.5pt)
-          + create()\
-          + addQuestion()\
-          + calculateScore()
-        ]
-      ), width: 10em, name: <assessment>),
+    // Question
+    node((3, 0), rect(
+      [
+        #text(weight: "bold")[Question]
+        #line(length: 100%, stroke: 0.5pt)
+        - id: UUID\
+        - assessment_id: UUID\
+        - text: string\
+        - order: int
+        #line(length: 100%, stroke: 0.5pt)
+        + create()\
+        + addChoice()
+      ]
+    ), width: 9em, name: <question>),
 
-      // Question
-      node((3, 0), rect(
-        [
-          #text(weight: "bold")[Question]
-          #line(length: 100%, stroke: 0.5pt)
-          - id: UUID\
-          - assessment_id: UUID\
-          - text: string\
-          - order: int
-          #line(length: 100%, stroke: 0.5pt)
-          + create()\
-          + addChoice()
-        ]
-      ), width: 9em, name: <question>),
+    // Choice
+    node((3, 1.2), rect(
+      [
+        #text(weight: "bold")[Choice]
+        #line(length: 100%, stroke: 0.5pt)
+        - id: UUID\
+        - question_id: UUID\
+        - text: string\
+        - is_correct: boolean
+        #line(length: 100%, stroke: 0.5pt)
+        + create()\
+        + update()
+      ]
+    ), width: 9em, name: <choice>),
 
-      // Choice
-      node((3, 1.2), rect(
-        [
-          #text(weight: "bold")[Choice]
-          #line(length: 100%, stroke: 0.5pt)
-          - id: UUID\
-          - question_id: UUID\
-          - text: string\
-          - is_correct: boolean
-          #line(length: 100%, stroke: 0.5pt)
-          + create()\
-          + update()
-        ]
-      ), width: 9em, name: <choice>),
+    // Attempt
+    node((1.5, 1.2), rect(
+      [
+        #text(weight: "bold")[AssessmentAttempt]
+        #line(length: 100%, stroke: 0.5pt)
+        - id: UUID\
+        - assessment_id: UUID\
+        - employee_id: UUID\
+        - score: int\
+        - passed: boolean
+        #line(length: 100%, stroke: 0.5pt)
+        + submit()\
+        + getResult()
+      ]
+    ), width: 10em, name: <attempt>),
 
-      // Attempt
-      node((1.5, 1.2), rect(
-        [
-          #text(weight: "bold")[AssessmentAttempt]
-          #line(length: 100%, stroke: 0.5pt)
-          - id: UUID\
-          - assessment_id: UUID\
-          - employee_id: UUID\
-          - score: int\
-          - passed: boolean
-          #line(length: 100%, stroke: 0.5pt)
-          + submit()\
-          + getResult()
-        ]
-      ), width: 10em, name: <attempt>),
+    // AttemptAnswer
+    node((0, 1.2), rect(
+      [
+        #text(weight: "bold")[AttemptAnswer]
+        #line(length: 100%, stroke: 0.5pt)
+        - id: UUID\
+        - attempt_id: UUID\
+        - question_id: UUID\
+        - choice_id: UUID
+        #line(length: 100%, stroke: 0.5pt)
+        + save()\
+        + evaluate()
+      ]
+    ), width: 10em, name: <answer>),
 
-      // AttemptAnswer
-      node((0, 1.2), rect(
-        [
-          #text(weight: "bold")[AttemptAnswer]
-          #line(length: 100%, stroke: 0.5pt)
-          - id: UUID\
-          - attempt_id: UUID\
-          - question_id: UUID\
-          - choice_id: UUID
-          #line(length: 100%, stroke: 0.5pt)
-          + save()\
-          + evaluate()
-        ]
-      ), width: 10em, name: <answer>),
+    // Relationships
+    edge(<course>, <assessment>, "<->", label: [1 : N], label-pos: 0.5, label-side: left),
+    edge(<assessment>, <question>, "<|-|>", label: [1 : N], label-pos: 0.5, label-side: left),
+    edge(<question>, <choice>, "<|-|>", label: [1 : N], label-pos: 0.5, label-side: left),
+    edge(<assessment>, <attempt>, "<->", label: [1 : N], label-pos: 0.5, label-side: left),
+    edge(<attempt>, <answer>, "<|-|>", label: [1 : N], label-pos: 0.5, label-side: left),
+    edge(<question>, <answer>, "..>", label: [ref], label-pos: 0.5, label-side: right),
+  )))
+) <fig:3-8>
 
-      // Relationships
-      edge(<course>, <assessment>, "<->", label: [1 : N], label-pos: 0.5, label-side: left),
-      edge(<assessment>, <question>, "<|-|>", label: [1 : N], label-pos: 0.5, label-side: left),
-      edge(<question>, <choice>, "<|-|>", label: [1 : N], label-pos: 0.5, label-side: left),
-      edge(<assessment>, <attempt>, "<->", label: [1 : N], label-pos: 0.5, label-side: left),
-      edge(<attempt>, <answer>, "<|-|>", label: [1 : N], label-pos: 0.5, label-side: left),
-      edge(<question>, <answer>, "..>", label: [ref], label-pos: 0.5, label-side: right),
-    )))
-  )
-]
 
 == ขั้นตอนการดำเนินงานและภาพประกอบ (Implementation Details)
 
@@ -517,75 +500,63 @@
 - *Database:* ออกแบบ Entity-Relationship Diagram (ERD) และ Schema ของฐานข้อมูลร่วมกัน
 - *Support:* ระบุส่วนสนับสนุนอื่นๆ เช่น ระบบ Authentication, การเชื่อมต่อ API ภายนอก หรือระบบคิวงาน (BullMQ)
 
-การจัดวาง Blueprint ในรูปแบบนี้ช่วยให้ทีมใช้ Outside-In Approach — เริ่มมองจากมุมผู้ใช้ก่อน แล้วค่อยลงลึกไปยังโครงสร้างเบื้องหลัง ทำให้สามารถระบุสิ่งที่ต้องพัฒนาได้อย่างครบถ้วนตั้งแต่ขั้นตอนวางแผน ลดปัญหาการสื่อสารที่คลาดเคลื่อน และเป็นแนวทางที่ดีในการสร้างชุดทดสอบล่วงหน้า (Test-First) ก่อนลงมือเขียนโค้ดจริง
+การจัดวาง Blueprint ในรูปแบบนี้ช่วยให้ทีมใช้ Outside-In Approach — เริ่มมองจากมุมผู้ใช้ก่อน แล้วค่อยลงลึกไปยังโครงสร้างเบื้องหลัง ทำให้สามารถระบุสิ่งที่ต้องพัฒนาได้อย่างครบถ้วนตั้งแต่ขั้นตอนวางแผน ลดปัญหาการสื่อสารที่คลาดเคลื่อน และเป็นแนวทางที่ดีในการสร้างชุดทดสอบล่วงหน้า (Test-First) ก่อนลงมือเขียนโค้ดจริง ดัง@fig:3-9 แสดงตัวอย่างการออกแบบระบบ Assessment บน Miro
+#figure(
+  image("/images/ch3/example-blueprint-design-on-miro.png", width: 100%),
+  caption: [ตัวอย่างการออกแบบระบบ Assessment บน Miro],
+) <fig:3-9>
 
-#align(center)[
-  #figure(
-    image("/images/ch3/example-blueprint-design-on-miro.png", width: 100%),
-    caption: [ตัวอย่างการออกแบบระบบ Assessment บน Miro],
-  )
-]
+ ดัง@fig:3-10 แสดงการออกแบบ A-DAPT Blueprint ของ feature Assessment
+#figure(
+  image("/images/ch3/adapt_blueprint.png", width: 100%),
+  caption: [ภาพแสดงการออกแบบ A-DAPT Blueprint ของ feature Assessment],
+) <fig:3-10>
 
-#align(center)[
-  #figure(
-    image("/images/ch3/adapt_blueprint.png", width: 100%),
-    caption: [ภาพแสดงการออกแบบ A-DAPT Blueprint ของ feature Assessment],
-  )
-]
 
 === การจำลอง API ด้วย Mountebank (Mountebank)
 
-การพัฒนาแบบขนานระหว่าง Frontend และ Backend จำเป็นต้องมีการจำลอง API (Mock Server) เพื่อให้ฝั่ง Frontend สามารถทำงานต่อได้โดยไม่ต้องรอ API จริงเสร็จสมบูรณ์ ทางทีมได้เลือกใช้ Mountebank พร้อมกับใช้กลยุทธ์ Merge JSON Strategy โดยแยกไฟล์ Imposter ตามแต่ละฟังก์ชัน (เช่น auth, employees) แล้วทำกระบวนการอัตโนมัติรวบรวมเป็นไฟล์เดียว เพื่อให้ง่ายต่อการดูแลรักษาและเป็นระเบียบ
+การพัฒนาแบบขนานระหว่าง Frontend และ Backend จำเป็นต้องมีการจำลอง API (Mock Server) เพื่อให้ฝั่ง Frontend สามารถทำงานต่อได้โดยไม่ต้องรอ API จริงเสร็จสมบูรณ์ ทางทีมได้เลือกใช้ Mountebank พร้อมกับใช้กลยุทธ์ Merge JSON Strategy โดยแยกไฟล์ Imposter ตามแต่ละฟังก์ชัน (เช่น auth, employees) แล้วทำกระบวนการอัตโนมัติรวบรวมเป็นไฟล์เดียว เพื่อให้ง่ายต่อการดูแลรักษาและเป็นระเบียบ ดัง@fig:3-11 แสดงโครงสร้างไฟล์ Imposter ที่แยกตามฟังก์ชัน
+#figure(
+  image("/images/ch3/imposter_structure.png", width: 70%),
+  caption: [ภาพแสดงโครงสร้างไฟล์ Imposter ที่แยกตามฟังก์ชัน],
+) <fig:3-11>
 
-#align(center)[
-  #figure(
-    image("/images/ch3/imposter_structure.png", width: 70%),
-    caption: [ภาพแสดงโครงสร้างไฟล์ Imposter ที่แยกตามฟังก์ชัน],
-  )
-]
+ ดัง@fig:3-12 แสดงตัวอย่างการจำลอง Response ด้วย Mountebank
+#figure(
+  image("/images/ch3/mountebank_response.png", width: 100%),
+  caption: [ภาพตัวอย่างการจำลอง Response ด้วย Mountebank],
+) <fig:3-12>
 
-#align(center)[
-  #figure(
-    image("/images/ch3/mountebank_response.png", width: 100%),
-    caption: [ภาพตัวอย่างการจำลอง Response ด้วย Mountebank],
-  )
-]
 
 === การทดสอบ API ด้วย Bruno (Bruno)
 
-สำหรับทดสอบการตอบสนองของ API ขาต่างๆ อิงโครงสร้างจากโฟลเดอร์ tests/api โซน Backend ในโปรเจ็กต์ ทางทีมเลือกใช้ Bruno โดยใช้แนวคิด DAMP (Descriptive And Meaningful Phrases) over DRY เพื่อให้การทดสอบอ่านง่ายและแสดงเจตนาชัดเจน ควบคู่กับการประยุกต์ใช้ Centralized Data Definition บน collection.bru เพื่อรวมตัวแปรหลัก เช่น Token หรือ User ID ไว้ที่เดียว ช่วยลดความซ้ำซ้อนของการกำหนดค่าตั้งต้นสำหรับการทดสอบแต่ละกรณี
+สำหรับทดสอบการตอบสนองของ API ขาต่างๆ อิงโครงสร้างจากโฟลเดอร์ tests/api โซน Backend ในโปรเจ็กต์ ทางทีมเลือกใช้ Bruno โดยใช้แนวคิด DAMP (Descriptive And Meaningful Phrases) over DRY เพื่อให้การทดสอบอ่านง่ายและแสดงเจตนาชัดเจน ควบคู่กับการประยุกต์ใช้ Centralized Data Definition บน collection.bru เพื่อรวมตัวแปรหลัก เช่น Token หรือ User ID ไว้ที่เดียว ช่วยลดความซ้ำซ้อนของการกำหนดค่าตั้งต้นสำหรับการทดสอบแต่ละกรณี ดัง@fig:3-13 แสดงการกำหนด Centralized Data ใน collection.bru
+#figure(
+  image("/images/ch3/collection_bru.png", width: 80%),
+  caption: [ภาพแสดงการกำหนด Centralized Data ใน collection.bru],
+) <fig:3-13>
 
-#align(center)[
-  #figure(
-    image("/images/ch3/collection_bru.png", width: 80%),
-    caption: [ภาพแสดงการกำหนด Centralized Data ใน collection.bru],
-  )
-]
+ ดัง@fig:3-14 แสดงการทดสอบ API และการใช้ DAMP Pattern
+#figure(
+  image("/images/ch3/api_test_damp.png", width: 80%),
+  caption: [ภาพการทดสอบ API และการใช้ DAMP Pattern],
+) <fig:3-14>
 
-#align(center)[
-  #figure(
-    image("/images/ch3/api_test_damp.png", width: 80%),
-    caption: [ภาพการทดสอบ API และการใช้ DAMP Pattern],
-  )
-]
 
 === การทดสอบหน่วยย่อย (Unit Test)
 
-การเขียน Unit Test ในฝั่ง Backend จะอิงตามโฟลเดอร์ Service ย่อยต่างๆ ภายใน /backend ซึ่งมีการย้ายจาก Jest มาใช้ SWC และ Vitest เพื่อเพิ่มความเร็วในการทดสอบ โดยแนวทางการเขียนเทสต์จะเน้นจำลอง Mock Data อย่างระมัดระวัง และใช้หลักการตั้งชื่อแบบ DAMP (Descriptive And Meaningful Phrases) ให้กรณีทดสอบ (Test Case) ตรงกับเป้าหมายทางธุรกิจที่ต้องการตรวจสอบ เพื่อลดข้อผิดพลาดก่อนที่จะเข้าสู่กระบวนการต่อไป
+การเขียน Unit Test ในฝั่ง Backend จะอิงตามโฟลเดอร์ Service ย่อยต่างๆ ภายใน /backend ซึ่งมีการย้ายจาก Jest มาใช้ SWC และ Vitest เพื่อเพิ่มความเร็วในการทดสอบ โดยแนวทางการเขียนเทสต์จะเน้นจำลอง Mock Data อย่างระมัดระวัง และใช้หลักการตั้งชื่อแบบ DAMP (Descriptive And Meaningful Phrases) ให้กรณีทดสอบ (Test Case) ตรงกับเป้าหมายทางธุรกิจที่ต้องการตรวจสอบ เพื่อลดข้อผิดพลาดก่อนที่จะเข้าสู่กระบวนการต่อไป ดัง@fig:3-15 แสดงตัวอย่างการเขียน Unit Test ด้วย Vitest
+#figure(
+  image("/images/ch3/unit_test_vitest.png", width: 100%),
+  caption: [ภาพแสดงตัวอย่างการเขียน Unit Test ด้วย Vitest],
+) <fig:3-15>
 
-#align(center)[
-  #figure(
-    image("/images/ch3/unit_test_vitest.png", width: 100%),
-    caption: [ภาพแสดงตัวอย่างการเขียน Unit Test ด้วย Vitest],
-  )
-]
+ ดัง@fig:3-16 แสดงผลลัพธ์การรัน Unit Test ที่ผ่านเกณฑ์
+#figure(
+  image("/images/ch3/unit_test_results.png", width: 100%),
+  caption: [ภาพแสดงผลลัพธ์การรัน Unit Test ที่ผ่านเกณฑ์],
+) <fig:3-16>
 
-#align(center)[
-  #figure(
-    image("/images/ch3/unit_test_results.png", width: 100%),
-    caption: [ภาพแสดงผลลัพธ์การรัน Unit Test ที่ผ่านเกณฑ์],
-  )
-]
 
 === การพัฒนาและโฟกัสที่ระบบการประเมินผล (Full-Stack Assessment Development)
 
