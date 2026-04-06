@@ -20,6 +20,7 @@
   let title = header_title.get()
 
   // กำหนดระยะขอบบนของ Header ให้คงที่ (1.5 ซม. จากขอบกระดาษ)
+  // แต่ละหน้ามี margin top 3.81cm ดังนั้น header ควรใช้พื้นที่ภายใน margin นี้
   v(1.5cm)
 
   if title != none and h1 == none {
@@ -191,8 +192,9 @@
 
 // ฟังก์ชันสำหรับสร้างสารบัญ
 #let create-outline(title, target, left-col-name) = {
-  // ขยาย Margin ด้านบนเฉพาะหน้าสารบัญ เพื่อให้ Header และเนื้อหาไม่ซ้อนทับกัน
-  set page(margin: (top: 4.5cm, bottom: 2.54cm, left: 3.81cm, right: 2.54cm))
+  // ใช้ margin มาตรฐานสำหรับสารบัญ (top: 3.81cm)
+  // header จะเพิ่ม v(1.5cm) ภายใน margin นี้
+  set page(margin: (top: 3.81cm, bottom: 2.54cm, left: 3.81cm, right: 2.54cm))
 
   header_title.update(title)
   let outline_grid = grid(
@@ -256,7 +258,7 @@
 #pagebreak()
 
 // ส่วนหลัง (Back Matter)
-#set page(margin: (top: 4.5cm, bottom: 2.54cm, left: 3.81cm, right: 2.54cm), header: shared-header)
+#set page(margin: (top: 3.81cm, bottom: 2.54cm, left: 3.81cm, right: 2.54cm), header: shared-header)
 #include "chapters/bibliography.typ"
 #pagebreak()
 #include "chapters/appendix.typ"
