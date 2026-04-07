@@ -10,14 +10,14 @@
 // --- Appendix A ---
 #align(center + horizon)[
   #text(size: 20pt)[*ภาคผนวก ก*]
-  
+
   #text(size: 16pt)[รายงานการปฏิบัติงานสหกิจศึกษา]
 ]
 #pagebreak()
 
 #set page(numbering: "1") // Resume numbering if needed, but checklist says no numbers for separator pages.
-// Actually checklist says "หน้าคั่นภาคผนวก ก ข และ ค ไม่ใส่เลขหน้า" 
-// and "ภาคผนวก - ไม่ระบุเลขหน้า แต่นับ" 
+// Actually checklist says "หน้าคั่นภาคผนวก ก ข และ ค ไม่ใส่เลขหน้า"
+// and "ภาคผนวก - ไม่ระบุเลขหน้า แต่นับ"
 // This usually means we use 'counter(page).step()' but don't display it.
 
 #set page(numbering: none) // Following checklist: don't show numbers
@@ -97,6 +97,12 @@
     - จัดการ Migration file สำหรับขึ้น Beta
     - Seed data และตรวจสอบความถูกต้องบนระบบ Beta
   ],
+)
+#table(
+  columns: (auto, 1fr),
+  inset: 10pt,
+  align: horizon,
+  table.header([*วันที่*], [*รายละเอียดงานที่ปฏิบัติ*]),
   [04/03/2569 - 16/03/2569], [
     - จัดทำเล่มรายงานฉบับสมบูรณ์
     - แก้ไข Bug Certificate error 404 บน Production
@@ -104,6 +110,7 @@
     - แก้ไขการแสดงผล Total Enrolled และ QR-Code
     - วาง Roadmap และ Backlog ใหม่
   ]
+
 )
 
 #pagebreak()
@@ -125,4 +132,3 @@
   image("/IN-S006-JACK.pdf", width: 100%, fit: "contain", page: i)
   if i < 2 { pagebreak() }
 }
-

@@ -297,32 +297,32 @@
 แผนภาพกิจกรรมด้านล่างแสดงลำดับขั้นตอนการทำงานของระบบ Assessment ตั้งแต่ HR สร้างแบบทดสอบจนถึง Employee ได้รับผลลัพธ์ ดัง@fig:3-6 แสดงแผนภาพกิจกรรม: กระบวนการประเมินผล
 #figure(
   caption: [แผนภาพกิจกรรม: กระบวนการประเมินผล],
-  rect(stroke: 0.5pt + black, inset: 12pt, text(size: 12pt, diagram(
-    node-stroke: 1.2pt,
+  rect(stroke: 0.5pt + black, inset: 10pt, text(size: 11pt, diagram(
+    node-stroke: 1pt,
     edge-stroke: 1pt,
-    spacing: (4em, 3em),
+    spacing: (3.5em, 2.8em),
 
     // Start
-    node((0, 0), [เริ่มต้น], shape: shapes.circle, width: 3.5em, height: 3.5em),
+    node((0, 0), [เริ่มต้น], shape: shapes.circle, width: 3.2em, height: 3.2em),
 
     // HR Flow
-    node((0, 1), [HR: เลือกคอร์ส], shape: rect, width: 10em),
-    node((0, 2), [HR: สร้างโจทย์และตัวเลือก], shape: rect, width: 12em),
-    node((0, 3), [HR: กำหนดเกณฑ์การผ่าน], shape: rect, width: 12em),
-    node((0, 4), [ระบบ: บันทึกแบบประเมิน], shape: rect, width: 12em),
+    node((0, 1), [HR: เลือกคอร์ส], shape: rect, width: 9em),
+    node((0, 2), [HR: สร้างโจทย์และตัวเลือก], shape: rect, width: 11em),
+    node((0, 3), [HR: กำหนดเกณฑ์การผ่าน], shape: rect, width: 11em),
+    node((0, 4), [ระบบ: บันทึกแบบประเมิน], shape: rect, width: 11em),
 
     // Decision
-    node((0, 5), rect(stroke: 1.5pt + blue, [เผยแพร่สำเร็จ?]), width: 8.5em, height: 3.5em),
+    node((0, 5), rect(stroke: 1.5pt + blue, [เผยแพร่สำเร็จ?]), width: 8em, height: 3.2em),
 
     // Employee Flow
-    node((0, 6.5), [Employee: เลือกคอร์สที่ลงทะเบียน], shape: rect, width: 14em),
-    node((0, 7.5), [Employee: ทำแบบทดสอบ], shape: rect, width: 12em),
-    node((0, 8.5), [Employee: ส่งคำตอบ], shape: rect, width: 10em),
-    node((0, 9.5), [ระบบ: คำนวณคะแนน], shape: rect, width: 11em),
-    node((0, 10.5), [ระบบ: แสดงผลลัพธ์], shape: rect, width: 11em),
+    node((0, 6.5), [Employee: เลือกคอร์สที่ลงทะเบียน], shape: rect, width: 13em),
+    node((0, 7.5), [Employee: ทำแบบทดสอบ], shape: rect, width: 11em),
+    node((0, 8.5), [Employee: ส่งคำตอบ], shape: rect, width: 9em),
+    node((0, 9.5), [ระบบ: คำนวณคะแนน], shape: rect, width: 10em),
+    node((0, 10.5), [ระบบ: แสดงผลลัพธ์], shape: rect, width: 10em),
 
     // End
-    node((0, 11.5), [สิ้นสุด], shape: shapes.circle, width: 3.5em, height: 3.5em),
+    node((0, 11.5), [สิ้นสุด], shape: shapes.circle, width: 3.2em, height: 3.2em),
 
     // Edges
     edge((0, 0), (0, 1), "-|>"),
@@ -330,8 +330,8 @@
     edge((0, 2), (0, 3), "-|>"),
     edge((0, 3), (0, 4), "-|>"),
     edge((0, 4), (0, 5), "-|>"),
-    edge((0, 5), (0, 6.5), "-|>", text(10pt)[ใช่]),
-    edge((0, 5), (3, 5), "-|>", text(10pt)[ไม่], bend: 0deg),
+    edge((0, 5), (0, 6.5), "-|>", text(9pt)[ใช่]),
+    edge((0, 5), (3, 5), "-|>", text(9pt)[ไม่], bend: 0deg),
     edge((3, 5), (3, 2), "-|>"),
     edge((3, 2), (0, 2), "-|>"),
     edge((0, 6.5), (0, 7.5), "-|>"),
@@ -527,13 +527,12 @@
 
 === การจำลอง API ด้วย Mountebank (Mountebank)
 
-การพัฒนาแบบขนานระหว่าง Frontend และ Backend จำเป็นต้องมีการจำลอง API (Mock Server) เพื่อให้ฝั่ง Frontend สามารถทำงานต่อได้โดยไม่ต้องรอ API จริงเสร็จสมบูรณ์ ทางทีมได้เลือกใช้ Mountebank พร้อมกับใช้กลยุทธ์ Merge JSON Strategy โดยแยกไฟล์ Imposter ตามแต่ละฟังก์ชัน (เช่น auth, employees) แล้วทำกระบวนการอัตโนมัติรวบรวมเป็นไฟล์เดียว เพื่อให้ง่ายต่อการดูแลรักษาและเป็นระเบียบ ดัง@fig:3-11 แสดงโครงสร้างไฟล์ Imposter ที่แยกตามฟังก์ชัน
+การพัฒนาแบบขนานระหว่าง Frontend และ Backend จำเป็นต้องมีการจำลอง API (Mock Server) เพื่อให้ฝั่ง Frontend สามารถทำงานต่อได้โดยไม่ต้องรอ API จริงเสร็จสมบูรณ์ ทางทีมได้เลือกใช้ Mountebank พร้อมกับใช้กลยุทธ์ Merge JSON Strategy โดยแยกไฟล์ Imposter ตามแต่ละฟังก์ชัน (เช่น auth, employees) แล้วทำกระบวนการอัตโนมัติรวบรวมเป็นไฟล์เดียว เพื่อให้ง่ายต่อการดูแลรักษาและเป็นระเบียบ ดัง@fig:3-11 แสดงโครงสร้างไฟล์ Imposter ที่แยกตามฟังก์ชันและ@fig:3-12 แสดงตัวอย่างการจำลอง Response ด้วย Mountebank
 #figure(
   image("/images/ch3/imposter_structure.png", width: 70%),
   caption: [ภาพแสดงโครงสร้างไฟล์ Imposter ที่แยกตามฟังก์ชัน],
 ) <fig:3-11>
 
- ดัง@fig:3-12 แสดงตัวอย่างการจำลอง Response ด้วย Mountebank
 #figure(
   image("/images/ch3/mountebank_response.png", width: 100%),
   caption: [ภาพตัวอย่างการจำลอง Response ด้วย Mountebank],
@@ -542,28 +541,26 @@
 
 === การทดสอบ API ด้วย Bruno (Bruno)
 
-สำหรับทดสอบการตอบสนองของ API ขาต่างๆ อิงโครงสร้างจากโฟลเดอร์ tests/api โซน Backend ในโปรเจ็กต์ ทางทีมเลือกใช้ Bruno โดยใช้แนวคิด DAMP (Descriptive And Meaningful Phrases) over DRY เพื่อให้การทดสอบอ่านง่ายและแสดงเจตนาชัดเจน ควบคู่กับการประยุกต์ใช้ Centralized Data Definition บน collection.bru เพื่อรวมตัวแปรหลัก เช่น Token หรือ User ID ไว้ที่เดียว ช่วยลดความซ้ำซ้อนของการกำหนดค่าตั้งต้นสำหรับการทดสอบแต่ละกรณี ดัง@fig:3-13 แสดงการกำหนด Centralized Data ใน collection.bru
+สำหรับทดสอบการตอบสนองของ API ขาต่างๆ อิงโครงสร้างจากโฟลเดอร์ tests/api โซน Backend ในโปรเจ็กต์ ทางทีมเลือกใช้ Bruno โดยใช้แนวคิด DAMP (Descriptive And Meaningful Phrases) over DRY เพื่อให้การทดสอบอ่านง่ายและแสดงเจตนาชัดเจน ควบคู่กับการประยุกต์ใช้ Centralized Data Definition บน collection.bru เพื่อรวมตัวแปรหลัก เช่น Token หรือ User ID ไว้ที่เดียว ช่วยลดความซ้ำซ้อนของการกำหนดค่าตั้งต้นสำหรับการทดสอบแต่ละกรณี ดัง@fig:3-13 แสดงการกำหนด Centralized Data ใน collection.bru และดัง@fig:3-14 แสดงการทดสอบ API
 #figure(
   image("/images/ch3/collection_bru.png", width: 80%),
   caption: [ภาพแสดงการกำหนด Centralized Data ใน collection.bru],
 ) <fig:3-13>
 
- ดัง@fig:3-14 แสดงการทดสอบ API และการใช้ DAMP Pattern
 #figure(
   image("/images/ch3/api_test_damp.png", width: 80%),
-  caption: [ภาพการทดสอบ API และการใช้ DAMP Pattern],
+  caption: [ภาพการทดสอบ API],
 ) <fig:3-14>
 
 
 === การทดสอบหน่วยย่อย (Unit Test)
 
-การเขียน Unit Test ในฝั่ง Backend จะอิงตามโฟลเดอร์ Service ย่อยต่างๆ ภายใน /backend ซึ่งมีการย้ายจาก Jest มาใช้ SWC และ Vitest เพื่อเพิ่มความเร็วในการทดสอบ โดยแนวทางการเขียนเทสต์จะเน้นจำลอง Mock Data อย่างระมัดระวัง และใช้หลักการตั้งชื่อแบบ DAMP (Descriptive And Meaningful Phrases) ให้กรณีทดสอบ (Test Case) ตรงกับเป้าหมายทางธุรกิจที่ต้องการตรวจสอบ เพื่อลดข้อผิดพลาดก่อนที่จะเข้าสู่กระบวนการต่อไป ดัง@fig:3-15 แสดงตัวอย่างการเขียน Unit Test ด้วย Vitest
+การเขียน Unit Test ในฝั่ง Backend จะอิงตามโฟลเดอร์ Service ย่อยต่างๆ ภายใน /backend ซึ่งมีการย้ายจาก Jest มาใช้ SWC และ Vitest เพื่อเพิ่มความเร็วในการทดสอบ โดยแนวทางการเขียนเทสต์จะเน้นจำลอง Mock Data อย่างระมัดระวัง และใช้หลักการตั้งชื่อแบบ DAMP (Descriptive And Meaningful Phrases) ให้กรณีทดสอบ (Test Case) ตรงกับเป้าหมายทางธุรกิจที่ต้องการตรวจสอบ เพื่อลดข้อผิดพลาดก่อนที่จะเข้าสู่กระบวนการต่อไป ดัง@fig:3-15 แสดงตัวอย่างการเขียน Unit Test ด้วย Vitest และดัง@fig:3-16 แสดงผลลัพธ์การรัน Unit Test ที่ผ่านเกณฑ์
 #figure(
   image("/images/ch3/unit_test_vitest.png", width: 100%),
   caption: [ภาพแสดงตัวอย่างการเขียน Unit Test ด้วย Vitest],
 ) <fig:3-15>
 
- ดัง@fig:3-16 แสดงผลลัพธ์การรัน Unit Test ที่ผ่านเกณฑ์
 #figure(
   image("/images/ch3/unit_test_results.png", width: 100%),
   caption: [ภาพแสดงผลลัพธ์การรัน Unit Test ที่ผ่านเกณฑ์],
