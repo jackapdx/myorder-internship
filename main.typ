@@ -207,6 +207,75 @@
   v(-2cm)
   heading(level: 1, outlined: false)[#title]
   outline_grid
+
+  // กฎการแสดงผลรายการในสารบัญ (Outline Entry) เพื่อจัดตำแหน่งให้ตรงตามเกณฑ์
+  show outline.entry: it => {
+    let loc = it.element.location()
+    
+    // ดึงเลขลำดับ
+    let num = if it.element.has("numbering") and it.element.numbering != none {
+      if target == heading {
+        numbering(it.element.numbering, ..counter(heading).at(loc))
+      } else {
+        // สำหรับรูปภาพและตาราง (X-Y)
+        let ch = counter("chapter").at(loc).first()
+        let n = it.element.counter.at(loc).first()
+        str(ch) + "-" + str(n)
+      }
+    } else { "" }
+
+    // กำหนดระยะเยื้อง (Indent) โดยใช้หน่วย em (1 em ประมาณ 1 ตัวอักษร)
+    let num_indent = 0pt
+    let body_indent = 1.2em
+    
+    if target == heading {
+      if it.level == 1 {
+        // เลข 1 ตรงกับตัวแรกของ "บทที่" (indent 0)
+        // ข้อความตรงกับ "ที่" (indent ~1.2em)
+        num_indent = 0pt
+        body_indent = 1.2em
+      } else {
+        // เลข 1.1 ตรงกับข้อความบทนำ (indent 1.2em)
+        num_indent = 1.2em
+        body_indent = 2.8em
+      }
+    } else {
+      // สำหรับ สารบัญภาพ และ สารบัญตาราง
+      if title == "สารบัญตาราง" {
+        // เลข 1-1 ตรงกับ "ร" ของ "ตาราง" (indent ~1.2em)
+        num_indent = 1.2em
+        body_indent = 3.2em
+      } else {
+        // เลข 1-1 ตรงกับ "สระ อา" ของ "ภาพ" (indent ~0.6em)
+        num_indent = 0.6em
+        body_indent = 2.6em
+      }
+    }
+
+    // สร้างรายการใหม่โดยแยกคอลัมน์ เลขลำดับ | ข้อความ + จุดไข่ปลา | เลขหน้า
+    let entry_title = if target == heading { it.element.body } else { it.element.caption.body }
+    
+    v(0.4em)
+    context {
+      let loc = it.element.location()
+      let page_num = counter(page).at(loc).first()
+      // ตรวจสอบว่าอยู่ในส่วนหน้า (ก, ข, ค) หรือเนื้อหาหลัก (1, 2, 3)
+      let formatted_page = if loc.page() <= 10 { // โดยประมาณ หน้า ก-ฉ อยู่ในช่วงแรก
+        thai-alphabetic(page_num)
+      } else {
+        str(page_num)
+      }
+
+      grid(
+        columns: (body_indent, 1fr, auto),
+        column-gutter: 0.5em,
+        stack(dir: ltr, h(num_indent), num),
+        entry_title + " " + box(width: 1fr, it.fill),
+        formatted_page
+      )
+    }
+  }
+
   pad(top: 0.2em, outline(title: none, target: target))
   state("header-grid", none).update(none)
   header_title.update(none)
