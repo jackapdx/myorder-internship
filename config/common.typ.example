@@ -1,5 +1,5 @@
-#let project_name_th = "ระบบบริหารจัดการการเรียนรู้ออนไลน์"
-#let project_name_en = "E-Learning Management System"
+#let project_name_th = "ระบบบริหารจัดการการเรียนรู้ออนไลน์: การประเมินผล"
+#let project_name_en = "E-Learning Management System: Assessment"
 #let student_name_th = ""
 #let student_name_en = ""
 #let student_name_th = ""
