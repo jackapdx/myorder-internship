@@ -33,7 +33,7 @@
   [#strong[หัวข้อโครงงาน/รายงาน]], [#project_name_th\ #project_name_en],
   [#strong[ชื่อนิสิต]], [นาย#student_name_th #h(3em) #strong[รหัสประจำตัว] #h(1em) #student_id],
   [#strong[อาจารย์ที่ปรึกษา]], [ผู้ช่วยศาสตราจารย์ เบญจภรณ์ จันทรทองกุล],
-  [#strong[วันที่สอบ]], [13 มีนาคม 2569],
+  [#strong[วันที่สอบ]], [7 เมษายน 2569],
 )
 
 #line(length: 100%, stroke: 0.5pt)
